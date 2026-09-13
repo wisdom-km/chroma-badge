@@ -1,7 +1,7 @@
 (export (version "E")
   (design
     (source "D:\\chroma-badge\\hardware\\pcb\\badge.kicad_sch")
-    (date "2026-09-14T03:56:19+0800")
+    (date "2026-09-14T04:08:32+0800")
     (tool "Eeschema 9.0.8")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block

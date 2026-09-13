@@ -98,7 +98,7 @@ def main():
     segs[-1] = ((lx, ly), (ex - 0.7, ey))
     for (ax, ay), (bx, by) in segs:
         prims.append(f'\t\t\t(gr_line (start {rel(ax, ay)}) (end {rel(bx, by)}) (width {w}))')
-    lines.append(f'\t(pad "1" smd custom (at {loc(p1x, p1y)}) (size 1.0 1.0) (layers "F.Cu" "F.Mask")')
+    lines.append(f'\t(pad "1" smd custom (at {loc(p1x, p1y)}) (size 1.0 1.0) (layers "F.Cu")')
     lines.append('\t\t(options (clearance outline) (anchor rect))')
     lines.append('\t\t(primitives')
     lines.extend(prims)
@@ -112,7 +112,7 @@ def main():
     lines.append(f'\t(pad "2" thru_hole circle (at {loc(p2x, p2y)}) (size 0.9 0.9) (drill 0.3) (layers "*.Cu" "*.Mask") (remove_unused_layers no))')
     def rel2(x, y):
         return f"{-(x - p2x):.3f} {(y - p2y):.3f}"
-    lines.append(f'\t(pad "2" smd custom (at {loc(p2x, p2y)}) (size 0.9 0.9) (layers "B.Cu" "B.Mask")')
+    lines.append(f'\t(pad "2" smd custom (at {loc(p2x, p2y)}) (size 0.9 0.9) (layers "B.Cu")')
     lines.append('\t\t(options (clearance outline) (anchor circle))')
     lines.append('\t\t(primitives')
     lines.append(f'\t\t\t(gr_line (start {rel2(p2x, p2y)}) (end {rel2(xi, yi)}) (width {w}))')

@@ -10025,7 +10025,7 @@
 		(pad "1" smd custom
 			(at -17.5 -22.35 180)
 			(size 1 1)
-			(layers "B.Cu" "B.Mask")
+			(layers "B.Cu")
 			(net 28 "NFC_AC0")
 			(options
 				(clearance outline)
@@ -10272,7 +10272,7 @@
 		(pad "2" smd custom
 			(at -6.5 -22.35 180)
 			(size 0.9 0.9)
-			(layers "F.Cu" "F.Mask")
+			(layers "F.Cu")
 			(net 29 "NFC_AC1")
 			(options
 				(clearance outline)

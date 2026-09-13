@@ -12,7 +12,7 @@
 
 当前优先级：
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
-2. NFC 线圈盖绿油（gen_nfc_footprint.py 去掉 F.Mask/B.Mask）后按第 3 节重布线。
+2. ~~NFC 线圈盖绿油~~：ANT1 SMD 焊盘已去掉 Mask（线圈盖绿油），通孔 pad 2 仍开窗。布线仍是 564/128、DRC 0。
 3. 写完 docs/04-review-checklist.md（草稿已有调研结论，缺官方 GDEM042F86 PDF 页码）。
 4. 固件第一版，见 firmware/README.md。
 
@@ -25,7 +25,7 @@
 
 4.2 寸四色墨水屏 NFC 工牌（产品名 **BADGE-42C**）：ESP32-C3-MINI-1-N4 + ST25DV64KC + 超薄锂电 + USB-C，整机约 6.3 mm。
 原理图、PCB（已自动布线 + GND 缝合）、外壳（FreeCAD）、BOM 都已生成。
-**打样前还差：NFC 盖绿油重布线、封装人工复核、固件。GND 缝合脚本已可从 78 过孔原板复现 DRC 清零。**
+**打样前还差：封装人工复核、固件。GND 缝合可复现；NFC 线圈已盖绿油。**
 
 ## 1. 仓库结构
 
@@ -96,7 +96,7 @@ python3 scripts/route_pcb.py --skip-route
 | PCB 文件 | **91×84 mm，2 层 0.8 mm，元件全在 B.Cu**。当前板：**564 段走线、128 过孔，DRC error = 0，unconnected = 0** |
 | 过孔规则 | 最小过孔 0.4 mm、钻孔 0.2 mm（`gen_pcb.py` / `badge.kicad_pro` / `route_pcb.py`） |
 | ESP32 | 封装 `ESP32-C3-MINI-1.kicad_mod` 加了 GND `net_tie_pad_groups`（脚 1,2,11,14,36–53 模组内部共地） |
-| NFC 线圈 | 11 圈约 35×41.5 mm，L≈4.6 µH，与 ST25DV 28.5 pF 约 13.96 MHz。**焊盘仍带 F.Mask/B.Mask（裸铜），未盖绿油** |
+| NFC 线圈 | 11 圈约 35×41.5 mm，L≈4.6 µH，与 ST25DV 28.5 pF 约 13.96 MHz。**SMD 焊盘已去掉 Mask（盖绿油）**；通孔 pad 2 仍 `*.Mask` |
 | 外壳 | 94×93×6.3 mm，前框+后盖，与 PCB STEP 无干涉 |
 | 固件 | 未写，只有 `firmware/README.md` 引脚表 |
 
@@ -131,15 +131,17 @@ python3 scripts/route_pcb.py --skip-route
 
 验证：`cd hardware/pcb && python3 scripts/route_pcb.py --skip-route` 应 exit 0；`output/drc_final.json` 空 violations / unconnected。
 
-### 2. NFC 线圈盖绿油（未做）
+### 2. NFC 线圈盖绿油（已完成）
 
 `hardware/pcb/scripts/gen_nfc_footprint.py`：
 
-- pad 1：`(layers "F.Cu" "F.Mask")` → 只留 `"F.Cu"`
-- pad 2 自定义桥：`(layers "B.Cu" "B.Mask")` → 只留 `"B.Cu"`
+- pad 1：`(layers "F.Cu" "F.Mask")` → 只留 `"F.Cu"`（翻到背面后为 `B.Cu`，无阻焊开窗）
+- pad 2 自定义桥：`(layers "B.Cu" "B.Mask")` → 只留 `"B.Cu"`（翻后为 `F.Cu`）
 - 通孔 pad 2 保留 `*.Mask`
 
-然后必须：`gen_nfc_footprint.py` → `gen_pcb.py`（清布线）→ **手工 Freerouting**（第 3 节）→ `route_pcb.py --import-only`（此时缝合逻辑应已可用）。
+**2026-09-14**：按第 3 节 `gen_pcb.py` + Freerouting 会清掉已验证布线；本机 Freerouting 2.4.1 重布后 USB D+/D− 在 J3 处短路（clearance / tracks_crossing）。线圈铜皮几何未变，因此在 DRC 清零的 564/128 板上用 pcbnew 去掉 ANT1 两个 SMD 焊盘的 Mask/Paste，通孔不动。复核：pad 1 = `B.Cu`，桥 = `F.Cu`，DRC 0，`badge-B_Mask.gbr` 约 10 kB（盖绿油前线圈开窗会接近 B.Cu 体量）。
+
+以后若必须 `gen_pcb.py`，用新 footprint 再 Freerouting + `route_pcb.py --import-only`。
 
 ### 3. 打样前复核
 

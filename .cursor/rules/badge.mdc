@@ -12,5 +12,5 @@ alwaysApply: true
 不要跑 gen_pcb.py，除非要重新 Freerouting（会清布线）。
 Freerouting 必须交互 shell + 相对路径（见 docs/03-handoff.md 第 3 节）。
 
-当前板 564 段/128 过孔、DRC 0。GND 缝合脚本已可从 78 过孔原板复现。下一步：NFC 盖绿油重布线 → 复核清单 → 固件。
+当前板 564 段/128 过孔、DRC 0。GND 缝合可复现；NFC 线圈已盖绿油。下一步：复核清单 → 固件。
 提交前跑 check_netlist.py 和 export.sh。

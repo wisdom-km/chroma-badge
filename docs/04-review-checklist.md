@@ -65,7 +65,7 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 - USB D+/D− 是否等长：Freerouting 结果能用但不好看，C3 全速不严格要求差分。
 - 升压回路 L1/Q1/D1/C16 尽量短（已集中在 24–43, 57–65 一带）。
 - 电池仓无零件（B.Cu rule area）。
-- NFC 线圈目前裸铜，盖绿油（下一步 #2）后再出 Gerber。
+- NFC 线圈目前盖绿油（ANT1 SMD 无 Mask；通孔 pad 2 仍开窗）。
 - 0.4/0.2 mm 过孔：0.8 mm 板厚 4:1，多数板厂能做，下单时写明。
 
 ## 7. 建议的「通过才下单」门槛
@@ -73,4 +73,4 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 1. 官方 GDEM042F86 PDF：脚 6/7/8、RESE、机械尺寸、FPC 方向。
 2. USB-C 沉板与 0.8 mm 板匹配或改料号。
 3. KiCad 3D/渲染确认 FH12 开口朝槽。
-4. NFC 盖绿油并 DRC 清零后再导 Gerber。
+4. NFC 已盖绿油并 DRC 清零后再导 Gerber。
