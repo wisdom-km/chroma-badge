@@ -737,6 +737,7 @@
 		(property "Reference" "SW1"
 			(at 0 2.6 0)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "2f600401-f986-43b7-9531-61dbc38d59f3")
 			(effects
 				(font
@@ -4237,6 +4238,7 @@
 		(property "Reference" "SW2"
 			(at 0 2.6 0)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "1e04b31a-e74f-4e2b-9cc3-c006b7ac450d")
 			(effects
 				(font
@@ -12245,7 +12247,7 @@
 		)
 	)
 	(gr_text "RST"
-		(at 14 77.9 0)
+		(at 14 77.6 0)
 		(layer "B.SilkS")
 		(uuid "612f1852-d987-4162-8f4c-415d43a64df1")
 		(effects
@@ -12257,7 +12259,7 @@
 		)
 	)
 	(gr_text "ESP32-C3 + ST25DV64KC + 4.2\" BWRY"
-		(at 19 73.2 0)
+		(at 15.5 69.6 0)
 		(layer "B.SilkS")
 		(uuid "380cf345-52f4-40c8-ad80-fb168702c1e4")
 		(effects
@@ -12269,7 +12271,7 @@
 		)
 	)
 	(gr_text "BOOT"
-		(at 22.5 77.9 0)
+		(at 22.5 77.6 0)
 		(layer "B.SilkS")
 		(uuid "2afb27f6-1d8a-4c4d-a7c2-19114a82fadd")
 		(effects
@@ -12281,7 +12283,7 @@
 		)
 	)
 	(gr_text "EPD 24P FPC  (panel on front side)"
-		(at 43 68.5 0)
+		(at 43 66.6 0)
 		(layer "B.SilkS")
 		(uuid "fe946373-7bdb-4c85-864e-fff563cc3f86")
 		(effects
@@ -12305,7 +12307,7 @@
 		)
 	)
 	(gr_text "BADGE-42C v0.1"
-		(at 19 71 0)
+		(at 15.5 67.5 0)
 		(layer "B.SilkS")
 		(uuid "f5784e12-82ae-4a06-82cc-7a6433b59368")
 		(effects

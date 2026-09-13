@@ -85,6 +85,9 @@ class Gen:
             ref = fp.Reference()
             ref.SetTextSize(VECTOR2I(FromMM(0.6), FromMM(0.6)))
             ref.SetTextThickness(FromMM(0.1))
+            # SW1/SW2 refs land on the BOOT/RST labels; hide them.
+            if part.ref in ("SW1", "SW2"):
+                ref.SetVisible(False)
             fp.Value().SetVisible(False)
             self.fps[part.ref] = fp
 
@@ -170,14 +173,8 @@ class Gen:
         cx0, cy0, cx1, cy1 = D.NFC_COIL_RECT
         self.text("NFC", (cx0 + cx1) / 2, (cy0 + cy1) / 2 - 2, size=3.0, thick=0.4)
         self.text("tap phone here (front)", (cx0 + cx1) / 2, (cy0 + cy1) / 2 + 2.5, size=1.0, thick=0.15)
-        self.text("EPD 24P FPC  (panel on front side)", 43.0, 68.5, size=0.8, thick=0.12)
-        self.text("ESP32-C3 antenna keepout", 60.0, 73.5, size=0.7, thick=0.1)
-        self.text("BADGE-42C v0.1", 19.0, 71.0, size=1.2, thick=0.2)
-        self.text("ESP32-C3 + ST25DV64KC + 4.2\" BWRY", 19.0, 73.2, size=0.8, thick=0.12)
-        self.text("RST", 14.0, 77.9, size=0.8, thick=0.12)
-        self.text("BOOT", 22.5, 77.9, size=0.8, thick=0.12)
-        self.text("CHG", 86.5, 83.2, size=0.7, thick=0.1)
-        self.text("STAT", 65.0, 83.2, size=0.7, thick=0.1)
+        for txt, x, y, size, thick in D.SILK_BACK:
+            self.text(txt, x, y, size=size, thick=thick)
         # front side marking for the panel & NFC tap area
         self.text("4.2\" BWRY e-paper glued here (91x77)", D.BOARD_W / 2, D.PANEL_H / 2, layer=pcbnew.F_SilkS, size=1.5, thick=0.2)
 

@@ -76,6 +76,19 @@ ESP_ANT_KEEPOUT = (53.0, 60.0, 67.0, 76.0)  # no copper under/in front of the mo
 NFC_TRACE_W = 0.5
 NFC_TRACE_GAP = 0.5
 
+# B.SilkS labels (text, x, y, size, thick). Keep clear of J1 (40,73) and SW1/SW2.
+# BOOT/RST sit on the buttons; title/chipset sit above them, left of J1.
+SILK_BACK = [
+    ("EPD 24P FPC  (panel on front side)", 43.0, 66.6, 0.8, 0.12),
+    ("ESP32-C3 antenna keepout", 60.0, 73.5, 0.7, 0.1),
+    ("BADGE-42C v0.1", 15.5, 67.5, 1.2, 0.2),
+    ("ESP32-C3 + ST25DV64KC + 4.2\" BWRY", 15.5, 69.6, 0.8, 0.12),
+    ("RST", 14.0, 77.6, 0.8, 0.12),
+    ("BOOT", 22.5, 77.6, 0.8, 0.12),
+    ("CHG", 86.5, 83.2, 0.7, 0.1),
+    ("STAT", 65.0, 83.2, 0.7, 0.1),
+]
+
 # ----------------------------------------------------------------------------
 # Component model
 # ----------------------------------------------------------------------------
