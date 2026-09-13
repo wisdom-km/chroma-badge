@@ -8,7 +8,7 @@
 ```
 继续 BADGE-42C（4.2 寸四色墨水屏 NFC 工牌）。先读 docs/03-handoff.md 和 docs/01-architecture-decisions.md。
 
-用户 Wisdom，始终用中文回复。硬件改动从 hardware/pcb/scripts/design.py 开始，不要手改 .kicad_sch；不要跑 gen_pcb.py 除非准备好重新 Freerouting（会清布线）。Freerouting 必须按 docs/03-handoff.md 第 3 节从交互 shell、相对路径启动。
+用户 Wisdom，始终用中文回复。硬件改动从 hardware/pcb/scripts/design.py 开始，不要手改 .kicad_sch；不要跑 gen_pcb.py 除非铜皮/焊盘/板框变了并准备好重新 Freerouting（会清布线）。只改阻焊不要重布。Freerouting 必须按 docs/03-handoff.md 第 3 节从交互 shell、相对路径启动。文档和板上事实冲突时先问用户。
 
 当前优先级：
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
@@ -63,7 +63,7 @@ cd hardware/pcb
 python3 scripts/gen_nfc_footprint.py
 python3 scripts/gen_schematic.py
 kicad-cli sch export netlist -o output/badge.net badge.kicad_sch && python3 scripts/check_netlist.py
-python3 scripts/gen_pcb.py                # 会清掉全部布线，只在改封装/板框时跑
+python3 scripts/gen_pcb.py                # 会清掉全部布线。只在改铜皮/焊盘位置/板框时跑；只改阻焊或丝印不要跑
 python3 -c "import pcbnew; b=pcbnew.LoadBoard('badge.kicad_pcb'); pcbnew.ExportSpecctraDSN(b,'output/badge.dsn')"
 cd output && rm -f badge.ses && /opt/freerouting/jre25/bin/java -jar /opt/freerouting/freerouting.jar \
       -de badge.dsn -do badge.ses -mp 100 -mt 1 > freerouting.log 2>&1 && cd ..
@@ -87,6 +87,8 @@ python3 scripts/route_pcb.py --skip-route
 4. 乐鑫符号库是 KiCad 10 格式，`kicad_sym.py` 会剥 v10 token。
 5. `.kicad_sch` 的 `lib_symbols` 子单元名必须是裸的 `Name_0_1`。
 6. 板边铜间距放到 0.1 mm（沉板 USB-C 外壳焊盘贴边）。
+7. **只改阻焊不要重布线。** 旧文档曾写「改 NFC 封装必须 `gen_pcb.py` + Freerouting」，那是错的。线圈铜皮没变时，清布线会丢掉已验证的 564/128 板；本机 Freerouting 还把 USB D+/D− 布短路过。`gen_pcb.py` 只在铜皮、焊盘位置或板框变了时才跑。
+8. 发现文档和板上事实冲突时：**先问用户，讨论后再改**，不要自行换流程。
 
 ## 4. 当前状态
 
@@ -133,15 +135,15 @@ python3 scripts/route_pcb.py --skip-route
 
 ### 2. NFC 线圈盖绿油（已完成）
 
-`hardware/pcb/scripts/gen_nfc_footprint.py`：
+正确做法（铜皮没变，**不要** `gen_pcb.py` / Freerouting）：
 
-- pad 1：`(layers "F.Cu" "F.Mask")` → 只留 `"F.Cu"`（翻到背面后为 `B.Cu`，无阻焊开窗）
-- pad 2 自定义桥：`(layers "B.Cu" "B.Mask")` → 只留 `"B.Cu"`（翻后为 `F.Cu`）
-- 通孔 pad 2 保留 `*.Mask`
+1. `gen_nfc_footprint.py`：pad 1 只留 `"F.Cu"`，pad 2 桥只留 `"B.Cu"`，通孔 pad 2 仍 `*.Mask`
+2. 在现有 DRC 清零板上改 ANT1 两个 SMD 焊盘的层（去掉 Mask/Paste），通孔不动
+3. DRC 仍应 0；`badge-B_Mask.gbr` 应变小（线圈不再开窗）
 
-**2026-09-14**：按第 3 节 `gen_pcb.py` + Freerouting 会清掉已验证布线；本机 Freerouting 2.4.1 重布后 USB D+/D− 在 J3 处短路（clearance / tracks_crossing）。线圈铜皮几何未变，因此在 DRC 清零的 564/128 板上用 pcbnew 去掉 ANT1 两个 SMD 焊盘的 Mask/Paste，通孔不动。复核：pad 1 = `B.Cu`，桥 = `F.Cu`，DRC 0，`badge-B_Mask.gbr` 约 10 kB（盖绿油前线圈开窗会接近 B.Cu 体量）。
+**旧文档写错了**：曾要求改封装后必须 `gen_pcb.py` + 重布。那会清掉已验证的 564/128 走线。2026-09-14 按错流程试过一次 Freerouting，USB D+/D− 在 J3 短路（走线交叉），该结果已丢弃。现板仍是原来的 564/128，只盖了绿油。
 
-以后若必须 `gen_pcb.py`，用新 footprint 再 Freerouting + `route_pcb.py --import-only`。
+以后只有铜皮、焊盘位置或板框变了，才 `gen_pcb.py` + 第 3 节 Freerouting + `route_pcb.py --import-only`。
 
 ### 3. 打样前复核
 
@@ -157,3 +159,4 @@ python3 scripts/route_pcb.py --skip-route
 - 单位 mm。PCB：正面视角、原点左上、Y 向下。FreeCAD：X 同 PCB，Y = −PCB y，Z 朝正面。
 - 提交前跑 `check_netlist.py` 和 `export.sh` 的 ERC/DRC。
 - 用户 Wisdom，回复用中文。不要为「继续」去推翻 ADR。
+- **文档或清单和板上事实冲突时，先停下来问用户，讨论确认后再改**，不要自行换流程或重布线。

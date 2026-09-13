@@ -11,10 +11,11 @@
 ## 硬性约定
 
 - 硬件改动一律先改 `hardware/pcb/scripts/design.py`，再跑生成脚本。**不要手改** `.kicad_sch`。
-- **不要跑 `gen_pcb.py`**，除非准备好重新 Freerouting（会清掉全部布线）。
+- **不要跑 `gen_pcb.py`**，除非铜皮/焊盘位置/板框变了，并且准备好重新 Freerouting（会清掉全部布线）。只改阻焊不要重布。
 - Freerouting 必须按 `docs/03-handoff.md` 第 3 节：交互 shell、**相对路径**、输出重定向到文件。Python `subprocess` 或绝对 `-do` 会得到 0 字节 `.ses`。
 - 提交前：`hardware/pcb` 下 `python3 scripts/check_netlist.py` 和 `./scripts/export.sh` 里的 ERC/DRC。
 - 不要新建 PR，除非用户明确要求。
+- 发现文档写错或和板上事实冲突：**先问用户，讨论后再动手**，不要自行换流程。
 
 ## 当前进度（2026-09-14）
 

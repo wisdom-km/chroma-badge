@@ -9,8 +9,9 @@ alwaysApply: true
 先读 AGENTS.md 和 docs/03-handoff.md。架构以 docs/01-architecture-decisions.md 为准。
 
 硬件只改 hardware/pcb/scripts/design.py，不要手改 .kicad_sch。
-不要跑 gen_pcb.py，除非要重新 Freerouting（会清布线）。
+不要跑 gen_pcb.py，除非铜皮/焊盘位置/板框变了并准备好重新 Freerouting（会清布线）。只改阻焊不要重布。
 Freerouting 必须交互 shell + 相对路径（见 docs/03-handoff.md 第 3 节）。
+发现文档写错或和板上事实冲突：先问用户，讨论后再动手。
 
 当前板 564 段/128 过孔、DRC 0。GND 缝合可复现；NFC 线圈已盖绿油。下一步：复核清单 → 固件。
 提交前跑 check_netlist.py 和 export.sh。
