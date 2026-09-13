@@ -8,7 +8,7 @@
 ```
 继续 BADGE-42C（4.2 寸四色墨水屏 NFC 工牌）。先读 docs/03-handoff.md 和 docs/01-architecture-decisions.md。
 
-用户 Wisdom，始终用中文回复。硬件改动从 hardware/pcb/scripts/design.py 开始，不要手改 .kicad_sch；不要跑 gen_pcb.py 除非铜皮/焊盘/板框变了并准备好重新 Freerouting（会清布线）。只改阻焊不要重布。Freerouting 必须按 docs/03-handoff.md 第 3 节从交互 shell、相对路径启动。文档和板上事实冲突时先问用户。
+用户 Wisdom，始终用中文回复。硬件改动从 hardware/pcb/scripts/design.py 开始，不要手改 .kicad_sch；不要跑 gen_pcb.py 除非铜皮/焊盘/板框变了并准备好重新 Freerouting（会清布线）。只改阻焊不要重布。Freerouting 必须按 docs/03-handoff.md 第 3 节从交互 shell、相对路径启动。文档和板上事实冲突时先问用户。3D/截图不确定时先读 docs/05-visual-check.md：拍错自己重拍，真问题再问。
 
 当前优先级：
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
@@ -35,6 +35,7 @@ docs/
   02-bom-and-cost.md             人读 BOM + 成本估算 + 替代料
   03-handoff.md                  本文
   04-review-checklist.md         打样前人工复核（进行中，已有部分结论）
+  05-visual-check.md              3D/截图：先分清拍错还是板上真问题
 hardware/pcb/                    KiCad 9 工程（由脚本生成）
   scripts/design.py              **唯一事实来源**
   scripts/gen_schematic.py       -> badge.kicad_sch
@@ -89,6 +90,7 @@ python3 scripts/route_pcb.py --skip-route
 6. 板边铜间距放到 0.1 mm（沉板 USB-C 外壳焊盘贴边）。
 7. **只改阻焊不要重布线。** 旧文档曾写「改 NFC 封装必须 `gen_pcb.py` + Freerouting」，那是错的。线圈铜皮没变时，清布线会丢掉已验证的 564/128 板；本机 Freerouting 还把 USB D+/D− 布短路过。`gen_pcb.py` 只在铜皮、焊盘位置或板框变了时才跑。
 8. 发现文档和板上事实冲突时：**先问用户，讨论后再改**，不要自行换流程。
+9. **3D/截图看不清 ≠ 板上有问题。** 先读 `docs/05-visual-check.md`，对准目标重拍、核对 `design.py` / `badge.kicad_pcb`。拍错了自己修图；确认是板上问题才问 Wisdom。近景没拍到目标时，禁止说「没法 100% 从 3D 断定」。
 
 ## 4. 当前状态
 
@@ -160,3 +162,4 @@ python3 scripts/route_pcb.py --skip-route
 - 提交前跑 `check_netlist.py` 和 `export.sh` 的 ERC/DRC。
 - 用户 Wisdom，回复用中文。不要为「继续」去推翻 ADR。
 - **文档或清单和板上事实冲突时，先停下来问用户，讨论确认后再改**，不要自行换流程或重布线。
+- 3D/截图流程见 `docs/05-visual-check.md`。新踩的「拍错 vs 真问题」写进该文档再推。

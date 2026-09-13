@@ -7,6 +7,7 @@ alwaysApply: true
 
 这是 4.2 寸四色墨水屏 NFC 工牌（chroma-badge / BADGE-42C）。
 先读 AGENTS.md 和 docs/03-handoff.md。架构以 docs/01-architecture-decisions.md 为准。
+3D/截图看不清时先读 docs/05-visual-check.md：先对源文件、对准重拍，分清「拍错了」还是「板上真有问题」。拍错自己修图；真问题先问用户。
 
 硬件只改 hardware/pcb/scripts/design.py，不要手改 .kicad_sch。
 不要跑 gen_pcb.py，除非铜皮/焊盘位置/板框变了并准备好重新 Freerouting（会清布线）。只改阻焊不要重布。

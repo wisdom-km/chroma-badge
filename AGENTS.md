@@ -1,6 +1,7 @@
 # chroma-badge / BADGE-42C
 
 给 **本地 Cursor** 和任何切换过来的模型。先读这一份，再读 `docs/03-handoff.md`。
+3D、渲染、截图看不清或像有缺陷时，先读并遵守 `docs/05-visual-check.md`（先查源文件、对准重拍，分清拍错还是板上真问题）。
 用户 Wisdom，**始终用中文回复**。
 
 ## 这是什么
@@ -16,6 +17,7 @@
 - 提交前：`hardware/pcb` 下 `python3 scripts/check_netlist.py` 和 `./scripts/export.sh` 里的 ERC/DRC。
 - 不要新建 PR，除非用户明确要求。
 - 发现文档写错或和板上事实冲突：**先问用户，讨论后再动手**，不要自行换流程。
+- 3D/截图不确定时走 `docs/05-visual-check.md`：先审查源文件和对准的图。**拍错了自己重拍**；**板上真有问题才问 Wisdom**。同类坑追加到该文档并推 GitHub。
 
 ## 当前进度（2026-09-14）
 
