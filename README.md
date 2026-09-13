@@ -11,7 +11,8 @@
 
 - `docs/01-architecture-decisions.md`：为什么选四色而不是六色、为什么 v1 带电池而不是纯 NFC 无源、厚度堆叠、续航估算
 - `docs/02-bom-and-cost.md`：BOM 与单件成本（≈ ¥150–225）
-- `docs/03-handoff.md`：**当前进度、复现步骤、已知坑、下一步清单**（接手先读这个）
+- `docs/03-handoff.md`：**当前进度、复现步骤、已知坑、下一步清单**（接手先读这个；文首有新会话粘贴提示）
+- `docs/04-review-checklist.md`：打样前封装/引脚复核（进行中）
 - `hardware/pcb/`：KiCad 9 工程，全部由 `scripts/design.py` 生成（原理图、PCB、NFC 天线封装、Gerber、BOM、STEP）
 - `hardware/enclosure/`：FreeCAD 参数化外壳脚本与输出（前框、后盖、装配、干涉检查）
 - `firmware/README.md`：引脚表与时序约定
@@ -31,8 +32,12 @@ cd ../enclosure && freecadcmd badge_enclosure.py                    # 外壳 + �
 
 ## 状态
 
-v0.1：原理图 ERC 通过；PCB 全部连接已布通（DRC 仅剩地铺铜孤岛提示）；外壳与含元件的 PCB STEP 无干涉。
-打样前需人工复核屏引脚/RESE 电阻、USB-C 沉板深度、LDO 引脚（清单在交接文档）。
+v0.2（2026-09-13）：原理图 ERC 通过；PCB **564 段 / 128 过孔，DRC error 0**（GND 孤岛已在当前板上缝合；脚本从 78 过孔原板复现仍差 1 个孤岛，见交接文档）。
+下一步：把缝合做成可复现 → NFC 线圈盖绿油并重布线 → 完成 `docs/04-review-checklist.md` → 固件。
+
+## 新会话怎么接
+
+把 `docs/03-handoff.md` 文首的代码块贴给新对话即可。架构以 `docs/01-architecture-decisions.md` 为准。
 
 ## 第三方内容
 

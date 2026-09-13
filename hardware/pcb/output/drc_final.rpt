@@ -1,82 +1,10 @@
 ** Drc report for badge.kicad_pcb **
-** Created on 2026-09-13T17:28:16+0000 **
+** Created on 2026-09-13T18:29:38+0000 **
 ** Report includes: Errors **
 
 ** Found 0 DRC violations **
 
-** Found 18 unconnected pads **
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_F.Cu' [GND] on F.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-[unconnected_items]: Missing connection between items
-    Local override; error
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
-    @(0.5000 mm, 0.5000 mm): Zone 'GND_B.Cu' [GND] on B.Cu, priority 0
+** Found 0 unconnected pads **
 
 ** Found 0 Footprint errors **
 

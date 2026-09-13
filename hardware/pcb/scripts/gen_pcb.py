@@ -40,8 +40,8 @@ class Gen:
         ds.m_CopperEdgeClearance = FromMM(0.1)   # mid-mount USB-C shell stakes sit right beside the cutout
         ds.m_MinClearance = FromMM(0.15)
         ds.m_TrackMinWidth = FromMM(0.15)
-        ds.m_ViasMinSize = FromMM(0.5)
-        ds.m_MinThroughDrill = FromMM(0.3)
+        ds.m_ViasMinSize = FromMM(0.4)
+        ds.m_MinThroughDrill = FromMM(0.2)  # 0.4/0.2 stitching vias; 4:1 aspect on 0.8 mm board
         ds.m_HoleClearance = FromMM(0.25)
 
     # ------------------------------------------------------------------ nets
@@ -240,12 +240,16 @@ class Gen:
         self.board.Add(z)
         return z
 
-    def gnd_pour(self, layer):
+    def gnd_pour(self, layer, pad_connection=None):
         z = pcbnew.ZONE(self.board)
         z.SetLayer(layer)
         z.SetNet(self.net("GND"))
         z.SetAssignedPriority(0)
-        z.SetPadConnection(pcbnew.ZONE_CONNECTION_FULL)   # solid: all parts are reflowed, avoids starved thermals
+        # Solid connection on both layers; B.Cu islands get stitching vias in route_pcb.py.
+        if pad_connection is None:
+            pad_connection = pcbnew.ZONE_CONNECTION_FULL
+        z.SetPadConnection(pad_connection)
+        z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         z.SetLocalClearance(FromMM(0.25))
         z.SetMinThickness(FromMM(0.2))
         z.SetThermalReliefGap(FromMM(0.3))

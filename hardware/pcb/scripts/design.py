@@ -172,11 +172,11 @@ PARTS = [
     # ------------------------------------------------------------------ E-PAPER
     Part("J1", "Connector_Generic", "Conn_01x24", "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal",
          "EPD FPC 24P 0.5mm",
-         {"2": "EPD_GDR", "3": "EPD_RESE", "5": "EPD_VSH2", "8": "GND",
+         {"2": "EPD_GDR", "3": "EPD_RESE", "5": "EPD_VSH2", "7": "GND", "8": "GND",
           "9": "EPD_BUSY", "10": "EPD_RST", "11": "EPD_DC", "12": "EPD_CS", "13": "EPD_SCK", "14": "EPD_MOSI",
           "15": "EPD_VCI", "16": "EPD_VCI", "17": "GND", "18": "EPD_VDD",
           "20": "EPD_VSH1", "21": "EPD_VGH", "22": "EPD_VSL", "23": "EPD_VGL", "24": "EPD_VCOM"},
-         nc=["1", "4", "6", "7", "19"], section="EPD",
+         nc=["1", "4", "6", "19"], section="EPD",
          desc="24P 0.5mm FPC connector, bottom contact, flip lock (Hirose FH12-24S-0.5SH or JUSHUO AFC07-S24FCA-00)",
          lcsc="C262657", at=(40.0, 73.0, 0)),
     Part("Q2", "Transistor_FET", "AO3401A", "Package_TO_SOT_SMD:SOT-23", "AO3401A",
