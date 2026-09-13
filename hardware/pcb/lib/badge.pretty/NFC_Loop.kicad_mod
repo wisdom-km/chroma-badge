@@ -63,5 +63,10 @@
 	)
 	(pad "2" thru_hole circle (at -6.500 9.750) (size 1.1 1.1) (drill 0.3) (layers "*.Cu" "*.Mask") (remove_unused_layers no))
 	(pad "2" thru_hole circle (at -6.500 22.350) (size 0.9 0.9) (drill 0.3) (layers "*.Cu" "*.Mask") (remove_unused_layers no))
-	(fp_line (start -6.500 9.750) (end -6.500 22.350) (stroke (width 0.5) (type solid)) (layer "B.Cu"))
+	(pad "2" smd custom (at -6.500 22.350) (size 0.9 0.9) (layers "B.Cu" "B.Mask")
+		(options (clearance outline) (anchor circle))
+		(primitives
+			(gr_line (start -0.000 0.000) (end -0.000 -12.600) (width 0.5))
+		)
+	)
 )

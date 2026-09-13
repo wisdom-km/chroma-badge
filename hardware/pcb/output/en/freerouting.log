@@ -1,0 +1,274 @@
+2026-09-13 17:11:13.686 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-09-13 17:11:13.689 DEBUG  [startup] user-data path : /home/ubuntu/.config/freerouting  (source: default (OS standard user-data path))
+2026-09-13 17:11:13.689 DEBUG  [startup] log file       : /workspace/hardware/pcb/output/en/freerouting.log
+2026-09-13 17:11:13.720 DEBUG  Settings loaded from '/home/ubuntu/.config/freerouting/freerouting.json'.
+2026-09-13 17:11:13.720 WARN   [startup] freerouting.json contains a stale 'logging.file.location' value: '/home/ubuntu/.local/state/freerouting/logs/freerouting.log'. The actual log file is being written to '/workspace/hardware/pcb/output/en/freerouting.log' (as resolved at startup). The stale value will be corrected in freerouting.json on next save. If you see this in Docker, the old JSON was written by an earlier version that stored the host path; the fix is to delete freerouting.json so it is regenerated with the correct path.
+2026-09-13 17:11:13.735 DEBUG  Version: 2.4.1,2026-09-03
+2026-09-13 17:11:13.736 DEBUG  Command line arguments: '-de badge.dsn -do /tmp/x.ses -mp 1 -mt 1 -l en'
+2026-09-13 17:11:13.736 DEBUG  Architecture: Linux,amd64,6.12.94+
+2026-09-13 17:11:13.736 DEBUG  Java: 25.0.4.1,Eclipse Adoptium
+2026-09-13 17:11:13.736 DEBUG  System Language: en,en_US
+2026-09-13 17:11:13.737 DEBUG  Hardware: 4 CPU cores, 246366 CPU score, 4004 MB RAM
+2026-09-13 17:11:13.737 DEBUG  UTC Time: 2026-09-13T17:11:13.720777091Z
+2026-09-13 17:11:13.737 DEBUG  GUI Language: en
+2026-09-13 17:11:13.737 DEBUG  Host: N/A
+2026-09-13 17:11:13.738 DEBUG  Screen: 1920x1200, 96 DPI
+2026-09-13 17:11:13.929 WARN   Analytics tracking: first delivery failure in this window - /v1/analytics/identify - IOException: Server returned HTTP response code: 403 for URL: https://api.freerouting.app/v1/analytics/identify | Server response: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="…. Further failures will be aggregated and reported every 60 minutes.
+2026-09-13 17:11:14.764 DEBUG  Loaded router settings from: /home/ubuntu/.config/freerouting/freerouting.json
+2026-09-13 17:11:14.764 DEBUG  Applied CLI router setting: router.max_passes = 1
+2026-09-13 17:11:14.765 DEBUG  Applied CLI router setting: router.max_threads = 1
+2026-09-13 17:11:14.765 DEBUG  Applied CLI router setting: router.enabled = true (implicit from -de/-do batch mode)
+2026-09-13 17:11:14.765 DEBUG  No router settings found in environment variables
+2026-09-13 17:11:14.775 INFO   Opening 'badge.dsn'...
+2026-09-13 17:11:14.825 DEBUG  Set DEFAULT clearance (all layers): 2000 (0.05 mm) from DSN value 200.0
+2026-09-13 17:11:14.828 DEBUG  Set clearance (all layers): smd_smd = 500 (0.0125 mm), classes [2,2]
+2026-09-13 17:11:14.830 DEBUG  Set default trace width (all layers): DSN=200.0 → board=2000 (0.05 mm)
+2026-09-13 17:11:14.865 DEBUG  Loaded router settings from DSN file: badge.dsn (2 layers)
+2026-09-13 17:11:14.866 DEBUG  Merging settings from 6 sources:
+2026-09-13 17:11:14.866 DEBUG    - Default Settings (priority 0): base settings
+2026-09-13 17:11:14.867 DEBUG    - freerouting.json (priority 10): 2 fields changed
+2026-09-13 17:11:14.867 DEBUG    - DSN file: badge.dsn (priority 20): 4 fields changed
+2026-09-13 17:11:14.867 DEBUG    - Environment Variables (priority 55): 0 fields changed
+2026-09-13 17:11:14.868 DEBUG    - CLI Arguments (priority 60): 1 fields changed
+2026-09-13 17:11:14.868 DEBUG    - GUI Settings (priority 65): 0 fields changed
+2026-09-13 17:11:14.868 DEBUG  Settings merged successfully from 6 source(s)
+2026-09-13 17:11:14.979 DEBUG  No new version available. Current version is up to date: v2.4.1
+2026-09-13 17:11:15.132 INFO   [D6AD11\D1D462] Loading board file 'badge.dsn'...
+2026-09-13 17:11:15.145 DEBUG  Set DEFAULT clearance (all layers): 2000 (0.05 mm) from DSN value 200.0
+2026-09-13 17:11:15.146 DEBUG  Set clearance (all layers): smd_smd = 500 (0.0125 mm), classes [2,2]
+2026-09-13 17:11:15.146 DEBUG  Set default trace width (all layers): DSN=200.0 → board=2000 (0.05 mm)
+2026-09-13 17:11:15.191 DEBUG  applyBoardSpecificOptimizations changed parameters:
+  Layer 0: bendCost: null -> 0.0; preferredDirectionHorizontal: null -> true; undesiredDirectionTraceCost: 1.0 -> 2.1;
+  Layer 1: bendCost: null -> 0.0; preferredDirectionHorizontal: null -> false; undesiredDirectionTraceCost: 1.0 -> 1.9;
+2026-09-13 17:11:15.194 DEBUG  Applied copper-to-edge clearance override: 500.0 um (5000 board units).
+2026-09-13 17:11:15.199 DEBUG  Merging settings from 6 sources:
+2026-09-13 17:11:15.199 DEBUG    - Default Settings (priority 0): base settings
+2026-09-13 17:11:15.199 DEBUG    - freerouting.json (priority 10): 2 fields changed
+2026-09-13 17:11:15.199 DEBUG    - DSN file: badge.dsn (priority 20): 4 fields changed
+2026-09-13 17:11:15.199 DEBUG    - Environment Variables (priority 55): 0 fields changed
+2026-09-13 17:11:15.199 DEBUG    - CLI Arguments (priority 60): 1 fields changed
+2026-09-13 17:11:15.200 DEBUG    - GUI Settings (priority 65): 24 fields changed
+2026-09-13 17:11:15.200 DEBUG  Settings merged successfully from 6 source(s)
+2026-09-13 17:11:20.840 DEBUG  Merging settings from 6 sources:
+2026-09-13 17:11:20.840 DEBUG    - Default Settings (priority 0): base settings
+2026-09-13 17:11:20.840 DEBUG    - freerouting.json (priority 10): 2 fields changed
+2026-09-13 17:11:20.841 DEBUG    - DSN file: badge.dsn (priority 20): 4 fields changed
+2026-09-13 17:11:20.841 DEBUG    - Environment Variables (priority 55): 0 fields changed
+2026-09-13 17:11:20.841 DEBUG    - CLI Arguments (priority 60): 1 fields changed
+2026-09-13 17:11:20.841 DEBUG    - GUI Settings (priority 65): 25 fields changed
+2026-09-13 17:11:20.841 DEBUG  Settings merged successfully from 6 source(s)
+2026-09-13 17:11:20.850 INFO   [D6AD11\D1D462] Starting routing of 'badge' on 1 thread...
+2026-09-13 17:11:20.896 DEBUG  [D6AD11\D1D462] Checking fanout pre-pass. settings.fanout.enabled=true, smdPins=227
+2026-09-13 17:11:21.311 INFO   [D6AD11\D1D462] Fanout stage started on board 'd9f9628acc231d585501fa6c279af8b3' with 131 of 227 SMD pins needing fanout (70 already connected, 26 netless).
+2026-09-13 17:11:22.516 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:22.516 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:22.516 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:22.762 DEBUG  FoundConnectionInserter: insert trace failed for net #4 at corner 6/12 on layer 1, trace width: 1000, from corner: 5, okPoint: (764212,-746776), target: (758005,-752983)
+2026-09-13 17:11:22.946 DEBUG  FoundConnectionInserter: insert trace failed for net #22 at corner 3/3 on layer 1, trace width: 1000, from corner: 2, okPoint: (258998,-792498), target: (260750,-794250)
+2026-09-13 17:11:22.949 DEBUG  FoundConnectionInserter: insert trace failed for net #22 at corner 3/3 on layer 1, trace width: 1000, from corner: 2, okPoint: (258998,-792498), target: (260750,-794250)
+2026-09-13 17:11:22.957 DEBUG  FoundConnectionInserter: insert trace failed for net #22 at corner 2/2 on layer 1, trace width: 1000, from corner: 1, okPoint: (219650,-753150), target: (260750,-794250)
+2026-09-13 17:11:23.026 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:24.267 INFO   [D6AD11\D1D462] Fanout pass #1 on board '82eb488bef615e3851c38384092462ff' completed in 2.61 seconds with 123 SMD pins fanouted, 3 not routed, 0 insert errors, +78 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-09-13 17:11:24.700 DEBUG  FoundConnectionInserter: insert trace failed for net #6 at corner 15/15 on layer 1, trace width: 1000, from corner: 4, okPoint: (670359,-541631), target: (659000,-511000)
+2026-09-13 17:11:25.906 INFO   [D6AD11\D1D462] Fanout pass #2 on board 'fc889609e88ff3d613f18e84ccfe396b' completed in 1.63 seconds with 13 SMD pins fanouted, 2 not routed, 0 insert errors, +5 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-09-13 17:11:27.303 INFO   [D6AD11\D1D462] Fanout pass #3 on board 'e4041b4521e8181d0f1d10fcd27bc80d' completed in 1.39 seconds with 3 SMD pins fanouted, 2 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-09-13 17:11:28.687 INFO   [D6AD11\D1D462] Fanout pass #4 on board 'e4041b4521e8181d0f1d10fcd27bc80d' completed in 1.38 seconds with 0 SMD pins fanouted, 2 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-09-13 17:11:29.051 INFO   [D6AD11\D1D462] Fanout stage completed: started with 201 total SMD pins, completed in 7.41 seconds, escaped pins: 197/201 (98.0%), using 7.76 total CPU seconds, 44.23 GB total allocated, and 525.8 MB peak heap usage.
+2026-09-13 17:11:29.067 INFO   [D6AD11\D1D462] Auto-routing stage started on board 'e4041b4521e8181d0f1d10fcd27bc80d' for 52 unrouted items.
+2026-09-13 17:11:29.874 DEBUG  Queuing item for routing: PolylineTrace on net 'EN' (connected: 6/18)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: PolylineTrace on net 'BOOT_n' (connected: 6/13)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: Pin on net 'EPD_VGL' (connected: 3/9)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: Pin on net 'EPD_VSL' (connected: 3/6)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: Pin on net 'EPD_VGH' (connected: 3/9)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: Pin on net 'EPD_VSH1' (connected: 4/7)
+2026-09-13 17:11:29.879 DEBUG  Queuing item for routing: Pin on net 'EPD_VCI' (connected: 7/17)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_MOSI' (connected: 4/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_SCK' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_CS' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_DC' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_RST' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_BUSY' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_VSH2' (connected: 5/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_RESE' (connected: 3/8)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'EPD_GDR' (connected: 4/7)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 6/48)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'NFC_GPO' (connected: 4/10)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'I2C_SCL' (connected: 4/13)
+2026-09-13 17:11:29.880 DEBUG  Queuing item for routing: Pin on net 'I2C_SDA' (connected: 5/15)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'NFC_AC1' (connected: 7/10)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'NFC_VEH' (connected: 8/11)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'VBAT' (connected: 3/24)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'EPD_VCI' (connected: 3/17)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'NFC_VEH' (connected: 3/11)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 3/48)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'VBAT' (connected: 3/24)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'LED_STAT_n' (connected: 3/7)
+2026-09-13 17:11:29.881 DEBUG  Queuing item for routing: Pin on net 'CHRG_STAT' (connected: 3/7)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'EPD_VGH' (connected: 3/9)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'EPD_PUMP' (connected: 6/9)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'EPD_VGL' (connected: 3/9)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'NFC_AC1' (connected: 1/10)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'NFC_AC1' (connected: 2/10)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 12/48)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'VBAT' (connected: 13/24)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'VBUS' (connected: 3/21)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'VBAT' (connected: 5/24)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'CHRG_STAT' (connected: 4/7)
+2026-09-13 17:11:29.882 DEBUG  Queuing item for routing: Pin on net 'EPD_RST' (connected: 5/8)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'EPD_DC' (connected: 5/8)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'USB_DP' (connected: 5/14)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'USB_DN' (connected: 7/9)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'BOOT_n' (connected: 3/13)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'LED_STAT_n' (connected: 4/7)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'EPD_MOSI' (connected: 4/8)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'EPD_SCK' (connected: 5/8)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'I2C_SCL' (connected: 6/13)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'I2C_SDA' (connected: 5/15)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'EPD_CS' (connected: 5/8)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'NFC_GPO' (connected: 3/10)
+2026-09-13 17:11:29.883 DEBUG  Queuing item for routing: Pin on net 'BAT_SENSE' (connected: 3/11)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'EN' (connected: 12/18)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'EPD_BUSY' (connected: 5/8)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'EPD_PWR_EN' (connected: 6/9)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 9/48)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'EPD_RESE' (connected: 5/8)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'BAT_SENSE' (connected: 8/11)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 3/48)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'VBUS' (connected: 6/21)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'USB_DN' (connected: 1/9)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'USB_DP' (connected: 9/14)
+2026-09-13 17:11:29.884 DEBUG  Queuing item for routing: Pin on net 'CC2' (connected: 3/6)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'VBUS' (connected: 7/21)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'USB_DN' (connected: 1/9)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'CC1' (connected: 4/7)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_VGH' (connected: 3/9)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_VGL' (connected: 3/9)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_PUMP' (connected: 3/9)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_VCI' (connected: 7/17)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 3/48)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_GDR' (connected: 3/7)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'VBUS' (connected: 5/21)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'I2C_SDA' (connected: 5/15)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 6/48)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_PWR_EN' (connected: 3/9)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net '+3V3' (connected: 6/48)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'BOOT_n' (connected: 3/13)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'NFC_GPO' (connected: 3/10)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'I2C_SCL' (connected: 3/13)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'CC1' (connected: 3/7)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'CC2' (connected: 3/6)
+2026-09-13 17:11:29.885 DEBUG  Queuing item for routing: Pin on net 'EPD_VSH2' (connected: 3/8)
+2026-09-13 17:11:29.886 DEBUG  Queuing item for routing: Pin on net 'EPD_VSL' (connected: 3/6)
+2026-09-13 17:11:29.886 DEBUG  Queuing item for routing: Pin on net 'EPD_VSH1' (connected: 3/7)
+2026-09-13 17:11:30.267 DEBUG  [D6AD11\D1D462] Pass #1: 52 incompletes across 85 items to route
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'VBUS' has 3 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'CC1' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'CC2' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'USB_DP' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'USB_DN' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'CHRG_STAT' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'VBAT' has 3 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net '+3V3' has 7 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'BAT_SENSE' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EN' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'NFC_GPO' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_PWR_EN' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_BUSY' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'I2C_SDA' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'I2C_SCL' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_SCK' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_MOSI' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'LED_STAT_n' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'BOOT_n' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_CS' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_DC' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_RST' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'NFC_VEH' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'NFC_AC1' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_GDR' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_RESE' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VSH2' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VCI' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VSH1' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VGH' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VSL' has 1 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_VGL' has 2 incomplete(s)
+2026-09-13 17:11:30.268 DEBUG  [D6AD11\D1D462]   Net 'EPD_PUMP' has 1 incomplete(s)
+2026-09-13 17:11:31.180 ERROR  Cannot invoke "app.freerouting.board.searchtree.SearchTreeObject.shapeLayer(int)" because "currentObject" is null
+java.lang.NullPointerException: Cannot invoke "app.freerouting.board.searchtree.SearchTreeObject.shapeLayer(int)" because "currentObject" is null
+	at app.freerouting.board.searchtree.ShapeSearchTree.overlappingTreeEntries(ShapeSearchTree.java:410)
+	at app.freerouting.board.searchtree.ShapeSearchTree.overlappingObjects(ShapeSearchTree.java:358)
+	at app.freerouting.board.searchtree.ShapeSearchTree.overlappingObjects(ShapeSearchTree.java:372)
+	at app.freerouting.board.facade.BasicBoard.overlappingObjects(BasicBoard.java:919)
+	at app.freerouting.board.model.items.ConductionArea.ensureDetailedFillCache(ConductionArea.java:135)
+	at app.freerouting.board.model.items.ConductionArea.getDetailedFillArea(ConductionArea.java:108)
+	at app.freerouting.gui.rendering.BoardRenderer.renderConductionArea(BoardRenderer.java:600)
+	at app.freerouting.gui.rendering.BoardRenderer.renderItem(BoardRenderer.java:329)
+	at app.freerouting.gui.rendering.BoardRenderer.draw(BoardRenderer.java:76)
+	at app.freerouting.gui.workspace.controllers.GuiBoardPresentationController.draw(GuiBoardPresentationController.java:117)
+	at app.freerouting.gui.workspace.GuiBoardManager.draw(GuiBoardManager.java:537)
+	at app.freerouting.gui.board.BoardPanel.paintComponent(BoardPanel.java:615)
+	at java.desktop/javax.swing.JComponent.paint(Unknown Source)
+	at java.desktop/javax.swing.JComponent.paintToOffscreen(Unknown Source)
+	at java.desktop/javax.swing.BufferStrategyPaintManager.paint(Unknown Source)
+	at java.desktop/javax.swing.RepaintManager.paint(Unknown Source)
+	at java.desktop/javax.swing.JComponent._paintImmediately(Unknown Source)
+	at java.desktop/javax.swing.JComponent.paintImmediately(Unknown Source)
+	at java.desktop/javax.swing.RepaintManager.paintDirtyRegions(Unknown Source)
+	at java.desktop/javax.swing.RepaintManager.paintDirtyRegions(Unknown Source)
+	at java.desktop/javax.swing.RepaintManager.prePaintDirtyRegions(Unknown Source)
+	at java.desktop/javax.swing.RepaintManager$ProcessingRunnable.run(Unknown Source)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.desktop/java.awt.EventDispatchThread.run(Unknown Source)
+2026-09-13 17:11:31.964 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:31.964 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:31.976 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:31.976 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:31.976 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:33.485 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, polylinetrace, pin #2 of component #56, pin #2 of component #44, pin #1 of component #44, pin #1 of component #28 and pin #3 of component #44, because no connection was found between their nets.
+2026-09-13 17:11:33.504 DEBUG  MazeSearchEngine.init: Failed - no accessible expansion doors found (start items: 1, start rooms: 2, completed start rooms: 0, expansion doors found: 0, destination doors: 0, ripupAllowed: true, ripupCosts: 100)
+2026-09-13 17:11:33.518 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between pin #3 of component #44 and polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, polylinetrace, pin #2 of component #56, pin #2 of component #44, pin #1 of component #44, pin #1 of component #28, because the maze search algorithm could not be created.
+2026-09-13 17:11:34.380 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between pin #12 of component #35, pin #4 of component #35 and polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, pin #25 of component #41, because no connection was found between their nets.
+2026-09-13 17:11:34.769 DEBUG  FoundConnectionInserter: insert trace failed for net #18 at corner 54/54 on layer 0, trace width: 1000, from corner: 7, okPoint: (585727,-472028), target: (747247,-545334)
+2026-09-13 17:11:34.783 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between polylinetrace, polylinetrace, polylinetrace, via, polylinetrace, via, pin #5 of component #56, pin #1 of component #15 and polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, pin #18 of component #41, because the new connection could not be inserted.
+2026-09-13 17:11:34.886 DEBUG  FoundConnectionInserter: insert trace failed for net #17 at corner 7/7 on layer 1, trace width: 1000, from corner: 3, okPoint: (591750,-501002), target: (588357,-509957)
+2026-09-13 17:11:34.901 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between polylinetrace, via, polylinetrace, via, polylinetrace, pin #4 of component #56, pin #1 of component #21 and pin #17 of component #41, because the new connection could not be inserted.
+2026-09-13 17:11:35.534 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:35.534 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:35.534 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:35.794 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:35.794 DEBUG  ShapeSearchTree45Degree.restrain_shape: shapeToBeContained is empty
+2026-09-13 17:11:38.128 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between polylinetrace, via, pin of component #14 and pin #2 of component #35, because no connection was found between their nets.
+2026-09-13 17:11:38.767 DEBUG  FoundConnectionInserter: insert trace failed for net #11 at corner 19/19 on layer 1, trace width: 1000, from corner: 1, okPoint: (508895,-533000), target: (394375,-584500)
+2026-09-13 17:11:38.781 DEBUG  [D6AD11\D1D462] Autorouter Failed to route connection between polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, via, polylinetrace, polylinetrace, via, polylinetrace, polylinetrace, polylinetrace, polylinetrace, polylinetrace, via, polylinetrace, polylinetrace, polylinetrace, pin #7 of component #56, pin of component #52, pin #4 of component #43, pin #2 of component #41, pin of component #36, pin #1 of component #31, pin of component #25, pin of component #21, pin of component #19, pin of component #17, pin of component #16, pin of component #15, pin of component #12, pin of component #4 and polylinetrace, pin of component #20, pin of component #3, because the new connection could not be inserted.
+2026-09-13 17:11:40.197 INFO   [D6AD11\D1D462] Auto-routing pass #1 on board 'e4041b4521e8181d0f1d10fcd27bc80d' was completed in 10.32 seconds with score 878.56 (16 unrouted and 22 violations), using 18.26 CPU seconds and the job allocated 100.58 GB of memory so far.
+2026-09-13 17:11:40.581 DEBUG  === Performance Profile ===
+2026-09-13 17:11:40.581 DEBUG  === Routing Parameters ===
+2026-09-13 17:11:40.581 DEBUG    Via Costs: 50, Plane Via Costs: 5
+2026-09-13 17:11:40.581 DEBUG    Layer Costs (Preferred / Against):
+2026-09-13 17:11:40.581 DEBUG      Layer 1: 1.0 / 2.1
+2026-09-13 17:11:40.581 DEBUG      Layer 2: 1.0 / 1.9
+2026-09-13 17:11:40.581 DEBUG  
+2026-09-13 17:11:40.582 DEBUG    autoroute_item                          :     4662 ms total,       85 calls,     54 ms avg
+2026-09-13 17:11:40.582 DEBUG  
+2026-09-13 17:11:40.582 DEBUG  === Pass History ===
+2026-09-13 17:11:40.582 DEBUG    Pass 1  :   16 unrouted items,     9.96 s,   100 ripup cost
+2026-09-13 17:11:40.582 DEBUG  ===========================
+2026-09-13 17:11:40.948 INFO   [D6AD11\D1D462] Auto-routing stage completed: started with 90 unrouted nets, completed in 20.10 seconds, final score: 878.56 (16 unrouted and 22 violations), using 19.23 total CPU seconds, 106.72 GB total allocated, and 694.0 MB peak heap usage.
+2026-09-13 17:11:41.050 INFO   [D6AD11\D1D462] Starting optimization on 1 thread...
+2026-09-13 17:11:41.052 DEBUG  [D6AD11\D1D462] Before optimization: Via count: 71, trace length: 9596391
+2026-09-13 17:11:41.428 INFO   [D6AD11\D1D462] Optimization stage started on board '15b80412687079a2df69529752811876' with score 878.56 (16 unrouted and 22 violations).
+2026-09-13 17:12:19.422 INFO   [D6AD11\D1D462] Stopping optimization pass #1 early after 50 consecutive items could not be improved.
+2026-09-13 17:12:19.793 INFO   [D6AD11\D1D462] Optimizer pass #1 on board 'fe89ee370839f9f9db3e07d3813ca9a9' was completed in 37.26 seconds with the score of 878.56 (16 unrouted and 22 violations).
+2026-09-13 17:12:20.174 INFO   [D6AD11\D1D462] Stopping optimizer because the improvement in this pass (0.0002%) is below the threshold (1.00%).
+2026-09-13 17:12:20.548 INFO   [D6AD11\D1D462] Optimization stage completed: started with score 878.56 (16 unrouted and 22 violations), completed in 38.75 seconds, final score: 878.56 (16 unrouted and 22 violations), using 37.69 total CPU seconds, 238.05 GB total allocated, and 712.8 MB peak heap usage.
+2026-09-13 17:12:20.926 INFO   [D6AD11\D1D462] Optimization was completed in 39.88 seconds with the score of 878.56 (16 unrouted and 22 violations) and an improvement of +0.00%.
+2026-09-13 17:12:20.931 WARN   [D6AD11\D1D462] Invalid traces after autoroute: 3 traces not 45 degree
+2026-09-13 17:12:21.678 INFO   Saving '/tmp/x.ses'...

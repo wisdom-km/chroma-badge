@@ -1,13 +1,11 @@
 """Generate hardware/pcb/badge.kicad_pcb from design.py using the pcbnew Python API.
 
 Steps: board setup -> nets -> footprints (all on B.Cu) -> outline/slot -> NFC spiral
-antenna -> rule areas -> GND pours -> (optional) Freerouting autoroute -> zone fill.
-Run:  python3 gen_pcb.py [--route]
+antenna note -> rule areas -> GND pours -> zone fill. Routing lives in route_pcb.py.
+Run:  python3 gen_pcb.py   (then route_pcb.py for autorouting + GND stitching)
 """
 import math
 import os
-import shutil
-import subprocess
 import sys
 
 import pcbnew
@@ -20,8 +18,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PCB_DIR = os.path.abspath(os.path.join(HERE, ".."))
 OUT = os.path.join(PCB_DIR, "badge.kicad_pcb")
 OUT_DIR = os.path.join(PCB_DIR, "output")
-FREEROUTING_JAR = "/opt/freerouting/freerouting.jar"
-JAVA = "/opt/freerouting/jre25/bin/java"
 
 
 def P(x, y):
@@ -179,7 +175,7 @@ class Gen:
         self.text("BADGE-42C v0.1", 19.0, 71.0, size=1.2, thick=0.2)
         self.text("ESP32-C3 + ST25DV64KC + 4.2\" BWRY", 19.0, 73.2, size=0.8, thick=0.12)
         self.text("RST", 14.0, 77.9, size=0.8, thick=0.12)
-        self.text("BOOT", 24.0, 77.9, size=0.8, thick=0.12)
+        self.text("BOOT", 22.5, 77.9, size=0.8, thick=0.12)
         self.text("CHG", 86.5, 83.2, size=0.7, thick=0.1)
         self.text("STAT", 65.0, 83.2, size=0.7, thick=0.1)
         # front side marking for the panel & NFC tap area
@@ -249,7 +245,7 @@ class Gen:
         z.SetLayer(layer)
         z.SetNet(self.net("GND"))
         z.SetAssignedPriority(0)
-        z.SetPadConnection(pcbnew.ZONE_CONNECTION_THERMAL)
+        z.SetPadConnection(pcbnew.ZONE_CONNECTION_FULL)   # solid: all parts are reflowed, avoids starved thermals
         z.SetLocalClearance(FromMM(0.25))
         z.SetMinThickness(FromMM(0.2))
         z.SetThermalReliefGap(FromMM(0.3))
@@ -283,26 +279,6 @@ class Gen:
         filler = pcbnew.ZONE_FILLER(self.board)
         filler.Fill(self.board.Zones())
 
-    # --------------------------------------------------------------- routing
-    def autoroute(self):
-        os.makedirs(OUT_DIR, exist_ok=True)
-        dsn = os.path.join(OUT_DIR, "badge.dsn")
-        ses = os.path.join(OUT_DIR, "badge.ses")
-        pcbnew.SaveBoard(OUT, self.board)
-        ok = pcbnew.ExportSpecctraDSN(self.board, dsn)
-        if not ok:
-            raise RuntimeError("DSN export failed")
-        java = JAVA if os.path.exists(JAVA) else "java"
-        cmd = [java, "-jar", FREEROUTING_JAR, "-de", dsn, "-do", ses, "-mp", "80", "-mt", "4"]
-        print("running:", " ".join(cmd))
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)
-        tail = (r.stdout + r.stderr).strip().splitlines()[-8:]
-        print("\n".join(tail))
-        if not os.path.exists(ses):
-            raise RuntimeError("Freerouting produced no .ses")
-        if not pcbnew.ImportSpecctraSES(self.board, ses):
-            raise RuntimeError("SES import failed")
-
     def save(self):
         pcbnew.SaveBoard(OUT, self.board)
         print("wrote", OUT)
@@ -321,7 +297,6 @@ class Gen:
 
 
 def main():
-    route = "--route" in sys.argv
     g = Gen()
     for n in D.all_nets():
         g.net(n)
@@ -330,8 +305,6 @@ def main():
     g.silkscreen()
     g.nfc_note()
     g.zones()
-    if route:
-        g.autoroute()
     g.fill()
     g.save()
     g.report()

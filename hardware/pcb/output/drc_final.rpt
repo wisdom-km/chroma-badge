@@ -1,5 +1,5 @@
 ** Drc report for badge.kicad_pcb **
-** Created on 2026-09-13T16:34:22+0000 **
+** Created on 2026-09-13T17:24:57+0000 **
 ** Report includes: Errors **
 
 ** Found 0 DRC violations **
@@ -223,12 +223,12 @@
     @(65.7875 mm, 81.0000 mm): Pad 1 [LED_STAT_n] of D5 on B.Cu
 [unconnected_items]: Missing connection between items
     Local override; error
-    @(21.9250 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
-    @(26.0750 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
+    @(20.4250 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
+    @(24.5750 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
 [unconnected_items]: Missing connection between items
     Local override; error
     @(64.0000 mm, 49.4000 mm): Pad 23 [BOOT_n] of U1 on B.Cu
-    @(26.0750 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
+    @(24.5750 mm, 79.4250 mm): Pad 1 [BOOT_n] of SW2 on B.Cu
 [unconnected_items]: Missing connection between items
     Local override; error
     @(69.0000 mm, 54.5100 mm): Pad 2 [BOOT_n] of R8 on B.Cu

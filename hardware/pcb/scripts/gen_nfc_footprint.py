@@ -104,11 +104,20 @@ def main():
     lines.extend(prims)
     lines.append('\t\t)')
     lines.append('\t)')
-    # pad 2: through-hole at the inner end (touches the end of pad 1) + through-hole landing outside the coil
+    # pad 2: through-hole at the inner end (its annular ring overlaps the end of pad 1),
+    # a custom pad on the OTHER copper layer forming the bridge, and a through-hole landing
+    # outside the coil that the router connects to. Same pad number -> one net, and KiCad
+    # connectivity sees pad copper (footprint graphics would not count).
     lines.append(f'\t(pad "2" thru_hole circle (at {loc(xi, yi)}) (size 1.1 1.1) (drill 0.3) (layers "*.Cu" "*.Mask") (remove_unused_layers no))')
     lines.append(f'\t(pad "2" thru_hole circle (at {loc(p2x, p2y)}) (size 0.9 0.9) (drill 0.3) (layers "*.Cu" "*.Mask") (remove_unused_layers no))')
-    # bridge between the two pad-2 holes on the opposite layer (B.Cu here -> F.Cu on the board after flip)
-    lines.append(f'\t(fp_line (start {loc(xi, yi)}) (end {loc(p2x, p2y)}) (stroke (width {w}) (type solid)) (layer "B.Cu"))')
+    def rel2(x, y):
+        return f"{-(x - p2x):.3f} {(y - p2y):.3f}"
+    lines.append(f'\t(pad "2" smd custom (at {loc(p2x, p2y)}) (size 0.9 0.9) (layers "B.Cu" "B.Mask")')
+    lines.append('\t\t(options (clearance outline) (anchor circle))')
+    lines.append('\t\t(primitives')
+    lines.append(f'\t\t\t(gr_line (start {rel2(p2x, p2y)}) (end {rel2(xi, yi)}) (width {w}))')
+    lines.append('\t\t)')
+    lines.append('\t)')
     lines.append(')')
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as f:

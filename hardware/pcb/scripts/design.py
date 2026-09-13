@@ -26,7 +26,7 @@ BOARD_THICKNESS = 0.8
 BATTERY_POCKET = (3.0, 3.0, 50.0, 53.0)     # x0,y0,x1,y1 : keep free of parts & antenna
 NFC_COIL_RECT = (53.0, 3.5, 88.0, 45.0)      # outer rectangle of the loop antenna
 NFC_TURNS = 11
-FPC_SLOT = (30.0, 77.6, 60.0, 79.6)        # slot for the panel FPC to pass to the back
+FPC_SLOT = (27.0, 77.6, 57.0, 79.6)        # slot for the panel FPC to pass to the back
 ESP_ANT_KEEPOUT = (53.0, 60.0, 67.0, 76.0)  # no copper under/in front of the module antenna
 NFC_TRACE_W = 0.5
 NFC_TRACE_GAP = 0.5
@@ -133,10 +133,10 @@ PARTS = [
          nc=[str(p) for p in [4, 7, 9, 10, 15, 17, 24, 25, 28, 29, 32, 33, 34, 35]],
          section="MCU", desc="Espressif ESP32-C3-MINI-1-N4 Wi-Fi/BLE module, 13.2x16.6x2.4mm", lcsc="C2934569",
          at=(60.0, 57.0, 180)),
-    C("C6", "10u", "+3V3", "GND", at=(51.5, 52.5, 90), fp=C0603, section="MCU", desc="10uF 6.3V X5R 0603"),
-    C("C7", "100n", "+3V3", "GND", at=(51.5, 55.5, 90), section="MCU"),
-    R("R7", "10k", "+3V3", "EN", at=(51.5, 58.5, 90), section="MCU"),
-    C("C8", "1u", "EN", "GND", at=(51.5, 61.5, 90), section="MCU"),
+    C("C6", "10u", "+3V3", "GND", at=(51.5, 56.6, 90), fp=C0603, section="MCU", desc="10uF 6.3V X5R 0603"),
+    C("C7", "100n", "+3V3", "GND", at=(51.5, 54.0, 90), section="MCU"),
+    R("R7", "10k", "+3V3", "EN", at=(51.5, 51.4, 90), section="MCU"),
+    C("C8", "1u", "EN", "GND", at=(51.5, 48.8, 90), section="MCU"),
     R("R8", "10k", "+3V3", "BOOT_n", at=(69.0, 54.0, 90), section="MCU"),
     R("R10", "10k", "+3V3", "EPD_PWR_EN", at=(69.0, 56.8, 90), section="MCU"),
     R("R9", "1k", "+3V3", "LED_STAT_A", at=(65.0, 78.0, 0), section="MCU"),
@@ -147,7 +147,7 @@ PARTS = [
          at=(14.0, BOARD_H - 3.5, 0)),
     Part("SW2", "Switch", "SW_Push", "Button_Switch_SMD:SW_SPST_PTS810", "BOOT/USER",
          {"1": "BOOT_n", "2": "GND"}, section="MCU", desc="C&K PTS810 low-profile tactile 1.5mm", lcsc="C221929",
-         at=(24.0, BOARD_H - 3.5, 0)),
+         at=(22.5, BOARD_H - 3.5, 0)),
 
     # --------------------------------------------------------------------- NFC
     Part("U2", "RF_NFC", "ST25DV64K-IER8C3", "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm", "ST25DV64KC-IER6S3",
@@ -178,13 +178,13 @@ PARTS = [
           "20": "EPD_VSH1", "21": "EPD_VGH", "22": "EPD_VSL", "23": "EPD_VGL", "24": "EPD_VCOM"},
          nc=["1", "4", "6", "7", "19"], section="EPD",
          desc="24P 0.5mm FPC connector, bottom contact, flip lock (Hirose FH12-24S-0.5SH or JUSHUO AFC07-S24FCA-00)",
-         lcsc="C262657", at=(43.0, 73.0, 0)),
+         lcsc="C262657", at=(40.0, 73.0, 0)),
     Part("Q2", "Transistor_FET", "AO3401A", "Package_TO_SOT_SMD:SOT-23", "AO3401A",
          {"1": "EPD_PWR_EN", "2": "+3V3", "3": "EPD_VCI"}, section="EPD",
          desc="P-MOSFET load switch for panel + boost", lcsc="C15127", at=(38.5, 57.5, 0)),
     C("C12", "10u", "EPD_VCI", "GND", at=(42.5, 57.5, 0), fp=C0603, section="EPD", desc="10uF 6.3V X5R 0603"),
     C("C13", "1u", "EPD_VCI", "GND", at=(45.5, 57.5, 0), section="EPD"),
-    C("C14", "1u", "EPD_VDD", "GND", at=(38.5, 64.5, 0), section="EPD"),
+    C("C14", "1u", "EPD_VDD", "GND", at=(42.0, 64.5, 0), section="EPD"),
     Part("L1", "Device", "L", "Inductor_SMD:L_Changjiang_FNR3015S", "68uH",
          {"1": "EPD_VCI", "2": "EPD_SW"}, section="EPD",
          desc="68uH shielded power inductor, Isat>=0.2A, h<=1.5mm (Sunlord SWPA3015S680MT / FNR3015S680MT)", lcsc="C2827366",
@@ -215,7 +215,7 @@ PWR_FLAG_NETS = ["GND", "VBUS"]
 # Net classes for the PCB (clearance / width in mm)
 NET_CLASSES = {
     "Default": {"clearance": 0.15, "track": 0.2, "via": 0.6, "via_drill": 0.3, "nets": []},
-    "Power": {"clearance": 0.2, "track": 0.4, "via": 0.6, "via_drill": 0.3,
+    "Power": {"clearance": 0.2, "track": 0.3, "via": 0.6, "via_drill": 0.3,
               "nets": ["GND", "VBUS", "VBAT", "+3V3", "EPD_VCI", "EPD_SW", "EPD_RESE"]},
     "NFC": {"clearance": 0.3, "track": 0.5, "via": 0.6, "via_drill": 0.3, "nets": ["NFC_AC0", "NFC_AC1"]},
 }
