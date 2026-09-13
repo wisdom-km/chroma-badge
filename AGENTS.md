@@ -25,12 +25,12 @@
 |---|---|
 | 原理图 | 57 元件，ERC 0，网表 == design.py。J1 pin 7 接 GND |
 | PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**564 段 / 128 过孔，DRC 0**。GND 缝合可复现；NFC 线圈已盖绿油；J1 开口朝槽；B.Silk 已排开 |
-| 外壳 | FreeCAD 前框+后盖，约 6.3 mm |
+| 外壳 | FreeCAD 前框+后盖，约 6.3 mm。按键/FPC 槽跟 PCB；ACTIVE_TOP=6.7（GDEM042F86 第 6 页） |
 | 固件 | 未写，只有 `firmware/README.md` |
 
 ## 下一步（按顺序）
 
-1. **收口 `docs/04-review-checklist.md`**（缺官方 GDEM042F86 PDF）。
+1. 收口复核清单剩下的 USB 0.8 vs 0.75、脚 7 Keep Open vs GND。
 2. 固件第一版。
 
 ## 本地怎么跑

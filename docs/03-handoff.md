@@ -13,7 +13,7 @@
 当前优先级：
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
 2. ~~NFC 线圈盖绿油~~：ANT1 SMD 焊盘已去掉 Mask（线圈盖绿油），通孔 pad 2 仍开窗。布线仍是 564/128、DRC 0。
-3. 写完 docs/04-review-checklist.md（草稿已有调研结论，缺官方 GDEM042F86 PDF 页码）。
+3. 写完 docs/04-review-checklist.md。官方 GDEM042F86 PDF 已对照（脚序/RESE/ACTIVE_TOP=6.7）。剩下 USB 0.8 vs 0.75、脚 7 Keep Open vs GND。
 4. 固件第一版，见 firmware/README.md。
 
 提交前跑 check_netlist.py 和 export.sh。不要建 PR，除非用户明确要求。
@@ -54,7 +54,7 @@ firmware/README.md               引脚表；固件代码尚未开始
 | 工具 | 版本 / 位置 |
 |---|---|
 | KiCad | 9.0.9，`kicad-cli` + `python3 -c "import pcbnew"` |
-| FreeCAD | 1.1.3，`/opt/freecad/squashfs-root`，`freecadcmd` |
+| FreeCAD | 本机 Windows：`D:\FreeCAD\bin\freecadcmd.exe`（1.1.3）。Linux 交接机：`/opt/freecad/squashfs-root`，`freecadcmd` |
 | Freerouting | 2.4.1 `/opt/freerouting/freerouting.jar`，Java 25：`/opt/freerouting/jre25/bin/java` |
 
 ## 3. 完整复现流程
@@ -70,7 +70,7 @@ cd output && rm -f badge.ses && /opt/freerouting/jre25/bin/java -jar /opt/freero
       -de badge.dsn -do badge.ses -mp 100 -mt 1 > freerouting.log 2>&1 && cd ..
 python3 scripts/route_pcb.py --import-only
 ./scripts/export.sh
-cd ../enclosure && freecadcmd badge_enclosure.py
+cd ../enclosure && D:/FreeCAD/bin/freecadcmd.exe badge_enclosure.py   # Linux: freecadcmd badge_enclosure.py
 ```
 
 只补 GND、不动走线：
@@ -149,7 +149,7 @@ python3 scripts/route_pcb.py --skip-route
 
 ### 3. 打样前复核
 
-见 `docs/04-review-checklist.md`。J1 开口已 3D 确认朝槽。仍未闭合：官方 GDEM042F86 PDF（站点 WAF 403）、TYPE-C-31-M-14 0.75 vs 0.8 mm、外壳 `ACTIVE_TOP`、外壳 BUTTONS/FPC_SLOT 与 PCB 坐标差（先问）。NFC 3D 线圈为绿是盖绿油后的正确外观。
+见 `docs/04-review-checklist.md`。官方 GDEM042F86（2026-06-17）已对照：脚 6/7=NC、RESE=2.2 Ω、ACTIVE_TOP=**6.7**（第 6 页，AA 竖直居中）。外壳按键/FPC 槽从 `design.py` 读。仍未闭合：TYPE-C-31-M-14 0.75 vs 0.8 mm；脚 7 接 GND 缝合 vs Keep Open。
 
 ### 4. 固件
 

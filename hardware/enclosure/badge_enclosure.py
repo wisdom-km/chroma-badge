@@ -19,18 +19,29 @@ OUT = os.path.join(HERE, "output")
 PCB_STEP = os.path.join(HERE, "..", "pcb", "output", "badge_full.step")
 os.makedirs(OUT, exist_ok=True)
 
+# Board numbers come from design.py so holes/slots cannot drift from the PCB.
+sys.path.insert(0, os.path.normpath(os.path.join(HERE, "..", "pcb", "scripts")))
+import design as D  # noqa: E402
+
+
+def _xy(ref):
+    p = next(p for p in D.PARTS if p.ref == ref)
+    return (p.at[0], p.at[1])
+
+
 # ----------------------------------------------------------------------------- inputs (from the PCB)
-PCB_W, PCB_H, PCB_T = 91.0, 84.0, 0.8          # board outline; y 0..77 carries the panel, 77..84 is the strip
-PANEL_W, PANEL_H, PANEL_T = 91.0, 77.0, 1.0    # GDEM042F86 / Waveshare 4.2" (G) raw panel
-ACTIVE_W, ACTIVE_H = 84.8, 63.6
-ACTIVE_TOP = 4.5                                # active-area offset from the panel top edge (FPC is at the bottom) - verify with panel drawing
-USB_X0, USB_X1 = 70.325, 79.675                 # TYPE-C-31-M-14 cutout in the PCB bottom edge
+PCB_W, PCB_H, PCB_T = D.BOARD_W, D.BOARD_H, D.BOARD_THICKNESS
+PANEL_W, PANEL_H, PANEL_T = D.BOARD_W, D.PANEL_H, D.PANEL_T
+ACTIVE_W, ACTIVE_H = D.ACTIVE_W, D.ACTIVE_H
+ACTIVE_TOP = D.ACTIVE_TOP                        # GDEM042F86 p.6: 6.7 mm from panel top to AA
+USB_CUT_HALF = 4.675                            # TYPE-C-31-M-14 9.35 mm cutout, same as gen_pcb.py
+USB_X0, USB_X1 = _xy("J3")[0] - USB_CUT_HALF, _xy("J3")[0] + USB_CUT_HALF
 USB_Z0, USB_Z1 = -2.0, 1.25                     # connector body extent relative to PCB back face (mid-mount)
-BUTTONS = [(14.0, 80.5), (24.0, 80.5)]          # PCB coords of SW1/SW2 (PTS810, actuator faces the back)
-LEDS = [(86.5, 81.0), (65.0, 81.0)]             # PCB coords of D4 (CHG) / D5 (STAT)
+BUTTONS = [_xy("SW1"), _xy("SW2")]              # RST @ (14.0, 80.5), BOOT @ (22.5, 80.5)
+LEDS = [_xy("D4"), _xy("D5")]                   # CHG / STAT
 COMP_H = 2.4                                    # tallest part on the back: ESP32-C3-MINI-1
-BATTERY = (3.0, 3.0, 50.0, 53.0, 2.0)           # pocket x0,y0,x1,y1 (PCB coords), thickness
-FPC_SLOT = (30.0, 77.6, 60.0, 79.6)
+BATTERY = (*D.BATTERY_POCKET, 2.0)             # pocket x0,y0,x1,y1 (PCB coords), thickness
+FPC_SLOT = D.FPC_SLOT                           # (27.0, 77.6, 57.0, 79.6)
 
 # ----------------------------------------------------------------------------- enclosure parameters
 CLR = 0.3            # PCB edge to inner wall

@@ -3,6 +3,15 @@
 对照规格书逐项打勾。结论先写「通过 / 有风险 / 必须改」，再写页码或 URL。
 `design.py` 是唯一事实来源；改脚序或电阻必须先改它再 `gen_schematic.py`。
 
+**「还开着」= 还没拍板，不是脚本没跑完。** 官方 GDEM042F86 规格书（2026-06-17，40 页）已对照本地 PDF。
+
+仍要你拍板的：
+
+1. **USB 0.8 mm**：沉板座按 0.75 mm 板设计，我们是 0.8 mm。差 0.05 mm，首件看台阶，或改板厚 / 换座。
+2. **脚 7 接 GND**：官方第 7 页写 NC Keep Open。接到 GND 做缝合一般没事（不是信号脚），第 29 页参考电路把 6/7 画成 TSCL/TSDA 是套图，以脚表为准。要严格 Keep Open 再说，会动网络。
+
+已用官方 PDF 勾掉：脚序（6/7=NC，8=BS1）、RESE=2.2 Ω、ACTIVE_TOP=6.7 mm（第 6 页机械图）。
+
 调研日期：2026-09-13。GDEM042F86 官方 PDF 下载被站点 WAF 拦截，下列屏脚主要依据 **Waveshare 4.2inch e-Paper (G)** 用户手册（与 GDEM042F86 同外形 91×77、同 400×300 BWRY、同 24P 0.5 mm）。**打板前必须用佳显官方规格书复核。**
 
 ## 1. 屏幕 GDEM042F86 / 24P FPC
@@ -11,15 +20,15 @@
 |---|---|---|---|
 | 外形 / 有效区 | 91×77×1.0，有效 84.8×63.6 | 与佳显产品页、Waveshare G 一致 | 通过（尺寸） |
 | 驱动 IC | SSD2683ZA | 佳显产品页 | 通过 |
-| 24P 脚序 | J1：2 GDR, 3 RESE, 5 VSH2, 7 GND, 8 GND, 9 BUSY, 10 RST, 11 DC, 12 CS, 13 SCK, 14 MOSI, 15–16 VCI, 17 GND, 18 VDD, 20 VSH1, 21 VGH, 22 VSL, 23 VGL, 24 VCOM；NC = 1,4,6,19 | Waveshare G 手册：1 NC, 2 GDR, 3 RESE, 4 NC, 5 VSH2, **6 NC, 7 NC, 8 BS1**, 9 BUSY … 17 VSS, 19 VPP Keep open。**pin 8 接 GND = BS1=L，强制 4 线 SPI**，与 ADR「BS1=GND」一致。pin 7 规格写 Keep open，现为缝合 GND；若实板是 TSDA（老型号 GDEY042Z98 才是）会出事 | **有风险**：pin 7 需官方 PDF 确认是 NC。不要用 GDEY042Z98 的脚序 |
-| RESE（R14） | 2.2 Ω | 佳显参考电路常见 0.47 / 2.2 / 3 Ω。未拿到 GDEM042F86 参考电路页 | **必须改或确认**：用官方 PDF 的 RESE 值 |
-| FPC 出线 | `FPC_SLOT=(27,77.6,57,79.6)`，J1 at (40, 73, 0)，元件在 B.Cu | 槽在板底、连接器开口朝槽（已 3D 确认）。屏 FPC 从下缘绕到背面 | **通过（出线方向）**。官方机械图仍缺，ACTIVE_TOP 另见第 5 节 |
+| 24P 脚序 | J1：2 GDR, 3 RESE, 5 VSH2, 7 GND, 8 GND, 9 BUSY, 10 RST, 11 DC, 12 CS, 13 SCK, 14 MOSI, 15–16 VCI, 17 GND, 18 VDD, 20 VSH1, 21 VGH, 22 VSL, 23 VGL, 24 VCOM；NC = 1,4,6,19 | **GDEM042F86 第 7 页**：1 NC Keep Open, 2 GDR, 3 RESE, 4 NC, 5 VSH2, **6 NC Keep Open, 7 NC Keep Open, 8 BS1**, 9 BUSY … 17 VSS, 19 VPP Keep Open。pin 8 接 GND = 4 线 SPI。第 29 页参考电路把 6/7 标成 TSCL/TSDA，与脚表冲突，以第 7 页为准 | **通过（脚功能）**。pin 7 接 GND 是缝合，规格写 Keep Open；不是信号脚。要空着再说 |
+| RESE（R14） | 2.2 Ω | 官方第 29 页参考电路 R2=**2.2 Ω**（RESE 到地） | **通过** |
+| FPC 出线 | `FPC_SLOT=(27,77.6,57,79.6)`，J1 at (40, 73, 0) | 第 6 页：FPC 从短边下沿出，弯折区在屏下方。槽在板底、开口朝槽 | **通过** |
 
 资料：
 
 - 佳显产品页：https://www.good-display.com/product/1048.html
-- 规格书入口（需过 WAF）：https://www.good-display.com/companyfile/2073.html
-- Waveshare G 手册：https://files.waveshare.com/wiki/4.2inch%20e-Paper%20Module%20(G)/4.2inch_e-Paper_(G).pdf
+- 官方规格书 GDEM042F86（2026-06-17，40 页）：本机 `c:\Users\19612\Downloads\GDEM042F86.pdf`（版权文件，不入库）
+- Waveshare G 手册（交叉核对）：https://files.waveshare.com/wiki/4.2inch%20e-Paper%20Module%20(G)/4.2inch_e-Paper_(G).pdf
 - 不要用这份老 4.2" 规格（脚 6/7 是 TSCL/TSDA）：https://files.waveshare.com/upload/6/6a/4.2inch-e-paper-specification.pdf
 
 ## 2. USB-C TYPE-C-31-M-14
@@ -28,7 +37,7 @@
 |---|---|---|---|
 | 型号 / LCSC | HRO TYPE-C-31-M-14，C223907 | 16P USB2.0 沉板母座 | 通过（选型） |
 | 板厚 | `BOARD_THICKNESS=0.8` | 韩荣产品页写 **0.75 mm PCB**。0.8 mm 可能略厚，壳体台阶贴合变差或焊盘悬空 | **有风险**：打样前量封装台阶；备选同系列适配 0.8 mm 的料号，或接受 0.05 mm 偏差并首件确认 |
-| 开口 | 板底边开槽，J3 at (75.0, BOARD_H-2.7) | 沉板中置，与外壳 USB 孔对准 | 待装配 STEP 再看一次 |
+| 开口 | 板底边开槽，J3 at (75.0, BOARD_H-2.7) | 沉板中置，与外壳 USB 孔对准 | **通过（外壳 STEP）**：2026-09-14 用 `D:\FreeCAD\bin\freecadcmd.exe` 重出装配，frame/cover vs USB 干涉 0。板厚 0.75 vs 0.8 仍见上一行 |
 
 资料：LCSC C223907；https://en.krhro.com/Product-Details/728.html
 
@@ -56,7 +65,7 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 
 | 项 | 设计现状 | 调研结论 | 状态 |
 |---|---|---|---|
-| `ACTIVE_TOP=4.5` | `hardware/enclosure/badge_enclosure.py` | 有效区 84.8×63.6，外形 91×77。若垂直居中，上下各 (77-63.6)/2 = **6.7 mm**。FPC 在底边时有效区通常上边距更小、下边距更大。4.5 比居中少 2.2 mm，方向合理但数值未对图纸 | **必须改或确认**：用 GDEM042F86 机械图的 Viewing Area 到 Top 尺寸替换 4.5 |
+| `ACTIVE_TOP=6.7` | `design.py` → 外壳 | 官方第 6 页：外形 91.00×77.00×1.00，AA 84.80×63.60，左右各 **3.10**。竖直方向 AA 居中：(77−63.60)/2 = **6.70**。旧值 4.5 会挡住画面顶约 2.2 mm | **已改为 6.7**（2026-09-14） |
 
 水平：左右各 (91-84.8)/2 = 3.1 mm，脚本用 `(PANEL_W-ACTIVE_W)/2`，与此一致。
 
@@ -66,12 +75,11 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 - 升压回路 L1/Q1/D1/C16 尽量短（已集中在 24–43, 57–65 一带）。
 - 电池仓无零件（B.Cu rule area）。
 - NFC 线圈盖绿油（ANT1 SMD 无 Mask；通孔 pad 2 仍开窗）。光线追踪里线圈是**绿的**（油盖铜），不是黄的；黄 = 露铜。圈内小黄点是通孔。铜皮 11 圈仍在，见 `output/nfc_coil_close.png`。
-- 外壳脚本和 PCB 有两处坐标对不齐，**先问再改**：`BUTTONS` 第二颗写 `(24.0, 80.5)`，板上 SW2 是 `(22.5, 80.5)`；外壳 `FPC_SLOT=(30,77.6,60,79.6)`，PCB 是 `(27,77.6,57,79.6)`。
+- 外壳脚本从 `design.py` 读 SW1/SW2、FPC 槽、电池仓、LED（2026-09-14 已按 PCB 对齐：BOOT `(22.5, 80.5)`，槽 `(27,77.6,57,79.6)`）。
 - 0.4/0.2 mm 过孔：0.8 mm 板厚 4:1，多数板厂能做，下单时写明。
 
 ## 7. 建议的「通过才下单」门槛
 
-1. 官方 GDEM042F86 PDF：脚 6/7/8、RESE、机械尺寸、FPC 方向。
-2. USB-C 沉板与 0.8 mm 板匹配或改料号。
-3. ~~KiCad 3D 确认 FH12 开口朝槽。~~ 已通过。
-4. NFC 已盖绿油并 DRC 清零后再导 Gerber（3D 线圈为绿属正常）。
+1. USB-C 沉板与 0.8 mm 板匹配或改料号。
+2. 脚 7：官方 NC Keep Open，现接 GND 缝合。要空着再说。
+3. ~~FH12 开口朝槽 / NFC 盖绿油 / ACTIVE_TOP=6.7 / RESE=2.2 Ω~~ 已用官方 PDF 和第 6 页机械图勾掉。
