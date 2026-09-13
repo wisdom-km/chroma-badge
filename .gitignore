@@ -1,0 +1,16 @@
+# KiCad
+*.kicad_prl
+*-backups/
+fp-info-cache
+*.lck
+hardware/pcb/output/*.dsn
+hardware/pcb/output/*.ses
+hardware/pcb/output/*.rules
+# FreeCAD
+*.FCBak
+*.FCStd1
+# Python
+__pycache__/
+*.pyc
+# temp
+/agent-tools/

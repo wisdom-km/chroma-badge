@@ -1,0 +1,183 @@
+ERC report (2026-09-13T16:06:17+0000, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector'
+    ; warning
+    @(49.53 mm, 59.69 mm): Symbol J3 [USB_C_Receptacle_USB2.0_16P]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 40.64 mm): Symbol R1 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Battery_Management'
+    ; warning
+    @(44.45 mm, 134.62 mm): Symbol U3 [MCP73831-2-OT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(152.40 mm, 40.64 mm): Symbol R2 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(97.79 mm, 130.81 mm): Symbol R3 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(34.29 mm, 167.64 mm): Symbol C5 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector'
+    ; warning
+    @(77.47 mm, 163.83 mm): Symbol TP4 [TestPoint]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(142.24 mm, 130.81 mm): Symbol R4 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(196.85 mm, 40.64 mm): Symbol C1 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector'
+    ; warning
+    @(121.92 mm, 163.83 mm): Symbol TP2 [TestPoint]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(190.50 mm, 127.00 mm): Symbol D4 [LED]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector'
+    ; warning
+    @(166.37 mm, 163.83 mm): Symbol TP3 [TestPoint]
+[lib_symbol_issues]: Symbol 'ESP32-C3-MINI-1' not found in symbol library 'Espressif'
+    ; warning
+    @(62.23 mm, 243.84 mm): Symbol U1 [ESP32-C3-MINI-1]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(133.35 mm, 219.71 mm): Symbol C6 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(237.49 mm, 130.81 mm): Symbol C2 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(177.80 mm, 219.71 mm): Symbol C7 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(222.25 mm, 219.71 mm): Symbol R7 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector_Generic'
+    ; warning
+    @(287.02 mm, 129.54 mm): Symbol J2 [Conn_01x02]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'RF_NFC'
+    ; warning
+    @(44.45 mm, 322.58 mm): Symbol U2 [ST25DV64K-IER8C3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(97.79 mm, 318.77 mm): Symbol C9 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(265.43 mm, 219.71 mm): Symbol C8 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(142.24 mm, 318.77 mm): Symbol C10 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector'
+    ; warning
+    @(186.69 mm, 314.96 mm): Symbol TP1 [TestPoint]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Regulator_Linear'
+    ; warning
+    @(344.17 mm, 134.62 mm): Symbol U4 [AP2112K-3.3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(309.88 mm, 219.71 mm): Symbol R8 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Transistor_FET'
+    ; warning
+    @(92.71 mm, 379.73 mm): Symbol Q2 [AO3401A]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(229.87 mm, 318.77 mm): Symbol R11 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(142.24 mm, 378.46 mm): Symbol C12 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector_Generic'
+    ; warning
+    @(39.37 mm, 405.13 mm): Symbol J1 [Conn_01x24]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(394.97 mm, 130.81 mm): Symbol C3 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(354.33 mm, 219.71 mm): Symbol R10 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(274.32 mm, 318.77 mm): Symbol R12 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(186.69 mm, 378.46 mm): Symbol C13 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(229.87 mm, 378.46 mm): Symbol C14 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(318.77 mm, 318.77 mm): Symbol R13 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(397.51 mm, 219.71 mm): Symbol R9 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(439.42 mm, 130.81 mm): Symbol C4 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Diode'
+    ; warning
+    @(38.10 mm, 457.20 mm): Symbol D3 [MBR0530]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(274.32 mm, 378.46 mm): Symbol L1 [L]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(85.09 mm, 461.01 mm): Symbol C16 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(129.54 mm, 461.01 mm): Symbol C17 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(364.49 mm, 320.04 mm): Symbol ANT1 [Antenna_Loop]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(173.99 mm, 461.01 mm): Symbol C18 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(445.77 mm, 215.90 mm): Symbol D5 [LED]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Transistor_FET'
+    ; warning
+    @(323.85 mm, 379.73 mm): Symbol Q1 [AO3400A]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(483.87 mm, 130.81 mm): Symbol R5 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(217.17 mm, 461.01 mm): Symbol C19 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(41.91 mm, 508.00 mm): Symbol #FLG01 [PWR_FLAG]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(82.55 mm, 508.00 mm): Symbol #FLG02 [PWR_FLAG]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(411.48 mm, 318.77 mm): Symbol C11 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(261.62 mm, 461.01 mm): Symbol C20 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(372.11 mm, 378.46 mm): Symbol R14 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(527.05 mm, 130.81 mm): Symbol R6 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Switch'
+    ; warning
+    @(499.11 mm, 215.90 mm): Symbol SW1 [SW_Push]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(306.07 mm, 461.01 mm): Symbol C21 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Diode'
+    ; warning
+    @(420.37 mm, 374.65 mm): Symbol D1 [MBR0530]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Switch'
+    ; warning
+    @(552.45 mm, 215.90 mm): Symbol SW2 [SW_Push]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(468.63 mm, 378.46 mm): Symbol C15 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Diode'
+    ; warning
+    @(515.62 mm, 374.65 mm): Symbol D2 [MBR0530]
+
+ ** ERC messages: 59  Errors 0  Warnings 59
