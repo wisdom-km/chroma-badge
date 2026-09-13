@@ -11,7 +11,7 @@
 用户 Wisdom，始终用中文回复。硬件改动从 hardware/pcb/scripts/design.py 开始，不要手改 .kicad_sch；不要跑 gen_pcb.py 除非准备好重新 Freerouting（会清布线）。Freerouting 必须按 docs/03-handoff.md 第 3 节从交互 shell、相对路径启动。
 
 当前优先级：
-1. 把 GND 缝合做成可从 78 过孔原板复现的 DRC 清零（见交接文档第 5 节第 1 步；板本身已经是 564 段/128 过孔、DRC 0，但脚本从干净板 skip-route 还会剩 1 个 B.Cu 孤岛）。
+1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
 2. NFC 线圈盖绿油（gen_nfc_footprint.py 去掉 F.Mask/B.Mask）后按第 3 节重布线。
 3. 写完 docs/04-review-checklist.md（草稿已有调研结论，缺官方 GDEM042F86 PDF 页码）。
 4. 固件第一版，见 firmware/README.md。
@@ -25,7 +25,7 @@
 
 4.2 寸四色墨水屏 NFC 工牌（产品名 **BADGE-42C**）：ESP32-C3-MINI-1-N4 + ST25DV64KC + 超薄锂电 + USB-C，整机约 6.3 mm。
 原理图、PCB（已自动布线 + GND 缝合）、外壳（FreeCAD）、BOM 都已生成。
-**打样前还差：NFC 盖绿油重布线、封装人工复核、固件。**
+**打样前还差：NFC 盖绿油重布线、封装人工复核、固件。GND 缝合脚本已可从 78 过孔原板复现 DRC 清零。**
 
 ## 1. 仓库结构
 
@@ -104,7 +104,7 @@ python3 scripts/route_pcb.py --skip-route
 
 ## 5. 下一步（按优先级）
 
-### 1. GND 铺铜孤岛（进行中，板已清零，脚本尚未可复现）
+### 1. GND 铺铜孤岛（已完成，脚本可复现）
 
 **根因**：DRC 报的是同一 `GND_B.Cu` 的 Zone vs Zone，不是焊盘未连。B.Cu 被走线切成带 GND 焊盘的多边形，`ISLAND_REMOVAL_MODE_ALWAYS` 不会删它们。F.Cu 原本是整块地。
 
@@ -115,23 +115,12 @@ python3 scripts/route_pcb.py --skip-route
 3. `apply_esp_gnd_nettie()`：运行时给 U1 加 GND net-tie。
 4. 电池仓 GND 过孔网格（约 27 个）。
 5. 两阶段 `stitch_islands`：先任意孤岛一孔，再尽量打到另一层主铺铜。
-6. `stitch_leftover_to_main`：孤岛 ∩ F.Cu 主铺铜上打 0.4/0.2 孔。
+6. `stitch_leftover_to_main`：只处理并查集里**电学仍孤立**的 B.Cu 簇。先试 overlap 孔；失败才临时删掉该孤岛上不在 F.Cu 主铺铜的占坑过孔再打；overlap 仍失败则把占坑孔加回去，交给 cluster/jumper。
 7. `stitch_cluster_overlaps`：剩余簇的 F.Cu 孤岛 ∩ 主簇 B.Cu。
-8. `jumper_islands`：并查集后短跳线（密集区几乎走不通）。
+8. `jumper_islands`：并查集后短跳线（密集区几乎走不通）；跳线不得穿过 NFC / 天线 keepout。
 9. `nudge_clearance_vias`：DRC clearance 时把 GND 过孔挪 0.08–0.25 mm。
 
-**已验证有效、写进当前 `badge.kicad_pcb` 的两处手工微调**（从干净 78 过孔板 skip-route 时可能再现 0.18 mm 间距）：
-
-- C7 附近：`(51.50, 54.45)` → **`(51.39, 54.55)`**（躲开 F.Cu `EPD_PWR_EN` y≈53.97）
-- overlap 过孔：`(66.09, 49.47)` → **`(66.09, 49.62)`**（躲开 F.Cu `NFC_GPO` y≈48.99）
-
-**脚本复现缺口（2026-09-13 晚测过）**：`git` 上的 78 过孔原板 + 当前 `route_pcb.py --skip-route` → 约 564 段 / 127 过孔，**还剩 1 条 B.Cu Zone vs Zone**（C7 附近约 2.57 mm²，bbox ≈ 50.9,52.9–53.5,54.7）。原因：第一轮 `stitch_islands` 已经在孤岛上打了孔，但不在 F.Cu 主铺铜上；`leftover` 再打 overlap 孔时 `via_fits` 的 GND 过孔最小间距 0.55 mm 把位置挡死。
-
-**下一步该怎么改脚本（不要再走失败路线）**：
-
-- 在 `stitch_leftover_to_main` 里：对仍不与 F.Cu 主铺铜 overlap 的孤岛，**先删掉该孤岛上不在 fmain 上的 GND 过孔**，再打 overlap 孔。
-- 或：第一轮 `stitch_islands` 不要在「无法打到另一层主铺铜」的孤岛上占坑。
-- 清零后应用 `nudge_clearance_vias`（Power 网络要 0.20 mm，0.20 clr 会放到 0.18）。
+**2026-09-13 已复现**：`git show bce5813:hardware/pcb/badge.kicad_pcb`（84 个 `(via` / 约 78 个布线过孔）+ 当前 `route_pcb.py --skip-route` → **564 段 / 128 过孔，DRC 0**。C7 孤岛 overlap 孔落在 `(51.45, 54.50)`，`clr=0.22`，无需再手工 nudge。再跑一遍 `--skip-route` 不增孔、仍清零。
 
 **不要再走**：
 

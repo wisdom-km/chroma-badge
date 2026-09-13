@@ -21,16 +21,15 @@
 | 项 | 状态 |
 |---|---|
 | 原理图 | 57 元件，ERC 0，网表 == design.py。J1 pin 7 接 GND |
-| PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**564 段 / 128 过孔，DRC 0** |
+| PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**564 段 / 128 过孔，DRC 0**。`route_pcb.py --skip-route` 可从 78 过孔原板复现 |
 | 外壳 | FreeCAD 前框+后盖，约 6.3 mm |
 | 固件 | 未写，只有 `firmware/README.md` |
 
 ## 下一步（按顺序）
 
-1. **GND 缝合可复现**：板上已 DRC 清零，但 `route_pcb.py --skip-route` 从 78 过孔原板再跑会剩 1 个 C7 附近 B.Cu 孤岛。修法见 `docs/03-handoff.md` 第 5.1 节（先删孤岛上不在 F.Cu 主铺铜的过孔，再打 overlap 孔）。
-2. **NFC 盖绿油**：`gen_nfc_footprint.py` 去掉 pad 的 `F.Mask`/`B.Mask`，然后 `gen_pcb.py` + 手工 Freerouting + `route_pcb.py --import-only`。
-3. 收口 `docs/04-review-checklist.md`（缺官方 GDEM042F86 PDF）。
-4. 固件第一版。
+1. **NFC 盖绿油**：`gen_nfc_footprint.py` 去掉 pad 的 `F.Mask`/`B.Mask`，然后 `gen_pcb.py` + 手工 Freerouting + `route_pcb.py --import-only`。
+2. 收口 `docs/04-review-checklist.md`（缺官方 GDEM042F86 PDF）。
+3. 固件第一版。
 
 ## 本地怎么跑
 
