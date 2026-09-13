@@ -20,4 +20,5 @@ docs/refs/
 tools/jre/
 tools/_jre_staging/
 tools/_download/
-tools/freerouting/*.jar
+firmware/.pio/
+firmware/.vscode/

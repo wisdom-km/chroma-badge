@@ -14,7 +14,7 @@
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
 2. ~~NFC 线圈盖绿油~~：ANT1 SMD 焊盘已去掉 Mask（线圈盖绿油），通孔 pad 2 仍开窗。布线仍是 564/128、DRC 0。
 3. 写完 docs/04-review-checklist.md。官方 GDEM042F86 PDF 已对照（脚序/RESE/ACTIVE_TOP=6.7）。剩下 USB 0.8 vs 0.75、脚 7 Keep Open vs GND。
-4. 固件第一版，见 firmware/README.md。
+4. 固件 v0.1 上电自检已在 firmware/（PlatformIO）。下一步 NDEF/FTM 收图。
 
 提交前跑 check_netlist.py 和 export.sh。不要建 PR，除非用户明确要求。
 ```
@@ -46,7 +46,7 @@ hardware/pcb/                    KiCad 9 工程（由脚本生成）
   scripts/export.sh
   lib/                           Espressif 符号、ESP32-C3-MINI-1、TYPE-C-31-M-14、NFC_Loop
 hardware/enclosure/              FreeCAD 前框 + 后盖
-firmware/README.md               引脚表；固件代码尚未开始
+firmware/                       PlatformIO：ESP32-C3 上电自检 + GDEM042F86 OTP 刷白
 ```
 
 ## 2. 环境
@@ -102,7 +102,7 @@ python3 scripts/route_pcb.py --skip-route
 | ESP32 | 封装 `ESP32-C3-MINI-1.kicad_mod` 加了 GND `net_tie_pad_groups`（脚 1,2,11,14,36–53 模组内部共地） |
 | NFC 线圈 | 11 圈约 35×41.5 mm，L≈4.6 µH，与 ST25DV 28.5 pF 约 13.96 MHz。**SMD 焊盘已去掉 Mask（盖绿油）**；通孔 pad 2 仍 `*.Mask` |
 | 外壳 | 94×93×6.3 mm，前框+后盖，与 PCB STEP 无干涉 |
-| 固件 | 未写，只有 `firmware/README.md` 引脚表 |
+| 固件 | v0.1：USB 日志、VBAT、ST25DV 探测、BOOT 全白 OTP 刷新、GPO/BOOT 深睡唤醒 |
 
 `output/drc_final.json` 应对应当前板：`violations: []`、`unconnected_items: []`。Gerber/STEP/渲染若与 128 过孔板不同步，跑一次 `./scripts/export.sh`。
 
@@ -153,7 +153,7 @@ python3 scripts/route_pcb.py --skip-route
 
 ### 4. 固件
 
-`firmware/README.md`。建议：屏驱动 → 深睡/唤醒 → ST25DV NDEF+FTM → BLE/SoftAP。
+`firmware/`。v0.1 已能 USB 日志 / I²C 探测 / 按住 BOOT 刷白。下一步：ST25DV NDEF+FTM 收图 → 工牌画面 → BLE/SoftAP。
 
 ## 6. 约定
 

@@ -14,5 +14,5 @@ alwaysApply: true
 Freerouting 必须交互 shell + 相对路径（见 docs/03-handoff.md 第 3 节）。
 发现文档写错或和板上事实冲突：先问用户，讨论后再动手。
 
-当前板 564 段/128 过孔、DRC 0。GND 缝合可复现；NFC 线圈已盖绿油。下一步：复核清单 → 固件。
+当前板 564 段/128 过孔、DRC 0。GND 缝合可复现；NFC 线圈已盖绿油；ACTIVE_TOP=6.7。下一步：固件 NDEF/FTM；USB 0.8 vs 0.75 仍待拍板。
 提交前跑 check_netlist.py 和 export.sh。
