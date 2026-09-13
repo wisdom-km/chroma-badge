@@ -1,0 +1,16 @@
+---
+description: BADGE-42C / chroma-badge 本地与换模型时必须遵守的约定
+alwaysApply: true
+---
+
+用户 Wisdom，始终用中文回复。
+
+这是 4.2 寸四色墨水屏 NFC 工牌（chroma-badge / BADGE-42C）。
+先读 AGENTS.md 和 docs/03-handoff.md。架构以 docs/01-architecture-decisions.md 为准。
+
+硬件只改 hardware/pcb/scripts/design.py，不要手改 .kicad_sch。
+不要跑 gen_pcb.py，除非要重新 Freerouting（会清布线）。
+Freerouting 必须交互 shell + 相对路径（见 docs/03-handoff.md 第 3 节）。
+
+当前板 564 段/128 过孔、DRC 0。下一步：GND 缝合脚本可复现 → NFC 盖绿油重布线 → 复核清单 → 固件。
+提交前跑 check_netlist.py 和 export.sh。
