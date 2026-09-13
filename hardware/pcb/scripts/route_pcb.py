@@ -7,6 +7,7 @@ add GND vias next to GND pads that are not tied to the ground pour -> repeat -> 
 import json
 import math
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -21,8 +22,37 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PCB_DIR = os.path.abspath(os.path.join(HERE, ".."))
 BOARD = os.path.join(PCB_DIR, "badge.kicad_pcb")
 OUT_DIR = os.path.join(PCB_DIR, "output")
-FREEROUTING_JAR = "/opt/freerouting/freerouting.jar"
-JAVA = "/opt/freerouting/jre25/bin/java"
+REPO_ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
+
+
+def _first_file(*paths):
+    for p in paths:
+        if p and os.path.isfile(p):
+            return p
+    return None
+
+
+def _resolve_freerouting_jar():
+    found = _first_file(
+        os.path.join(REPO_ROOT, "tools", "freerouting", "freerouting.jar"),
+        "/opt/freerouting/freerouting.jar",
+    )
+    return found or os.path.join(REPO_ROOT, "tools", "freerouting", "freerouting.jar")
+
+
+def _resolve_java():
+    found = _first_file(
+        os.path.join(REPO_ROOT, "tools", "jre", "bin", "java.exe"),
+        os.path.join(REPO_ROOT, "tools", "jre", "bin", "java"),
+        "/opt/freerouting/jre25/bin/java",
+    )
+    if found:
+        return found
+    return shutil.which("java") or os.path.join(REPO_ROOT, "tools", "jre", "bin", "java")
+
+
+FREEROUTING_JAR = _resolve_freerouting_jar()
+JAVA = _resolve_java()
 
 
 def P(x, y):
@@ -61,8 +91,21 @@ def run_freerouting(board):
     # ...and, empirically, only when launched through os.system(): with subprocess.run() the
     # JVM exits before the save thread writes anything (0-byte .ses), so we shell out here.
     log = os.path.join(OUT_DIR, "freerouting.log")
-    import shlex
-    os.system(f"cd {shlex.quote(OUT_DIR)} && {' '.join(shlex.quote(c) for c in cmd)} > {shlex.quote(log)} 2>&1")
+    if os.name == "nt":
+        def _cmd_quote(s):
+            return '"' + s.replace('"', '""') + '"'
+        os.system(
+            "cd /d {cwd} && {line} > {log} 2>&1".format(
+                cwd=_cmd_quote(OUT_DIR),
+                line=" ".join(_cmd_quote(c) for c in cmd),
+                log=_cmd_quote(log),
+            )
+        )
+    else:
+        import shlex
+        os.system(
+            f"cd {shlex.quote(OUT_DIR)} && {' '.join(shlex.quote(c) for c in cmd)} > {shlex.quote(log)} 2>&1"
+        )
     with open(log) as lf:
         lines = [l.rstrip() for l in lf if "nalytics" not in l and l.strip()]
     print("\n".join(lines[-6:]), flush=True)
@@ -348,69 +391,154 @@ class Stitcher:
                           f"({pcbnew.ToMM(bb.GetRight()):.1f},{pcbnew.ToMM(bb.GetBottom()):.1f})")
         return added, missed
 
-    def stitch_leftover_to_main(self):
-        """For B.Cu islands that don't overlap F.Cu main: via on F.Cu main near the
-        island, then a short B.Cu track from a GND pad on the island to that via."""
+    def _gnd_via_tracks(self):
+        return [t for t in self.board.GetTracks()
+                if t.GetClass() == "PCB_VIA" and t.GetNetCode() == self.gnd.GetNetCode()]
+
+    def _island_blocker_vias(self, island_ol, fmain):
+        """GND vias on a leftover B.Cu island that do not land on F.Cu main."""
+        out = []
+        for t in self._gnd_via_tracks():
+            p = t.GetPosition()
+            x, y = pcbnew.ToMM(p.x), pcbnew.ToMM(p.y)
+            if not self._point_inside(island_ol, x, y):
+                continue
+            if self._point_inside(fmain, x, y):
+                continue
+            w, drill = self._via_size(t)
+            out.append((t, x, y, w, drill))
+        return out
+
+    def _copper_clusters(self):
+        """Union-find of filled GND polygons joined by GND vias. Returns
+        (items, find, groups, main_root) where leftover clusters are those
+        whose find(k) != main_root."""
         layers = self._gnd_polys()
+        items = []
+        for layer, islands in layers.items():
+            for area, idx, ol in islands:
+                items.append((f"{layer}:{idx}", area, ol, layer, idx))
+        gnd_vias = [(pcbnew.ToMM(t.GetPosition().x), pcbnew.ToMM(t.GetPosition().y))
+                    for t in self._gnd_via_tracks()]
+        parent = {k: k for k, _a, _o, _l, _i in items}
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(a, c):
+            ra, rc = find(a), find(c)
+            if ra != rc:
+                parent[rc] = ra
+
+        for vx, vy in gnd_vias:
+            hit = [k for k, _a, ol, _l, _i in items if self._point_inside(ol, vx, vy)]
+            for a, c in zip(hit, hit[1:]):
+                union(a, c)
+        groups = {}
+        for k, area, ol, layer, idx in items:
+            groups.setdefault(find(k), []).append((k, area, ol, layer, idx))
+        main_root = max(groups, key=lambda r: sum(a for _k, a, _o, _l, _i in groups[r]))
+        return items, find, groups, main_root, layers
+
+    def stitch_leftover_to_main(self):
+        """For electrically leftover B.Cu islands, place an overlap via onto F.Cu main.
+
+        Occupying vias that miss F.Cu main are only removed if an overlap via can
+        actually be placed; otherwise they are restored so cluster/jumper still work.
+        """
+        items, find, groups, main_root, layers = self._copper_clusters()
         if pcbnew.F_Cu not in layers or pcbnew.B_Cu not in layers:
             return 0
         fmain = layers[pcbnew.F_Cu][0][2]
+        leftover_b = [(area, idx, ol) for k, area, ol, layer, idx in items
+                      if layer == pcbnew.B_Cu and find(k) != main_root]
+        if not leftover_b:
+            return 0
         pads = []
         for fp in self.board.GetFootprints():
             for pad in fp.Pads():
                 if pad.GetNetCode() == self.gnd.GetNetCode():
                     p = pad.GetPosition()
                     pads.append((pcbnew.ToMM(p.x), pcbnew.ToMM(p.y)))
-        gnd_vias = []
-        for t in self.board.GetTracks():
-            if t.GetClass() == "PCB_VIA" and t.GetNetCode() == self.gnd.GetNetCode():
-                p = t.GetPosition()
-                gnd_vias.append((pcbnew.ToMM(p.x), pcbnew.ToMM(p.y)))
         added = 0
-        for area, idx, ol in layers[pcbnew.B_Cu][1:]:
-            if any(self._point_inside(ol, vx, vy) and self._point_inside(fmain, vx, vy)
-                   for vx, vy in gnd_vias):
-                continue
-            island_pads = [(x, y) for x, y in pads if self._point_inside(ol, x, y)]
+        sizes = ((0.4, 0.2, 0.22), (0.45, 0.2, 0.22), (0.5, 0.3, 0.22),
+                 (0.4, 0.2, 0.20), (0.45, 0.2, 0.20))
+        extra_pts = [(51.39, 54.55), (51.50, 54.45), (66.09, 49.62), (66.09, 49.47)]
+
+        def overlap_cands(ol):
+            cands = [xy for xy in self._island_candidates(ol, pads)
+                     if self._point_inside(fmain, xy[0], xy[1])]
             bb = ol.BBox()
             x0, y0 = pcbnew.ToMM(bb.GetLeft()) - 3.0, pcbnew.ToMM(bb.GetTop()) - 3.0
             x1, y1 = pcbnew.ToMM(bb.GetRight()) + 3.0, pcbnew.ToMM(bb.GetBottom()) + 3.0
-            placed = False
-            for i in range(24):
-                for j in range(24):
-                    x = x0 + (x1 - x0) * (i + 0.5) / 18
-                    y = y0 + (y1 - y0) * (j + 0.5) / 18
+            n = 28
+            for i in range(n):
+                for j in range(n):
+                    x = x0 + (x1 - x0) * (i + 0.5) / n
+                    y = y0 + (y1 - y0) * (j + 0.5) / n
+                    if self._point_inside(fmain, x, y) and self._point_inside(ol, x, y):
+                        cands.append((x, y))
+            for xy in extra_pts:
+                if self._point_inside(ol, xy[0], xy[1]) and self._point_inside(fmain, xy[0], xy[1]):
+                    cands.insert(0, xy)
+            return cands, x0, y0, x1, y1
+
+        def try_overlap(ol, area):
+            cands, x0, y0, x1, y1 = overlap_cands(ol)
+            seen = set()
+            for via_d, drill, clr in sizes:
+                for x, y in cands:
+                    key = (round(x, 3), round(y, 3), via_d, clr)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    if not self._point_inside(ol, x, y) or not self._point_inside(fmain, x, y):
+                        continue
+                    if self.via_fits(x, y, via_d=via_d, drill=drill, clr=clr):
+                        self.add_via(x, y, via_d=via_d, drill=drill)
+                        print(f"    leftover overlap via ({x:.2f},{y:.2f}) d={via_d} clr={clr:.2f} "
+                              f"island {area:.2f} mm2")
+                        return True
+            island_pads = [(x, y) for x, y in pads if self._point_inside(ol, x, y)]
+            n = 28
+            for i in range(n):
+                for j in range(n):
+                    x = x0 + (x1 - x0) * (i + 0.5) / n
+                    y = y0 + (y1 - y0) * (j + 0.5) / n
                     if not self._point_inside(fmain, x, y):
                         continue
-                    if self._point_inside(ol, x, y):
-                        for clr in (0.22, 0.20):
-                            if self.via_fits(x, y, via_d=0.4, drill=0.2, clr=clr):
-                                self.add_via(x, y, via_d=0.4, drill=0.2)
-                                gnd_vias.append((x, y))
-                                added += 1
-                                placed = True
-                                print(f"    leftover via (relaxed clr={clr:.2f}) ({x:.2f},{y:.2f}) island {area:.2f} mm2")
-                                break
-                    if placed:
-                        break
                     if not self.via_fits(x, y, via_d=0.5, drill=0.3):
                         continue
                     for px, py in island_pads or [(pcbnew.ToMM(ol.CPoint(0).x), pcbnew.ToMM(ol.CPoint(0).y))]:
                         if self._jumper_fits(pcbnew.B_Cu, px, py, x, y):
                             self.add_via(x, y, via_d=0.5, drill=0.3)
                             self.add_track(px, py, x, y, w=0.25)
-                            gnd_vias.append((x, y))
-                            added += 1
-                            placed = True
                             print(f"    leftover via+track ({px:.2f},{py:.2f})->({x:.2f},{y:.2f}) "
                                   f"island {area:.2f} mm2")
-                            break
-                    if placed:
-                        break
-                if placed:
-                    break
-            if not placed:
+                            return True
+            return False
+
+        for area, idx, ol in leftover_b:
+            if try_overlap(ol, area):
+                added += 1
+                continue
+            blockers = self._island_blocker_vias(ol, fmain)
+            if not blockers:
                 print(f"    leftover island B.Cu#{idx} {area:.2f} mm2 still open")
+                continue
+            for t, x, y, w, drill in blockers:
+                print(f"    removed blocker GND via ({x:.2f},{y:.2f}) not on F.Cu main")
+                self.board.Remove(t)
+            if try_overlap(ol, area):
+                added += 1
+                continue
+            for _t, x, y, w, drill in blockers:
+                self.add_via(x, y, via_d=w, drill=drill)
+                print(f"    restored occupying GND via ({x:.2f},{y:.2f})")
+            print(f"    leftover island B.Cu#{idx} {area:.2f} mm2 still open")
         return added
 
     def stitch_cluster_overlaps(self):
@@ -557,6 +685,11 @@ class Stitcher:
         return added
 
     def _jumper_fits(self, layer, x1, y1, x2, y2):
+        for rect in (D.NFC_COIL_RECT, D.ESP_ANT_KEEPOUT, D.FPC_SLOT):
+            sx0, sx1 = min(x1, x2), max(x1, x2)
+            sy0, sy1 = min(y1, y2), max(y1, y2)
+            if sx1 >= rect[0] - 0.4 and sx0 <= rect[2] + 0.4 and sy1 >= rect[1] - 0.4 and sy0 <= rect[3] + 0.4:
+                return False
         seg = pcbnew.SHAPE_SEGMENT(P(x1, y1), P(x2, y2), FromMM(0.25))
         extra = FromMM(0.22)
         for fp in self.board.GetFootprints():
@@ -832,6 +965,11 @@ def main():
     if n_left:
         fill(board)
         pcbnew.SaveBoard(BOARD, board)
+        n_left2 = st.stitch_leftover_to_main()
+        print(f"leftover-to-main stitch (retry): {n_left2}", flush=True)
+        if n_left2:
+            fill(board)
+            pcbnew.SaveBoard(BOARD, board)
 
     n_ov = st.stitch_cluster_overlaps()
     print(f"cluster-overlap vias: {n_ov}", flush=True)

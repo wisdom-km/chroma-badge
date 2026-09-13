@@ -14,3 +14,8 @@ __pycache__/
 *.pyc
 # temp
 /agent-tools/
+# Portable JRE is large; download per tools/README.md
+tools/jre/
+tools/_jre_staging/
+tools/_download/
+tools/freerouting/*.jar

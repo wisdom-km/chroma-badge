@@ -44,8 +44,8 @@ cd ../enclosure && freecadcmd badge_enclosure.py                    # 外壳 + �
 
 ## 状态
 
-v0.2（2026-09-13）：原理图 ERC 通过；PCB **564 段 / 128 过孔，DRC error 0**（GND 孤岛已在当前板上缝合；脚本从 78 过孔原板复现仍差 1 个孤岛，见交接文档）。
-下一步：把缝合做成可复现 → NFC 线圈盖绿油并重布线 → 完成 `docs/04-review-checklist.md` → 固件。
+v0.2（2026-09-14）：原理图 ERC 通过；PCB **564 段 / 128 过孔，DRC error 0**。GND 缝合脚本可从 78 过孔原板 `route_pcb.py --skip-route` 复现清零。
+下一步：NFC 线圈盖绿油并重布线 → 完成 `docs/04-review-checklist.md` → 固件。
 
 ## 新会话怎么接
 

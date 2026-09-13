@@ -1,8 +1,8 @@
 (export (version "E")
   (design
-    (source "/workspace/hardware/pcb/badge.kicad_sch")
-    (date "2026-09-13T18:29:38+0000")
-    (tool "Eeschema 9.0.9-9.0.9~ubuntu24.04.1")
+    (source "D:\\chroma-badge\\hardware\\pcb\\badge.kicad_sch")
+    (date "2026-09-14T03:56:19+0800")
+    (tool "Eeschema 9.0.8")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block
         (title "4.2\" BWRY e-paper NFC badge")
@@ -1304,7 +1304,7 @@
         (pin (num "3") (name "D") (type "passive")))))
   (libraries
     (library (logical "Espressif")
-      (uri "/workspace/hardware/pcb/lib/Espressif.kicad_sym")))
+      (uri "D:\\chroma-badge\\hardware\\pcb/lib/Espressif.kicad_sym")))
   (nets
     (net (code "1") (name "+3V3") (class "Default")
       (node (ref "C4") (pin "1") (pintype "passive"))

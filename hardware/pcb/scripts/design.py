@@ -5,10 +5,55 @@ gen_schematic.py turns this into a KiCad 9 schematic, gen_pcb.py into a PCB.
 Coordinates for PCB placement are in mm, board frame = front view, origin at
 top-left corner of the board, X right, Y down (KiCad convention).
 """
+import os
+import sys
 from dataclasses import dataclass, field
 
-KICAD_SYM = "/usr/share/kicad/symbols"
-KICAD_FP = "/usr/share/kicad/footprints"
+
+def _kicad_share_dir():
+    """Locate KiCad's share/kicad directory on Windows, macOS, or Linux."""
+    env_keys = (
+        "KICAD9_SYMBOL_DIR",
+        "KICAD10_SYMBOL_DIR",
+        "KICAD8_SYMBOL_DIR",
+        "KICAD_SYMBOL_DIR",
+    )
+    for key in env_keys:
+        val = os.environ.get(key)
+        if val and os.path.isdir(val):
+            return os.path.dirname(os.path.abspath(val))
+
+    candidates = []
+    if sys.platform.startswith("win"):
+        roots = [
+            os.path.join(os.environ.get("ProgramFiles", r"C:\Program Files"), "KiCad"),
+            os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "KiCad"),
+        ]
+        for kicad_root in roots:
+            if os.path.isdir(kicad_root):
+                for name in sorted(os.listdir(kicad_root), reverse=True):
+                    candidates.append(os.path.join(kicad_root, name, "share", "kicad"))
+        # Prefer 9.x (this project is KiCad 9) over 10/8 if several are installed.
+        nine = [c for c in candidates if os.path.sep + "9." in c or c.endswith(os.path.join("9.0", "share", "kicad"))]
+        if nine:
+            candidates = nine + [c for c in candidates if c not in nine]
+    elif sys.platform == "darwin":
+        candidates = [
+            "/Applications/KiCad/KiCad.app/Contents/SharedSupport",
+            os.path.expanduser("~/Applications/KiCad/KiCad.app/Contents/SharedSupport"),
+        ]
+    else:
+        candidates = ["/usr/share/kicad", "/usr/local/share/kicad"]
+
+    for share in candidates:
+        if os.path.isdir(os.path.join(share, "symbols")) and os.path.isdir(os.path.join(share, "footprints")):
+            return share
+    return "/usr/share/kicad"
+
+
+_KICAD_SHARE = _kicad_share_dir()
+KICAD_SYM = os.path.join(_KICAD_SHARE, "symbols")
+KICAD_FP = os.path.join(_KICAD_SHARE, "footprints")
 PROJECT_FP = "lib"          # relative to hardware/pcb
 ESPRESSIF_SYM = "lib/Espressif.kicad_sym"
 
