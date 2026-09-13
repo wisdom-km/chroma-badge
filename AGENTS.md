@@ -24,7 +24,7 @@
 | 项 | 状态 |
 |---|---|
 | 原理图 | 57 元件，ERC 0，网表 == design.py。J1 pin 7 接 GND |
-| PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**564 段 / 128 过孔，DRC 0**。GND 缝合可复现；NFC 线圈已盖绿油 |
+| PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**564 段 / 128 过孔，DRC 0**。GND 缝合可复现；NFC 线圈已盖绿油；J1 开口朝槽；B.Silk 已排开 |
 | 外壳 | FreeCAD 前框+后盖，约 6.3 mm |
 | 固件 | 未写，只有 `firmware/README.md` |
 

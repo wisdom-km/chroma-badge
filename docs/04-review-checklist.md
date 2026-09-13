@@ -13,7 +13,7 @@
 | 驱动 IC | SSD2683ZA | 佳显产品页 | 通过 |
 | 24P 脚序 | J1：2 GDR, 3 RESE, 5 VSH2, 7 GND, 8 GND, 9 BUSY, 10 RST, 11 DC, 12 CS, 13 SCK, 14 MOSI, 15–16 VCI, 17 GND, 18 VDD, 20 VSH1, 21 VGH, 22 VSL, 23 VGL, 24 VCOM；NC = 1,4,6,19 | Waveshare G 手册：1 NC, 2 GDR, 3 RESE, 4 NC, 5 VSH2, **6 NC, 7 NC, 8 BS1**, 9 BUSY … 17 VSS, 19 VPP Keep open。**pin 8 接 GND = BS1=L，强制 4 线 SPI**，与 ADR「BS1=GND」一致。pin 7 规格写 Keep open，现为缝合 GND；若实板是 TSDA（老型号 GDEY042Z98 才是）会出事 | **有风险**：pin 7 需官方 PDF 确认是 NC。不要用 GDEY042Z98 的脚序 |
 | RESE（R14） | 2.2 Ω | 佳显参考电路常见 0.47 / 2.2 / 3 Ω。未拿到 GDEM042F86 参考电路页 | **必须改或确认**：用官方 PDF 的 RESE 值 |
-| FPC 出线 | `FPC_SLOT=(27,77.6,57,79.6)`，J1 at (40, 73, 0)，元件在 B.Cu | 屏 FPC 从板下缘绕到背面。槽在板底、连接器在槽上方 | 待对照面板机械图确认出线在短边下沿 |
+| FPC 出线 | `FPC_SLOT=(27,77.6,57,79.6)`，J1 at (40, 73, 0)，元件在 B.Cu | 槽在板底、连接器开口朝槽（已 3D 确认）。屏 FPC 从下缘绕到背面 | **通过（出线方向）**。官方机械图仍缺，ACTIVE_TOP 另见第 5 节 |
 
 资料：
 
@@ -47,7 +47,7 @@ Torex XC6220 PDF：https://www.torexsemi.com/file/xc6220/XC6220.pdf
 | 项 | 设计现状 | 调研结论 | 状态 |
 |---|---|---|---|
 | 型号 | Hirose FH12-24S-0.5SH 或 JUSHUO AFC07-S24FCA-00，LCSC C262657 | 0.5 mm、24P、**Bottom contact**、前翻盖 ZIF、高 2.0 mm | 通过（型号） |
-| 开口方向 | 元件在 B.Cu，J1 在槽上方 | Bottom contact：FPC 导电面朝 PCB。插拔方向应朝板下缘 `FPC_SLOT`。KiCad 封装 `Hirose_FH12-24S-0.5SH_1x24-1MP` 开口朝 footprint 哪一侧，叠加 Flip+rot=0 后必须朝 +Y（槽） | **必须在 PCB 上目视**：背面看连接器开口是否朝槽；若朝上则 J1 旋转 180° |
+| 开口方向 | 元件在 B.Cu，J1 在槽上方 | Bottom contact：FPC 导电面朝 PCB。插拔方向应朝板下缘 `FPC_SLOT` | **通过（2026-09-14 3D）**：棕色翻盖朝槽，焊脚朝 ESP。图：`output/j1_back_close.png`、`j1_from_slot.png`。不用转 180° |
 | FPC 厚度 | 未在设计里写 | FH12 推荐 0.30 mm FPC | 买屏时确认补强厚度 |
 
 Hirose FH12：https://www.hirose.com/product/series/FH12
@@ -65,12 +65,13 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 - USB D+/D− 是否等长：Freerouting 结果能用但不好看，C3 全速不严格要求差分。
 - 升压回路 L1/Q1/D1/C16 尽量短（已集中在 24–43, 57–65 一带）。
 - 电池仓无零件（B.Cu rule area）。
-- NFC 线圈目前盖绿油（ANT1 SMD 无 Mask；通孔 pad 2 仍开窗）。
+- NFC 线圈盖绿油（ANT1 SMD 无 Mask；通孔 pad 2 仍开窗）。光线追踪里线圈是**绿的**（油盖铜），不是黄的；黄 = 露铜。圈内小黄点是通孔。铜皮 11 圈仍在，见 `output/nfc_coil_close.png`。
+- 外壳脚本和 PCB 有两处坐标对不齐，**先问再改**：`BUTTONS` 第二颗写 `(24.0, 80.5)`，板上 SW2 是 `(22.5, 80.5)`；外壳 `FPC_SLOT=(30,77.6,60,79.6)`，PCB 是 `(27,77.6,57,79.6)`。
 - 0.4/0.2 mm 过孔：0.8 mm 板厚 4:1，多数板厂能做，下单时写明。
 
 ## 7. 建议的「通过才下单」门槛
 
 1. 官方 GDEM042F86 PDF：脚 6/7/8、RESE、机械尺寸、FPC 方向。
 2. USB-C 沉板与 0.8 mm 板匹配或改料号。
-3. KiCad 3D/渲染确认 FH12 开口朝槽。
-4. NFC 已盖绿油并 DRC 清零后再导 Gerber。
+3. ~~KiCad 3D 确认 FH12 开口朝槽。~~ 已通过。
+4. NFC 已盖绿油并 DRC 清零后再导 Gerber（3D 线圈为绿属正常）。

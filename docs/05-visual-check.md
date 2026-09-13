@@ -48,6 +48,14 @@ Windows：`%LOCALAPPDATA%\Programs\KiCad\9.0\bin\kicad-cli`。图放 `hardware/p
 - **对准后的图**：银色焊脚朝 ESP，棕色翻盖朝槽。开口朝槽，**不用转 180°**，不用重布。
 - **教训**：没拍到目标就不能下「不确定 / 可能要转 180°」这种结论。
 
+### 2026-09-14 NFC 线圈 3D 不黄
+
+- **当时**：Wisdom 红框里的线圈是黄线，重渲的 `render_back.png` 没有黄线。
+- **实际**：铜皮还在，**不是拍丢、也不是线圈没了。** ANT1 pad 1 仍是 11 圈螺旋，现板层只有 `"B.Cu"`（无 Mask）。盖绿油之后，实物和光线追踪里线圈被阻焊盖住，看起来是绿的；黄/金 = 开窗露铜（沉金）。圈内那颗小黄点是仍开窗的通孔 pad 2。
+- **你红框里发黄**：多半是 KiCad 3D/编辑器按铜层颜色画（B.Cu 默认偏黄），或盖绿油之前那版渲染。`kicad-cli pcb render` 默认 `follow_plot_settings`，按加工后外观画，所以不黄。
+- **对准的图**：`hardware/pcb/output/nfc_coil_close.png`（绿线圈 + 一颗金通孔）。
+- **教训**：3D 少了「铜的黄」先对 Mask：有铜无窗 = 应该绿。不要为了渲成黄色去把 Mask 加回去。
+
 ### 2026-09-14 B.Silk 叠字（BOOT / 芯片说明）
 
 - **当时**：Wisdom 在 `render_back.png` 上标了红箭头。

@@ -149,7 +149,7 @@ python3 scripts/route_pcb.py --skip-route
 
 ### 3. 打样前复核
 
-见 `docs/04-review-checklist.md`。关键未闭合项：官方 GDEM042F86 规格书 PDF（站点 WAF 403），TYPE-C-31-M-14 图纸写 0.75 mm 板厚 vs 我们 0.8 mm。
+见 `docs/04-review-checklist.md`。J1 开口已 3D 确认朝槽。仍未闭合：官方 GDEM042F86 PDF（站点 WAF 403）、TYPE-C-31-M-14 0.75 vs 0.8 mm、外壳 `ACTIVE_TOP`、外壳 BUTTONS/FPC_SLOT 与 PCB 坐标差（先问）。NFC 3D 线圈为绿是盖绿油后的正确外观。
 
 ### 4. 固件
 

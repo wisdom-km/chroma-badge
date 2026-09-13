@@ -14,6 +14,8 @@ __pycache__/
 *.pyc
 # temp
 /agent-tools/
+# Vendor PDFs pulled for local review (copyrighted; do not commit)
+docs/refs/
 # Portable JRE is large; download per tools/README.md
 tools/jre/
 tools/_jre_staging/
