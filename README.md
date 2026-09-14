@@ -27,7 +27,7 @@ cd chroma-badge
 - `docs/04-review-checklist.md`：打样前封装/引脚复核（进行中）
 - `hardware/pcb/`：KiCad 9 工程，全部由 `scripts/design.py` 生成
 - `hardware/enclosure/`：FreeCAD 参数化外壳
-- `firmware/README.md`：引脚表与时序约定（固件未写）
+- `firmware/README.md`：v0.1 上电自检；NDEF/FTM 收图未写
 
 ## 快速开始
 
@@ -44,8 +44,8 @@ cd ../enclosure && freecadcmd badge_enclosure.py                    # 外壳 + �
 
 ## 状态
 
-v0.2（2026-09-14）：原理图 ERC 通过；PCB **564 段 / 128 过孔，DRC error 0**。GND 缝合可复现；NFC 线圈已盖绿油。
-下一步：完成 `docs/04-review-checklist.md` → 固件。
+v0.2（2026-09-14）：原理图 ERC 通过；PCB **564 段 / 128 过孔，DRC error 0**。GND 缝合可复现；NFC 线圈已盖绿油。USB 按 **0.8 mm** 打样。
+下一步：脚 7 Keep Open vs GND（可选）→ 固件 NDEF/FTM。
 
 ## 新会话怎么接
 

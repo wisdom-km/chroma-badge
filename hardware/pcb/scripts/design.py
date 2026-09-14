@@ -65,6 +65,9 @@ PANEL_H = 77.0            # e-paper panel outline 91 x 77, glued to the FRONT
 STRIP_H = 7.0             # extra strip under the panel: USB-C mid-mount + buttons
 BOARD_H = PANEL_H + STRIP_H
 BOARD_CORNER_R = 2.0
+# 嘉立创/JLCPCB 两层标准档 0.4/0.6/0.8/1.0/1.2/1.6/2.0，下单没有 0.75。
+# TYPE-C-31-M-14 产品页写沉板 0.75 mm；0.8 mm 公差 ±0.1 → 实物 0.7–0.9，含 0.75。
+# 2026-09-14 Wisdom：按 0.8 打样，不改座、不改板厚。改这个数会动过孔 4:1 和外壳 PCB_T。
 BOARD_THICKNESS = 0.8
 # GDEM042F86 spec 2026-06-17 p.6: outline 91.00 x 77.00 x 1.00, AA 84.80 x 63.60,
 # L/R bezel 3.10, AA vertically centered so top/bottom bezel = (77-63.60)/2 = 6.70

@@ -30,13 +30,14 @@ def _xy(ref):
 
 
 # ----------------------------------------------------------------------------- inputs (from the PCB)
-PCB_W, PCB_H, PCB_T = D.BOARD_W, D.BOARD_H, D.BOARD_THICKNESS
+PCB_W, PCB_H, PCB_T = D.BOARD_W, D.BOARD_H, D.BOARD_THICKNESS  # 0.8 mm；嘉立创无 0.75 档
 PANEL_W, PANEL_H, PANEL_T = D.BOARD_W, D.PANEL_H, D.PANEL_T
 ACTIVE_W, ACTIVE_H = D.ACTIVE_W, D.ACTIVE_H
 ACTIVE_TOP = D.ACTIVE_TOP                        # GDEM042F86 p.6: 6.7 mm from panel top to AA
 USB_CUT_HALF = 4.675                            # TYPE-C-31-M-14 9.35 mm cutout, same as gen_pcb.py
 USB_X0, USB_X1 = _xy("J3")[0] - USB_CUT_HALF, _xy("J3")[0] + USB_CUT_HALF
-USB_Z0, USB_Z1 = -2.0, 1.25                     # connector body extent relative to PCB back face (mid-mount)
+# Mid-mount body vs PCB back (Z=0). Pocket sized for 0.8 mm board; 0.05 vs 0.75 is inside print/JLC tolerance.
+USB_Z0, USB_Z1 = -2.0, 1.25
 BUTTONS = [_xy("SW1"), _xy("SW2")]              # RST @ (14.0, 80.5), BOOT @ (22.5, 80.5)
 LEDS = [_xy("D4"), _xy("D5")]                   # CHG / STAT
 COMP_H = 2.4                                    # tallest part on the back: ESP32-C3-MINI-1

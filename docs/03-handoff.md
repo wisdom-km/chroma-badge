@@ -13,7 +13,7 @@
 当前优先级：
 1. ~~GND 缝合可复现~~：`route_pcb.py --skip-route` 从 bce5813 的 78 过孔原板 → **564 段 / 128 过孔，DRC 0**，再跑一遍幂等。
 2. ~~NFC 线圈盖绿油~~：ANT1 SMD 焊盘已去掉 Mask（线圈盖绿油），通孔 pad 2 仍开窗。布线仍是 564/128、DRC 0。
-3. 写完 docs/04-review-checklist.md。官方 GDEM042F86 PDF 已对照（脚序/RESE/ACTIVE_TOP=6.7）。剩下 USB 0.8 vs 0.75、脚 7 Keep Open vs GND。
+3. 写完 docs/04-review-checklist.md。官方 GDEM042F86 PDF 已对照（脚序/RESE/ACTIVE_TOP=6.7）。USB **按 0.8 mm 打样**（嘉立创无 0.75）。剩下脚 7 Keep Open vs GND。
 4. 固件 v0.1 上电自检已在 firmware/（PlatformIO）。下一步 NDEF/FTM 收图。
 
 提交前跑 check_netlist.py 和 export.sh。不要建 PR，除非用户明确要求。
@@ -25,7 +25,7 @@
 
 4.2 寸四色墨水屏 NFC 工牌（产品名 **BADGE-42C**）：ESP32-C3-MINI-1-N4 + ST25DV64KC + 超薄锂电 + USB-C，整机约 6.3 mm。
 原理图、PCB（已自动布线 + GND 缝合）、外壳（FreeCAD）、BOM 都已生成。
-**打样前还差：封装人工复核、固件。GND 缝合可复现；NFC 线圈已盖绿油。**
+**USB 按 0.8 mm 打样。** 打样前还差：脚 7 可选拍板、固件 NDEF/FTM。GND 缝合可复现；NFC 线圈已盖绿油。
 
 ## 1. 仓库结构
 
@@ -149,7 +149,7 @@ python3 scripts/route_pcb.py --skip-route
 
 ### 3. 打样前复核
 
-见 `docs/04-review-checklist.md`。官方 GDEM042F86（2026-06-17）已对照：脚 6/7=NC、RESE=2.2 Ω、ACTIVE_TOP=**6.7**（第 6 页，AA 竖直居中）。外壳按键/FPC 槽从 `design.py` 读。仍未闭合：TYPE-C-31-M-14 0.75 vs 0.8 mm；脚 7 接 GND 缝合 vs Keep Open。
+见 `docs/04-review-checklist.md`。官方 GDEM042F86（2026-06-17）已对照：脚 6/7=NC、RESE=2.2 Ω、ACTIVE_TOP=**6.7**（第 6 页，AA 竖直居中）。外壳按键/FPC 槽从 `design.py` 读。USB **已拍板 0.8 mm**（嘉立创无 0.75 档；M-14 标 0.75，公差盖住）。仍未闭合：脚 7 接 GND 缝合 vs Keep Open。
 
 ### 4. 固件
 

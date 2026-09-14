@@ -31,7 +31,7 @@
 ## 下一步（按顺序）
 
 1. 固件：NDEF / FTM 收图 / 工牌画面（v0.1 自检已有）。
-2. 复核清单剩下的 USB 0.8 vs 0.75、脚 7 Keep Open vs GND。
+2. 复核清单剩下脚 7 Keep Open vs GND（USB 已拍板 0.8 mm）。
 
 ## 本地怎么跑
 
