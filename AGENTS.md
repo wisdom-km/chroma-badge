@@ -1,5 +1,7 @@
 # chroma-badge / BADGE-42C
 
+**2026-09-14 本机复审补充入口：** [docs/06-current-status.md](docs/06-current-status.md)、[合并整改计划](docs/reviews/2026-09-14/integrated-plan.md)、[可执行测试手册](tools/review/README.md)。下文是原进度快照；本轮复审的完整警告、未修缺陷、制造包同步问题和实物未测范围以补充报告逐项查证。架构决定和以下硬性约定保持。
+
 给 **本地 Cursor** 和任何切换过来的模型。先读这一份，再读 `docs/03-handoff.md`。
 3D、渲染、截图看不清或像有缺陷时，先读并遵守 `docs/05-visual-check.md`（先查源文件、对准重拍，分清拍错还是板上真问题）。
 用户 Wisdom，**始终用中文回复**。

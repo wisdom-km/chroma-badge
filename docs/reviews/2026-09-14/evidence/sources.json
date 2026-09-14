@@ -1,0 +1,30 @@
+{
+  "screen_pdf": {
+    "name": "GDEM042F86.pdf",
+    "sha256": "4e28a59058384798d2c2afe40c2885e8fa4285ddeb66f77e309a6e3f99344c63",
+    "pages": 40,
+    "printed_revision": "1.0",
+    "printed_date": "2026/06/17",
+    "reviewed_pages": [
+      2,
+      6,
+      7,
+      29,
+      31
+    ],
+    "redistributed": false
+  },
+  "external_review": {
+    "name": "chroma-badge-review-2026-09-14.md",
+    "sha256": "2cf4c1747fa34d017b1af803f745d48f4c6e6e3a2d038e2a0b5748b37c1aadbd",
+    "archived_verbatim": true
+  },
+  "kicad_installer": {
+    "version": "9.0.8",
+    "sha256": "f853f81dd6a90c769c521a35c438c5657fe39aaebe9967c8a74e743540920eb5",
+    "signature_status": "Valid",
+    "final_install_returncode": 0
+  },
+  "esp_idf_actual_version": "4.4.7",
+  "sdk_gpio_wakeup_mask": "BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5"
+}

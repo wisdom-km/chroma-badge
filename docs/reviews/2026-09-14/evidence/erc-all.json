@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-14T22:09:26+0800",
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "9.0.8",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0f1a3f2e-badc-4e00-9a11-000000000001",
+            "violations": [
+                {
+                    "description": "在符号库中 'ESP32-C3-MINI-1' 找不到符号 'Espressif'",
+                    "items": [
+                        {
+                            "description": "符号 U1 [ESP32-C3-MINI-1]",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 2.1336
+                            },
+                            "uuid": "92ce061d-beb1-4276-98dc-5711b4dd72d1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "badge.kicad_sch"
+}

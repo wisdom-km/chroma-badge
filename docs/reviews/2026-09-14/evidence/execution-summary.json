@@ -1,0 +1,24 @@
+{
+  "firmware_clean_build": 0,
+  "freecad_generation": 0,
+  "freecad_render": 0,
+  "mechanical_saved_step": 0,
+  "mechanical_fresh_step": 0,
+  "host_probes": {
+    "returncode": 0,
+    "cases": 20,
+    "meaning": "Existing false-success defects reproduced; not product correctness."
+  },
+  "fault_probes": {
+    "returncode": 0,
+    "meaning": "Existing DRC bypass and stale-report defects reproduced."
+  },
+  "original_export_sh": {
+    "returncode": 49,
+    "last_stage": "python3 scripts/check_netlist.py",
+    "gerber_export_reached": false
+  },
+  "postprocess_two_cycles": 0,
+  "generators_verified": 0,
+  "physical_hardware_tests": "NOT RUN"
+}

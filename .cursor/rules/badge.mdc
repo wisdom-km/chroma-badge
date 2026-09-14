@@ -5,6 +5,8 @@ alwaysApply: true
 
 用户 Wisdom，始终用中文回复。
 
+2026-09-14 本机复审入口：docs/06-current-status.md、docs/reviews/2026-09-14/local-review.md、integrated-plan.md；可执行测试在tools/review/README.md。以下进度为原快照，接手要结合复审中的全量警告、已复现未修缺陷、旧背面丝印制造包与实物未测范围。审查报告中的建议不等于用户批准改硬件。
+
 这是 4.2 寸四色墨水屏 NFC 工牌（chroma-badge / BADGE-42C）。
 先读 AGENTS.md 和 docs/03-handoff.md。架构以 docs/01-architecture-decisions.md 为准。
 3D/截图看不清时先读 docs/05-visual-check.md：先对源文件、对准重拍，分清「拍错了」还是「板上真有问题」。拍错自己修图；真问题先问用户。

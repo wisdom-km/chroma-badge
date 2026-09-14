@@ -1,0 +1,240 @@
+[
+  {
+    "name": "version",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "--version"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "erc-all",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "sch",
+      "erc",
+      "--format",
+      "json",
+      "--exit-code-violations",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\erc-all.json",
+      "badge.kicad_sch"
+    ],
+    "returncode": 5
+  },
+  {
+    "name": "erc-errors",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "sch",
+      "erc",
+      "--severity-error",
+      "--format",
+      "json",
+      "--exit-code-violations",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\erc-errors.json",
+      "badge.kicad_sch"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "drc-all-parity",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "drc",
+      "--schematic-parity",
+      "--format",
+      "json",
+      "--exit-code-violations",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\drc-all-parity.json",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 5
+  },
+  {
+    "name": "drc-errors",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "drc",
+      "--severity-error",
+      "--format",
+      "json",
+      "--exit-code-violations",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\drc-errors.json",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "netlist-export",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "sch",
+      "export",
+      "netlist",
+      "-o",
+      "output/badge.net",
+      "badge.kicad_sch"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "netlist-check",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\python.exe",
+      "scripts/check_netlist.py"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "board-audit",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\python.exe",
+      "D:\\chroma-badge\\tools\\review\\pcb_audit.py",
+      "--pcb",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\snapshot\\hardware\\pcb",
+      "--out",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\board-audit.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "gerbers",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "export",
+      "gerbers",
+      "--layers",
+      "F.Cu,B.Cu,F.Paste,B.Paste,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts",
+      "--subtract-soldermask",
+      "--no-protel-ext",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\gerbers/",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "drill",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "export",
+      "drill",
+      "--format",
+      "excellon",
+      "--excellon-separate-th",
+      "--generate-map",
+      "--map-format",
+      "gerberx2",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\gerbers/",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pos",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "export",
+      "pos",
+      "--side",
+      "back",
+      "--format",
+      "csv",
+      "--units",
+      "mm",
+      "--use-drill-file-origin",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\positions.csv",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "bom",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "sch",
+      "export",
+      "bom",
+      "--fields",
+      "Reference,Value,Footprint,Description,LCSC,${QUANTITY},${DNP}",
+      "--labels",
+      "Ref,Value,Footprint,Description,LCSC,Qty,DNP",
+      "--group-by",
+      "Value,Footprint,LCSC",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\bom.csv",
+      "badge.kicad_sch"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "step",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "export",
+      "step",
+      "--no-dnp",
+      "--subst-models",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\badge-fresh.step",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "render-back",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "render",
+      "--side",
+      "bottom",
+      "--width",
+      "1600",
+      "--height",
+      "1500",
+      "--quality",
+      "high",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\render-back.png",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "render-j1",
+    "command": [
+      "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+      "pcb",
+      "render",
+      "--side",
+      "bottom",
+      "--pivot",
+      "-0.55,-3.1,0",
+      "--zoom",
+      "7",
+      "--width",
+      "1400",
+      "--height",
+      "1000",
+      "--quality",
+      "high",
+      "-o",
+      "D:\\chroma-badge\\agent-tools\\audit-2026-09-14\\run\\kicad\\render-j1.png",
+      "badge.kicad_pcb"
+    ],
+    "returncode": 0
+  }
+]

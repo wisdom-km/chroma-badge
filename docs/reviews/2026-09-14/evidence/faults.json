@@ -1,0 +1,32 @@
+{
+  "stale_drc": {
+    "injected_returncode": 5,
+    "returned": {
+      "violations": [],
+      "unconnected_items": [],
+      "marker": "OLD_REPORT"
+    },
+    "defect_reproduced": true
+  },
+  "export_erc": {
+    "injected_returncode": 5,
+    "script_returncode": 5,
+    "gerbers_reached": false,
+    "commands": [
+      "sch erc --severity-error --format report -o output/erc_errors.rpt badge.kicad_sch"
+    ]
+  },
+  "export_drc": {
+    "injected_returncode": 5,
+    "script_returncode": 99,
+    "gerbers_reached": true,
+    "commands": [
+      "sch erc --severity-error --format report -o output/erc_errors.rpt badge.kicad_sch",
+      "pcb drc --severity-error --format report -o output/drc_final.rpt badge.kicad_pcb",
+      "sch export netlist -o output/badge.net badge.kicad_sch",
+      "sch export bom -o output/badge_bom.csv --fields Reference,Value,Footprint,Description,LCSC,${QUANTITY},${DNP} --labels Ref,Value,Footprint,Description,LCSC,Qty,DNP --group-by Value,Footprint,LCSC badge.kicad_sch",
+      "pcb export gerbers --layers F.Cu,B.Cu,F.Paste,B.Paste,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts --subtract-soldermask --no-protel-ext -o output/gerbers/ badge.kicad_pcb"
+    ]
+  },
+  "interpretation": "99 is the deliberate Gerber sentry; true gerbers_reached confirms earlier checks did not block. Fake python3 isolates the export control flow."
+}

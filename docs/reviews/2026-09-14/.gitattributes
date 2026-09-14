@@ -1,0 +1,4 @@
+# Preserve supplied text and raw tool output, including original CRLF/trailing spaces.
+# Whitespace lint still applies normally to authored reports and executable scripts.
+external-review.md -text -whitespace
+evidence/** -text -whitespace

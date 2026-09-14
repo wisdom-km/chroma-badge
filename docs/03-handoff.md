@@ -1,5 +1,7 @@
 # 项目交接文档（进度快照：2026-09-14）
 
+> **同日本机复审补充：** 接手同时阅读 [06-current-status.md](06-current-status.md)、[独立复审](reviews/2026-09-14/local-review.md)、[合并整改计划](reviews/2026-09-14/integrated-plan.md) 和 [测试手册](../tools/review/README.md)。本页保留原交接历史；error级DRC0不代表全量warning0、固件可构建不代表实机通过。本轮发现的冲突与待决项没有被自动批准或改板。
+
 给接手的下一位（人或 AI 模型）：读完这一份 + `docs/01-architecture-decisions.md` 就能继续。
 **不要推翻 ADR。** 硬件改动一律先改 `hardware/pcb/scripts/design.py`，再跑生成脚本。不要手改 `.kicad_sch`。
 

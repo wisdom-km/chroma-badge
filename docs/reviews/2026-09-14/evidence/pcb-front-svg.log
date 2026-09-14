@@ -1,0 +1,4 @@
+[33;1m此命令的行为在 KiCad 9.0 中已被弃用, 未来版本中此命令的默认行为将发生更改。[0m
+[33;1m新行为将与 --mode-multi 相匹配[0m
+Plotted to 'D:\chroma-badge\agent-tools\audit-2026-09-14\run\kicad\pcb-front.svg'.
+Done.

@@ -1,0 +1,34 @@
+{
+  "drc-all-parity.json": {
+    "count": 148,
+    "severity": {
+      "warning": 148
+    },
+    "types": {
+      "text_height": 57,
+      "silk_over_copper": 1,
+      "silk_overlap": 6,
+      "footprint_symbol_mismatch": 62,
+      "net_conflict": 22
+    }
+  },
+  "drc-errors.json": {
+    "count": 0,
+    "severity": {},
+    "types": {}
+  },
+  "erc-all.json": {
+    "count": 1,
+    "severity": {
+      "warning": 1
+    },
+    "types": {
+      "lib_symbol_issues": 1
+    }
+  },
+  "erc-errors.json": {
+    "count": 0,
+    "severity": {},
+    "types": {}
+  }
+}

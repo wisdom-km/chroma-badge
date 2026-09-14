@@ -1,0 +1,182 @@
+{
+  "freecad": [
+    "1",
+    "1",
+    "3",
+    "20260725 (Git shallow)",
+    "Unknown",
+    "2026/07/25 04:52:02",
+    "grafted,grafted",
+    "145529fe741292ff0b3977a01195bf0247425794"
+  ],
+  "pcb_step": "agent-tools\\audit-2026-09-14\\run\\kicad\\badge-fresh.step",
+  "shapes": {
+    "frame": {
+      "valid": true,
+      "null": false,
+      "solids": 1,
+      "volume_mm3": 7827.490738404989,
+      "bounds_mm": [
+        -1.5000000000000004,
+        -85.5,
+        -3.5,
+        92.5,
+        7.5,
+        2.8
+      ]
+    },
+    "cover": {
+      "valid": true,
+      "null": false,
+      "solids": 1,
+      "volume_mm3": 7095.072144781348,
+      "bounds_mm": [
+        -0.15,
+        -84.6,
+        -3.5,
+        91.14999999999999,
+        0.5999999999999999,
+        0.0
+      ]
+    },
+    "panel": {
+      "valid": true,
+      "null": false,
+      "solids": 1,
+      "volume_mm3": 7007.0,
+      "bounds_mm": [
+        0.0,
+        -77.0,
+        0.8,
+        91.0,
+        0.0,
+        1.8
+      ]
+    },
+    "battery_placeholder": {
+      "valid": true,
+      "null": false,
+      "solids": 1,
+      "volume_mm3": 4320.0,
+      "bounds_mm": [
+        4.0,
+        -52.0,
+        -2.0,
+        49.0,
+        -4.0,
+        0.0
+      ]
+    },
+    "pcb_step": {
+      "valid": true,
+      "null": false,
+      "solids": 403,
+      "volume_mm3": 5878.135581616785,
+      "bounds_mm": [
+        0.0,
+        -84.0,
+        -2.585,
+        91.00000000000009,
+        0.0,
+        0.71
+      ]
+    }
+  },
+  "overlaps": [
+    {
+      "a": "frame",
+      "b": "cover",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "frame",
+      "b": "panel",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "frame",
+      "b": "battery_placeholder",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "frame",
+      "b": "pcb_step",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "cover",
+      "b": "panel",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "cover",
+      "b": "battery_placeholder",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "cover",
+      "b": "pcb_step",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "panel",
+      "b": "battery_placeholder",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "panel",
+      "b": "pcb_step",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    },
+    {
+      "a": "battery_placeholder",
+      "b": "pcb_step",
+      "volume_mm3": 0.0,
+      "pass_0_05_mm3": true
+    }
+  ],
+  "saved_documents": {
+    "badge_front_frame": [
+      {
+        "valid": true,
+        "null": false,
+        "solids": 1,
+        "volume_mm3": 7827.490738404989,
+        "bounds_mm": [
+          -1.5000000000000004,
+          -85.5,
+          -3.5,
+          92.5,
+          7.5,
+          2.8
+        ]
+      }
+    ],
+    "badge_back_cover": [
+      {
+        "valid": true,
+        "null": false,
+        "solids": 1,
+        "volume_mm3": 7095.072144781348,
+        "bounds_mm": [
+          -0.15,
+          -84.6,
+          -3.5,
+          91.14999999999999,
+          0.6,
+          4.440892098500626e-16
+        ]
+      }
+    ]
+  },
+  "limits": "Battery placeholder only; no FPC flex, adhesive, wiring, connector motion or manufacturing tolerances. Missing models can make zero overlap misleading."
+}

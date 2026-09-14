@@ -1,5 +1,7 @@
 # chroma-badge（BADGE-42C）：4.2 寸四色墨水屏 NFC 工牌
 
+> **2026-09-14 本机复审已归档：** [当前状态与接手入口](docs/06-current-status.md) · [独立复审](docs/reviews/2026-09-14/local-review.md) · [外部审查原文](docs/reviews/2026-09-14/external-review.md) · [合并整改计划](docs/reviews/2026-09-14/integrated-plan.md) · [执行测试手册](tools/review/README.md)。普通检查使用隔离审查入口；下方历史“快速开始”包含重建未布线PCB的命令，必须先遵守AGENTS的适用条件。当前仍有未修缺陷和制造包背面丝印不同步，尚未完成实物验收。
+
 仓库：https://github.com/wisdom-km/chroma-badge
 
 一块 **6.3 mm 厚**的电子工牌：4.2" 黑白红黄四色墨水屏 + ESP32-C3（Wi-Fi/BLE/原生 USB）+ ST25DV64KC NFC 动态标签
