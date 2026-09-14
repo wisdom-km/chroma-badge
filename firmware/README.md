@@ -8,13 +8,20 @@
 
 ESP32-C3-MINI-1，原生 USB-Serial-JTAG（没有外置 UART）。
 
+预编译（2026-09-14，PlatformIO 6.2.0，espressif32 7.1.3）：
+
+- `output/badge-42c-v0.1.bin`（应用，296 512 B）
+- `output/badge-42c-v0.1-bootloader.bin`
+- `output/badge-42c-v0.1-partitions.bin`
+
 ```bash
 cd firmware
+pio run
 pio run -t upload
 pio device monitor
 ```
 
-没有 PlatformIO 时：安装 [pio](https://platformio.org/) 或 Arduino-ESP32（板选 ESP32C3 Dev Module，CDC on boot）。
+没有 PlatformIO 时：安装 [pio](https://platformio.org/) 或 Arduino-ESP32（板选 ESP32C3 Dev Module，CDC on boot）。不要把 PlatformIO IDE 的 `.vsix` 装进 Cursor（那是 VS Code 扩展）。
 
 ## 上电行为
 
