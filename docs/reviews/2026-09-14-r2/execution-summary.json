@@ -1,0 +1,46 @@
+{
+  "round": "2026-09-14-r2",
+  "audit_dir": "agent-tools/review-20260914-234456",
+  "source_commit": "11ab832815d8f10327e432e152d641957101a5e1",
+  "hardware_firmware_baseline": "ee978f08cbdb7b61bbe2c78fea0e9c7cd2c34a7b",
+  "kicad_checks_returncode": 1,
+  "meaning": "Return 1 is retained full-check failure (warnings), not a tool crash and not a production pass.",
+  "erc_errors": 0,
+  "drc_errors": 0,
+  "unconnected": 0,
+  "erc_all_warnings": 1,
+  "drc_all_parity_warnings": 148,
+  "drc_warning_types": {
+    "text_height": 57,
+    "silk_over_copper": 1,
+    "silk_overlap": 6,
+    "footprint_symbol_mismatch": 62,
+    "net_conflict": 22
+  },
+  "routing_sha256": "2d96f2751cfe29874e19817df79bebdc1da593ffc553671f2aa7306423b1d7c4",
+  "postprocess_two_cycles": 0,
+  "generators_verified": 0,
+  "gen_pcb_executed": false,
+  "freerouting_executed": false,
+  "firmware_clean_build": 0,
+  "firmware_bin_sha256": "a7eb3fd62469f91f74d3afb9f1af0cc45d641993ee01dd4782472913c6989880",
+  "host_probes": {
+    "returncode": 0,
+    "cases": 20,
+    "meaning": "Existing false-success defects reproduced; not product correctness."
+  },
+  "fault_probes": {
+    "returncode": 0,
+    "meaning": "Existing DRC bypass and stale-report defects reproduced."
+  },
+  "original_export_sh": {
+    "returncode": 127,
+    "last_stage": "python3 not found in Git Bash PATH",
+    "gerber_export_reached": false
+  },
+  "b_silkscreen_normalized_equal": false,
+  "missing_3d_models": ["J3 TYPE-C-31-M-14.step", "J2 JST_SHL_SM02B-SHLS-TF.step"],
+  "physical_hardware_tests": "NOT RUN",
+  "product_firmware_or_hardware_defects_fixed": false,
+  "production_package_published": false
+}

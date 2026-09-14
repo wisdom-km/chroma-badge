@@ -1,0 +1,76 @@
+Determining PCB data.
+Build STEP data.
+Could not add 3D model for J3.
+File not found: ${KIPRJMOD}/lib/3d/TYPE-C-31-M-14.step
+Adding component SW1.
+Adding component C2.
+Adding component C10.
+Adding component C4.
+Adding component R4.
+Adding component U3.
+Adding component C12.
+Adding component C17.
+Adding component R7.
+Adding component Q1.
+Adding component U2.
+Adding component C16.
+Could not add 3D model for J2.
+File not found: ${KICAD9_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal.step
+Adding component L1.
+Adding component R11.
+Adding component R14.
+Adding component SW2.
+Adding component C7.
+Adding component C3.
+Adding component C20.
+Adding component R3.
+Adding component C19.
+Adding component D2.
+Adding component C1.
+Adding component R13.
+Adding component C13.
+Adding component R10.
+Adding component C21.
+Adding component C8.
+Adding component R12.
+Adding component R9.
+Adding component D4.
+Adding component R6.
+Adding component C14.
+Adding component U1.
+Adding component J1.
+Adding component C6.
+Adding component R2.
+Adding component D1.
+Adding component C9.
+Adding component Q2.
+Adding component R1.
+Adding component R5.
+Adding component D3.
+Adding component D5.
+Adding component C15.
+Adding component C5.
+Adding component R8.
+Adding component U4.
+Adding component C18.
+Create PCB solid model.
+Board outline: found 92 initial points.
+Build board outlines (1 outlines) with 92 points.
+Build board cutouts and holes (144 hole(s)).
+Subtracting holes for shapes
+Subtracting holes for pads
+Subtracting holes for vias
+Generate board full shape.
+Writing STEP file.
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : $tempfile$.step(120550 ents)  Write  Done
+STEP file 'D:\chroma-badge\agent-tools\review-20260914-234456\kicad\badge-fresh.step' created.
+
+Export time 2.404 s

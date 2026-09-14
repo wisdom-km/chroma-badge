@@ -1,0 +1,11 @@
+enclosure: outer 94.0 x 93.0 x 6.3 mm  (front face Z=2.8, back Z=-3.5)
+frame volume 7.83 cm3, cover volume 7.10 cm3, valid=True
+  interference frame vs panel        :    0.000 mm3 OK
+  interference frame vs battery      :    0.000 mm3 OK
+  interference frame vs usb          :    0.000 mm3 OK
+  interference cover vs battery      :    0.000 mm3 OK
+  interference cover vs esp          :    0.000 mm3 OK
+  interference cover vs usb          :    0.000 mm3 OK
+  interference frame vs cover        :    0.000 mm3 OK
+  interference frame vs PCB(step)    :    0.000 mm3 OK
+  interference cover vs PCB(step)    :    0.000 mm3 OK

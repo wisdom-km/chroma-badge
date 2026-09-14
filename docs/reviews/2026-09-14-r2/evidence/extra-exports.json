@@ -1,0 +1,164 @@
+{
+  "commands": [
+    {
+      "name": "schematic-pdf",
+      "command": [
+        "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+        "sch",
+        "export",
+        "pdf",
+        "-o",
+        "D:\\chroma-badge\\agent-tools\\review-20260914-234456\\kicad\\schematic.pdf",
+        "badge.kicad_sch"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "schematic-svg",
+      "command": [
+        "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+        "sch",
+        "export",
+        "svg",
+        "-o",
+        "D:\\chroma-badge\\agent-tools\\review-20260914-234456\\kicad\\sch-svg",
+        "--no-background-color",
+        "badge.kicad_sch"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "pcb-front-svg",
+      "command": [
+        "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+        "pcb",
+        "export",
+        "svg",
+        "--layers",
+        "F.Cu,F.SilkS,Edge.Cuts",
+        "--page-size-mode",
+        "2",
+        "--exclude-drawing-sheet",
+        "-o",
+        "D:\\chroma-badge\\agent-tools\\review-20260914-234456\\kicad\\pcb-front.svg",
+        "badge.kicad_pcb"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "pcb-back-svg",
+      "command": [
+        "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+        "pcb",
+        "export",
+        "svg",
+        "--layers",
+        "B.Cu,B.SilkS,Edge.Cuts",
+        "--mirror",
+        "--page-size-mode",
+        "2",
+        "--exclude-drawing-sheet",
+        "-o",
+        "D:\\chroma-badge\\agent-tools\\review-20260914-234456\\kicad\\pcb-back.svg",
+        "badge.kicad_pcb"
+      ],
+      "returncode": 0
+    },
+    {
+      "name": "board-only-step",
+      "command": [
+        "D:\\chroma-badge\\agent-tools\\kicad-9.0.8\\bin\\kicad-cli.exe",
+        "pcb",
+        "export",
+        "step",
+        "--board-only",
+        "--no-dnp",
+        "-o",
+        "D:\\chroma-badge\\agent-tools\\review-20260914-234456\\kicad\\board-only.step",
+        "badge.kicad_pcb"
+      ],
+      "returncode": 0
+    }
+  ],
+  "gerber_drill_comparison": [
+    {
+      "file": "badge-B_Cu.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "cb90a275d1774fdb59db196d6c6193c3290067a2ab952c0ef9cf27d379df0c87",
+      "old_normalized_sha256": "cb90a275d1774fdb59db196d6c6193c3290067a2ab952c0ef9cf27d379df0c87"
+    },
+    {
+      "file": "badge-B_Mask.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "73ca1f6da6431c51560d0f7172045a5428ffe9e1bfc04efb82863c92878e68dd",
+      "old_normalized_sha256": "73ca1f6da6431c51560d0f7172045a5428ffe9e1bfc04efb82863c92878e68dd"
+    },
+    {
+      "file": "badge-B_Paste.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "2fe6cc6a1f54fc4510d833694dada649167e0db39a7bee647aeb9dc726f4e31b",
+      "old_normalized_sha256": "2fe6cc6a1f54fc4510d833694dada649167e0db39a7bee647aeb9dc726f4e31b"
+    },
+    {
+      "file": "badge-B_Silkscreen.gbr",
+      "normalized_equal": false,
+      "fresh_normalized_sha256": "7470a99aa8244cf014b81ee5c0bac10144b83ea5f115cdada55e10f17603828f",
+      "old_normalized_sha256": "638bd8071c752df2d45ce0102b475dafd2e610bb2f4be5abb7c1e81c85fe8303"
+    },
+    {
+      "file": "badge-Edge_Cuts.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "5f8fa5d28286f93cc5aaf1fedfa244c01c7305d7371cfb725bcc5bb8470ae707",
+      "old_normalized_sha256": "5f8fa5d28286f93cc5aaf1fedfa244c01c7305d7371cfb725bcc5bb8470ae707"
+    },
+    {
+      "file": "badge-F_Cu.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "8b460763f766d576b4a7975cc4c435bbc52c30b74c58a8a1aa21464562c4e7b6",
+      "old_normalized_sha256": "8b460763f766d576b4a7975cc4c435bbc52c30b74c58a8a1aa21464562c4e7b6"
+    },
+    {
+      "file": "badge-F_Mask.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "15bb26b6e52e047f38d98c158abcc218e853f3ae47fd359a60fbcde9b1069377",
+      "old_normalized_sha256": "15bb26b6e52e047f38d98c158abcc218e853f3ae47fd359a60fbcde9b1069377"
+    },
+    {
+      "file": "badge-F_Paste.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "5efbecf51e5732ebfd5acaeecf058e07b8a7ab8d9baac9e4da3007afe63e8138",
+      "old_normalized_sha256": "5efbecf51e5732ebfd5acaeecf058e07b8a7ab8d9baac9e4da3007afe63e8138"
+    },
+    {
+      "file": "badge-F_Silkscreen.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "2752c67e41140977da46562ac60e50d4430833f426b7f5d05b2b400f7a6f92a1",
+      "old_normalized_sha256": "2752c67e41140977da46562ac60e50d4430833f426b7f5d05b2b400f7a6f92a1"
+    },
+    {
+      "file": "badge-NPTH-drl_map.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "52cdacc810597e89cf5dc4a102d8d0fdddd592bfca1b9c0fbce59d5e274e39f7",
+      "old_normalized_sha256": "52cdacc810597e89cf5dc4a102d8d0fdddd592bfca1b9c0fbce59d5e274e39f7"
+    },
+    {
+      "file": "badge-NPTH.drl",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "f93c5630baf2662d991b823ef427c1d21752c80bb8a0f5c8bfc7ac0cb2a98c18",
+      "old_normalized_sha256": "f93c5630baf2662d991b823ef427c1d21752c80bb8a0f5c8bfc7ac0cb2a98c18"
+    },
+    {
+      "file": "badge-PTH-drl_map.gbr",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "337b1cc63368013d4a7f00360fbaa1b8519042c65473cc52196d045777bf567e",
+      "old_normalized_sha256": "337b1cc63368013d4a7f00360fbaa1b8519042c65473cc52196d045777bf567e"
+    },
+    {
+      "file": "badge-PTH.drl",
+      "normalized_equal": true,
+      "fresh_normalized_sha256": "4096f81fc61414fc1eac0150458ffbf203af4ab8312c88bd6a0fe7f0829f5ff6",
+      "old_normalized_sha256": "4096f81fc61414fc1eac0150458ffbf203af4ab8312c88bd6a0fe7f0829f5ff6"
+    }
+  ],
+  "normalization": "Only four creation-date line prefixes stripped; gbrjob not compared."
+}

@@ -1,0 +1,2 @@
+# Preserve raw tool output, including original CRLF/trailing spaces.
+evidence/** -text -whitespace

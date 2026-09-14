@@ -1,0 +1,773 @@
+{
+  "kicad": "9.0.8",
+  "footprints": 57,
+  "segments": 564,
+  "vias": 128,
+  "size_mm": [
+    91.0,
+    84.0
+  ],
+  "edge_graphics_bbox_including_stroke_mm": [
+    91.1,
+    84.1
+  ],
+  "size_method": "Edge.Cuts endpoints extrema, valid for this board with straight sides and quarter-circle corners.",
+  "routing_sha256": "2d96f2751cfe29874e19817df79bebdc1da593ffc553671f2aa7306423b1d7c4",
+  "thickness_mm": 0.8,
+  "copper_layers": 2,
+  "footprint_layers": [
+    "B.Cu"
+  ],
+  "net_assignment_problems": [],
+  "nets": {
+    "GND": {
+      "segments": 2,
+      "vias": 50,
+      "length_mm": 8.3,
+      "widths_mm": [
+        0.4
+      ]
+    },
+    "VBUS": {
+      "segments": 17,
+      "vias": 2,
+      "length_mm": 30.07942,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "CC1": {
+      "segments": 6,
+      "vias": 2,
+      "length_mm": 14.335285,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "CC2": {
+      "segments": 6,
+      "vias": 2,
+      "length_mm": 16.859511,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "USB_DP": {
+      "segments": 15,
+      "vias": 4,
+      "length_mm": 30.19643,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "USB_DN": {
+      "segments": 12,
+      "vias": 2,
+      "length_mm": 35.077666,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "CHRG_STAT": {
+      "segments": 8,
+      "vias": 2,
+      "length_mm": 15.926004,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "VBAT": {
+      "segments": 31,
+      "vias": 2,
+      "length_mm": 118.724195,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "PROG": {
+      "segments": 2,
+      "vias": 0,
+      "length_mm": 4.217331,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "LED_CHRG_A": {
+      "segments": 2,
+      "vias": 0,
+      "length_mm": 3.316193,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "+3V3": {
+      "segments": 76,
+      "vias": 9,
+      "length_mm": 174.138818,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "BAT_SENSE": {
+      "segments": 13,
+      "vias": 2,
+      "length_mm": 29.229562,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EN": {
+      "segments": 21,
+      "vias": 2,
+      "length_mm": 87.211463,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "NFC_GPO": {
+      "segments": 14,
+      "vias": 3,
+      "length_mm": 35.624748,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_PWR_EN": {
+      "segments": 18,
+      "vias": 4,
+      "length_mm": 38.639317,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_BUSY": {
+      "segments": 14,
+      "vias": 0,
+      "length_mm": 27.976515,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "I2C_SDA": {
+      "segments": 12,
+      "vias": 2,
+      "length_mm": 24.846664,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "I2C_SCL": {
+      "segments": 12,
+      "vias": 3,
+      "length_mm": 28.230472,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_SCK": {
+      "segments": 25,
+      "vias": 2,
+      "length_mm": 39.918019,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_MOSI": {
+      "segments": 18,
+      "vias": 4,
+      "length_mm": 52.465903,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "LED_STAT_n": {
+      "segments": 20,
+      "vias": 4,
+      "length_mm": 50.736911,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "BOOT_n": {
+      "segments": 17,
+      "vias": 2,
+      "length_mm": 94.319905,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_CS": {
+      "segments": 16,
+      "vias": 2,
+      "length_mm": 74.263117,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_DC": {
+      "segments": 13,
+      "vias": 2,
+      "length_mm": 39.227987,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_RST": {
+      "segments": 15,
+      "vias": 2,
+      "length_mm": 39.038609,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "LED_STAT_A": {
+      "segments": 2,
+      "vias": 0,
+      "length_mm": 3.114944,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "NFC_VEH": {
+      "segments": 13,
+      "vias": 2,
+      "length_mm": 30.431028,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "NFC_AC0": {
+      "segments": 8,
+      "vias": 0,
+      "length_mm": 13.832232,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "NFC_AC1": {
+      "segments": 9,
+      "vias": 1,
+      "length_mm": 12.028877,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "EPD_GDR": {
+      "segments": 14,
+      "vias": 2,
+      "length_mm": 31.94333,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_RESE": {
+      "segments": 11,
+      "vias": 2,
+      "length_mm": 31.350637,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VSH2": {
+      "segments": 11,
+      "vias": 2,
+      "length_mm": 18.832622,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "EPD_VCI": {
+      "segments": 26,
+      "vias": 4,
+      "length_mm": 43.931253,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "EPD_VDD": {
+      "segments": 3,
+      "vias": 0,
+      "length_mm": 8.816337,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VSH1": {
+      "segments": 3,
+      "vias": 0,
+      "length_mm": 15.075427,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VGH": {
+      "segments": 8,
+      "vias": 2,
+      "length_mm": 26.106539,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VSL": {
+      "segments": 3,
+      "vias": 0,
+      "length_mm": 8.110156,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VGL": {
+      "segments": 16,
+      "vias": 4,
+      "length_mm": 25.379675,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_VCOM": {
+      "segments": 8,
+      "vias": 0,
+      "length_mm": 13.031875,
+      "widths_mm": [
+        0.2
+      ]
+    },
+    "EPD_SW": {
+      "segments": 10,
+      "vias": 0,
+      "length_mm": 13.932348,
+      "widths_mm": [
+        0.15,
+        0.2
+      ]
+    },
+    "EPD_PUMP": {
+      "segments": 14,
+      "vias": 0,
+      "length_mm": 15.495114,
+      "widths_mm": [
+        0.2
+      ]
+    }
+  },
+  "models": [
+    {
+      "ref": "J3",
+      "model": "${KIPRJMOD}/lib/3d/TYPE-C-31-M-14.step",
+      "exists": false,
+      "step_substitute": false
+    },
+    {
+      "ref": "R1",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R2",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C1",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "U3",
+      "model": "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R3",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R4",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "D4",
+      "model": "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C2",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "J2",
+      "model": "${KICAD9_3DMODEL_DIR}/Connector_JST.3dshapes/JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal.step",
+      "exists": false,
+      "step_substitute": false
+    },
+    {
+      "ref": "U4",
+      "model": "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C3",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C4",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R5",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R6",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C5",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "U1",
+      "model": "${KIPRJMOD}/lib/3d/ESP32-C3-MINI-1.STEP",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C6",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C7",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R7",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C8",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R8",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R10",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R9",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "D5",
+      "model": "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "SW1",
+      "model": "${KICAD9_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_PTS810.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "SW2",
+      "model": "${KICAD9_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_PTS810.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "U2",
+      "model": "${KICAD9_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C9",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C10",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R11",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R12",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R13",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C11",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "J1",
+      "model": "${KICAD9_3DMODEL_DIR}/Connector_FFC-FPC.3dshapes/Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "Q2",
+      "model": "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C12",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C13",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C14",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "L1",
+      "model": "${KICAD9_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Changjiang_FNR3015S.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "Q1",
+      "model": "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "R14",
+      "model": "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "D1",
+      "model": "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-123.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C15",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "D2",
+      "model": "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-123.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "D3",
+      "model": "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-123.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C16",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C17",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C18",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C19",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C20",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    },
+    {
+      "ref": "C21",
+      "model": "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "exists": true,
+      "step_substitute": true
+    }
+  ],
+  "nfc_pads": [
+    {
+      "number": "1",
+      "layers": "0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0100",
+      "mask_front": false,
+      "mask_back": false,
+      "copper_front": false,
+      "copper_back": true
+    },
+    {
+      "number": "2",
+      "layers": "0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_1111",
+      "mask_front": true,
+      "mask_back": true,
+      "copper_front": true,
+      "copper_back": true
+    },
+    {
+      "number": "2",
+      "layers": "0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0001",
+      "mask_front": false,
+      "mask_back": false,
+      "copper_front": true,
+      "copper_back": false
+    },
+    {
+      "number": "2",
+      "layers": "0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0000_0000|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_0101|0101_1111",
+      "mask_front": true,
+      "mask_back": true,
+      "copper_front": true,
+      "copper_back": true
+    }
+  ],
+  "design_net_classes": {
+    "Default": {
+      "clearance": 0.15,
+      "track": 0.2,
+      "via": 0.6,
+      "via_drill": 0.3,
+      "nets": []
+    },
+    "Power": {
+      "clearance": 0.2,
+      "track": 0.3,
+      "via": 0.6,
+      "via_drill": 0.3,
+      "nets": [
+        "GND",
+        "VBUS",
+        "VBAT",
+        "+3V3",
+        "EPD_VCI",
+        "EPD_SW",
+        "EPD_RESE"
+      ]
+    },
+    "NFC": {
+      "clearance": 0.3,
+      "track": 0.5,
+      "via": 0.6,
+      "via_drill": 0.3,
+      "nets": [
+        "NFC_AC0",
+        "NFC_AC1"
+      ]
+    }
+  },
+  "project_net_settings": {
+    "classes": [
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Default",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      }
+    ],
+    "meta": {
+      "version": 4
+    },
+    "net_colors": null,
+    "netclass_assignments": null,
+    "netclass_patterns": []
+  }
+}

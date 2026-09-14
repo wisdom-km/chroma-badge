@@ -1,0 +1,2284 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-14T23:45:13+0800",
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "9.0.8",
+    "schematic_parity": [
+        {
+            "description": "NFC_Loop 与对应符号 (badge:NFC_Loop) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 ANT1",
+                    "pos": {
+                        "x": 70.5,
+                        "y": 24.25
+                    },
+                    "uuid": "d09cdfbe-556b-4a0f-bcf5-ae9149e2aff9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "封装特性与符号不匹配: 从物料清单中移除 设置不同。",
+            "items": [
+                {
+                    "description": "封装 ANT1",
+                    "pos": {
+                        "x": 70.5,
+                        "y": 24.25
+                    },
+                    "uuid": "d09cdfbe-556b-4a0f-bcf5-ae9149e2aff9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C1",
+                    "pos": {
+                        "x": 87.5,
+                        "y": 72.0
+                    },
+                    "uuid": "849dcac7-cdaa-4399-8ed9-9c0c5c6df664"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C2",
+                    "pos": {
+                        "x": 83.5,
+                        "y": 73.5
+                    },
+                    "uuid": "0650f298-aeac-41e0-80c3-54be22f98a90"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C3",
+                    "pos": {
+                        "x": 70.5,
+                        "y": 66.5
+                    },
+                    "uuid": "7880f95f-811b-440a-90a1-e8c63dc9d4b4"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C4",
+                    "pos": {
+                        "x": 77.5,
+                        "y": 63.5
+                    },
+                    "uuid": "0b8682f2-1860-4b9a-aa87-4a769e074704"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C5",
+                    "pos": {
+                        "x": 76.0,
+                        "y": 60.5
+                    },
+                    "uuid": "f42023b3-2074-4528-b1c2-ce668dcbeac8"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C6",
+                    "pos": {
+                        "x": 51.5,
+                        "y": 56.6
+                    },
+                    "uuid": "be4817e8-efda-4bfc-97f1-20e97814e0be"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C7",
+                    "pos": {
+                        "x": 51.5,
+                        "y": 54.0
+                    },
+                    "uuid": "7492add4-a3ed-4bbe-9129-4092c2e01d7f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C8",
+                    "pos": {
+                        "x": 51.5,
+                        "y": 48.8
+                    },
+                    "uuid": "a79c6c6b-859f-4eb8-9c66-c8caa0ac61d9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C9",
+                    "pos": {
+                        "x": 68.5,
+                        "y": 49.0
+                    },
+                    "uuid": "c89cecba-caa9-4036-961e-d6ba601b3db0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C10",
+                    "pos": {
+                        "x": 68.5,
+                        "y": 51.4
+                    },
+                    "uuid": "0781f9b9-a4fd-4e7e-bc90-6cd84e990584"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C11",
+                    "pos": {
+                        "x": 82.5,
+                        "y": 48.9
+                    },
+                    "uuid": "a6ef205f-752f-4ce9-9881-bdf97de2e925"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C12",
+                    "pos": {
+                        "x": 42.5,
+                        "y": 57.5
+                    },
+                    "uuid": "26ad09c1-1a5d-4837-8227-9fec4b28d715"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C13",
+                    "pos": {
+                        "x": 45.5,
+                        "y": 57.5
+                    },
+                    "uuid": "95c0226b-e9ff-4c5b-8e87-7a78154e9623"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0402_1005Metric 与对应符号 (Capacitor_SMD:C_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C14",
+                    "pos": {
+                        "x": 42.0,
+                        "y": 64.5
+                    },
+                    "uuid": "b51b12fb-4bd4-42db-8475-de3d21227bca"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0805_2012Metric 与对应符号 (Capacitor_SMD:C_0805_2012Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C15",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 61.0
+                    },
+                    "uuid": "f234914b-235a-47ca-b97a-40791e1b1fc3"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0805_2012Metric 与对应符号 (Capacitor_SMD:C_0805_2012Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C16",
+                    "pos": {
+                        "x": 43.0,
+                        "y": 61.0
+                    },
+                    "uuid": "4e264059-3f39-4266-879a-410910417ab5"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0805_2012Metric 与对应符号 (Capacitor_SMD:C_0805_2012Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C17",
+                    "pos": {
+                        "x": 46.8,
+                        "y": 61.0
+                    },
+                    "uuid": "306382ed-1401-4d84-97f9-9dd4ab2e332c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C18",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 64.5
+                    },
+                    "uuid": "fffbffc7-5488-4db0-bf03-f604c7a8c115"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C19",
+                    "pos": {
+                        "x": 28.0,
+                        "y": 64.5
+                    },
+                    "uuid": "7fa061fe-8af7-4d83-b1d6-0d1e24691cba"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C20",
+                    "pos": {
+                        "x": 31.5,
+                        "y": 64.5
+                    },
+                    "uuid": "7af94e8b-dd76-4d9b-8cba-64079498f3e3"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "C_0603_1608Metric 与对应符号 (Capacitor_SMD:C_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 C21",
+                    "pos": {
+                        "x": 35.0,
+                        "y": 64.5
+                    },
+                    "uuid": "9e85458a-4d0d-432f-a8df-7b07ae02980a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "D_SOD-123 与对应符号 (Diode_SMD:D_SOD-123) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 D1",
+                    "pos": {
+                        "x": 33.5,
+                        "y": 57.5
+                    },
+                    "uuid": "c31be14e-6f95-4095-b32d-b6bc2965ca41"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "D_SOD-123 与对应符号 (Diode_SMD:D_SOD-123) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 D2",
+                    "pos": {
+                        "x": 33.5,
+                        "y": 61.0
+                    },
+                    "uuid": "834b0a71-c0ac-48df-ab41-d2347ae5be1e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "D_SOD-123 与对应符号 (Diode_SMD:D_SOD-123) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 D3",
+                    "pos": {
+                        "x": 38.7,
+                        "y": 61.0
+                    },
+                    "uuid": "dec82b46-c04c-4864-8335-88087bcdaafc"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "LED_0603_1608Metric 与对应符号 (LED_SMD:LED_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 D4",
+                    "pos": {
+                        "x": 86.5,
+                        "y": 81.0
+                    },
+                    "uuid": "afacd266-09f7-4039-b643-cbb3d998dd84"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "LED_0603_1608Metric 与对应符号 (LED_SMD:LED_0603_1608Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 D5",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 81.0
+                    },
+                    "uuid": "f185ff06-7e64-4d87-b66a-24f5f041ea30"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal 与对应符号 (Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 J1",
+                    "pos": {
+                        "x": 40.0,
+                        "y": 73.0
+                    },
+                    "uuid": "bae2a49d-0a6f-4ca5-a991-83d56788cf0c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "原理图 (unconnected-(J1-Pin_1-Pad1)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J1 的焊盘 1 [<no net>]",
+                    "pos": {
+                        "x": 45.75,
+                        "y": 71.15
+                    },
+                    "uuid": "fbbba0f6-e271-4382-a570-0ad561e9f620"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(J1-Pin_4-Pad4)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J1 的焊盘 4 [<no net>]",
+                    "pos": {
+                        "x": 44.25,
+                        "y": 71.15
+                    },
+                    "uuid": "7195a0bb-a0df-4ddd-b549-35bf7a71c76b"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(J1-Pin_6-Pad6)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J1 的焊盘 6 [<no net>]",
+                    "pos": {
+                        "x": 43.25,
+                        "y": 71.15
+                    },
+                    "uuid": "5b3abe01-e1e0-4648-b8fc-62190089714d"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(J1-Pin_19-Pad19)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J1 的焊盘 19 [<no net>]",
+                    "pos": {
+                        "x": 36.75,
+                        "y": 71.15
+                    },
+                    "uuid": "540b6069-b42b-4ad0-b317-6df8feb4747c"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal 与对应符号 (Connector_JST:JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 J2",
+                    "pos": {
+                        "x": 10.0,
+                        "y": 58.0
+                    },
+                    "uuid": "57de50a7-7fc3-448d-9a31-ce525831fbec"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "TYPE-C-31-M-14 与对应符号 (badge:TYPE-C-31-M-14) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 J3",
+                    "pos": {
+                        "x": 75.0,
+                        "y": 81.3
+                    },
+                    "uuid": "037b287e-40a6-41c2-afbb-d14941a2eeeb"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "原理图 (unconnected-(J3-SBU1-PadA8)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J3 的焊盘 A8 [<no net>]",
+                    "pos": {
+                        "x": 73.75,
+                        "y": 76.3625
+                    },
+                    "uuid": "fa9ed5db-a64e-4e0b-9ac6-73c534c0af45"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(J3-SBU2-PadB8)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 J3 的焊盘 B8 [<no net>]",
+                    "pos": {
+                        "x": 76.75,
+                        "y": 76.3625
+                    },
+                    "uuid": "dfae55fa-42ca-4dcf-b79c-0dbc6f64b380"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "L_Changjiang_FNR3015S 与对应符号 (Inductor_SMD:L_Changjiang_FNR3015S) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 L1",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 57.5
+                    },
+                    "uuid": "5b9d2862-c5d4-4cd9-87ae-52e19842cd1a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "SOT-23 与对应符号 (Package_TO_SOT_SMD:SOT-23) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 Q1",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 57.5
+                    },
+                    "uuid": "364a0733-4805-466a-a3ec-6e6922356924"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "SOT-23 与对应符号 (Package_TO_SOT_SMD:SOT-23) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 Q2",
+                    "pos": {
+                        "x": 38.5,
+                        "y": 57.5
+                    },
+                    "uuid": "cb8dc0e4-8aa2-476f-a0a9-e1cb5da0eec4"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R1",
+                    "pos": {
+                        "x": 67.5,
+                        "y": 78.5
+                    },
+                    "uuid": "dc23bf93-a993-4a97-adb7-e3af2360826b"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R2",
+                    "pos": {
+                        "x": 83.0,
+                        "y": 78.5
+                    },
+                    "uuid": "be4cd6b9-708f-4657-a27b-8f6c0e59df10"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R3",
+                    "pos": {
+                        "x": 76.5,
+                        "y": 72.5
+                    },
+                    "uuid": "7ea2d8c8-137e-4c08-806f-de89876e5f1b"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R4",
+                    "pos": {
+                        "x": 86.5,
+                        "y": 77.5
+                    },
+                    "uuid": "0c97b957-4782-4dcd-8f71-e020df272f5f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R5",
+                    "pos": {
+                        "x": 70.0,
+                        "y": 60.5
+                    },
+                    "uuid": "dcc57329-de87-4be4-b7fd-6a6978056d48"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R6",
+                    "pos": {
+                        "x": 73.0,
+                        "y": 60.5
+                    },
+                    "uuid": "b0c0493b-f0cc-4a3b-9384-283343d30fba"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R7",
+                    "pos": {
+                        "x": 51.5,
+                        "y": 51.4
+                    },
+                    "uuid": "338c30be-332a-4046-873e-167fcc40ef20"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R8",
+                    "pos": {
+                        "x": 69.0,
+                        "y": 54.0
+                    },
+                    "uuid": "f5476fc2-b233-476b-8ec2-17758745b5f3"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R9",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 78.0
+                    },
+                    "uuid": "ad32daba-729d-4bf1-8f06-9c9a412f081a"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R10",
+                    "pos": {
+                        "x": 69.0,
+                        "y": 56.8
+                    },
+                    "uuid": "9aec1f06-236d-4648-b07b-ccf5048d3906"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R11",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 51.5
+                    },
+                    "uuid": "62907f7a-59cf-42ff-903c-28fe5421e57c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R12",
+                    "pos": {
+                        "x": 82.0,
+                        "y": 51.5
+                    },
+                    "uuid": "ace585d9-a4b7-4bce-9075-02f2218f24e9"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R13",
+                    "pos": {
+                        "x": 84.0,
+                        "y": 51.5
+                    },
+                    "uuid": "88984d8f-bc88-4a93-b7a5-c09a3588418d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "R_0402_1005Metric 与对应符号 (Resistor_SMD:R_0402_1005Metric) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 R14",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 61.0
+                    },
+                    "uuid": "6b7f08e9-7986-4f29-a11c-b0214d4e4f10"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "SW_SPST_PTS810 与对应符号 (Button_Switch_SMD:SW_SPST_PTS810) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 SW1",
+                    "pos": {
+                        "x": 14.0,
+                        "y": 80.5
+                    },
+                    "uuid": "05bd47b6-a1b1-450b-9acb-e2770c37c2bd"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "SW_SPST_PTS810 与对应符号 (Button_Switch_SMD:SW_SPST_PTS810) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 SW2",
+                    "pos": {
+                        "x": 22.5,
+                        "y": 80.5
+                    },
+                    "uuid": "73c1b16b-8279-481b-a5de-e4f14e50739d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "TestPoint_Pad_D1.0mm 与对应符号 (TestPoint:TestPoint_Pad_D1.0mm) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 TP1",
+                    "pos": {
+                        "x": 87.5,
+                        "y": 49.6
+                    },
+                    "uuid": "a4c0de7b-41d9-4cb3-9c55-8e1766e86c90"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "封装特性与符号不匹配: 从物料清单中移除 设置不同。",
+            "items": [
+                {
+                    "description": "封装 TP1",
+                    "pos": {
+                        "x": 87.5,
+                        "y": 49.6
+                    },
+                    "uuid": "a4c0de7b-41d9-4cb3-9c55-8e1766e86c90"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "TestPoint_Pad_D1.0mm 与对应符号 (TestPoint:TestPoint_Pad_D1.0mm) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 TP2",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 65.0
+                    },
+                    "uuid": "782be886-feeb-4352-8460-caf2cc8a695c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "封装特性与符号不匹配: 从物料清单中移除 设置不同。",
+            "items": [
+                {
+                    "description": "封装 TP2",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 65.0
+                    },
+                    "uuid": "782be886-feeb-4352-8460-caf2cc8a695c"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "TestPoint_Pad_D1.0mm 与对应符号 (TestPoint:TestPoint_Pad_D1.0mm) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 TP3",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 68.0
+                    },
+                    "uuid": "c6d4205c-0857-4d6d-b435-7bbe1b8f254e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "封装特性与符号不匹配: 从物料清单中移除 设置不同。",
+            "items": [
+                {
+                    "description": "封装 TP3",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 68.0
+                    },
+                    "uuid": "c6d4205c-0857-4d6d-b435-7bbe1b8f254e"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "TestPoint_Pad_D1.0mm 与对应符号 (TestPoint:TestPoint_Pad_D1.0mm) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 TP4",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 62.0
+                    },
+                    "uuid": "1e0c5784-963d-4a20-a6c2-88220c21ac2d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "封装特性与符号不匹配: 从物料清单中移除 设置不同。",
+            "items": [
+                {
+                    "description": "封装 TP4",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 62.0
+                    },
+                    "uuid": "1e0c5784-963d-4a20-a6c2-88220c21ac2d"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "ESP32-C3-MINI-1 与对应符号 (badge:ESP32-C3-MINI-1) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 U1",
+                    "pos": {
+                        "x": 60.0,
+                        "y": 57.0
+                    },
+                    "uuid": "b5457d26-b057-46c2-b6d9-59ece088412f"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad4)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 4 [<no net>]",
+                    "pos": {
+                        "x": 54.1,
+                        "y": 55.9
+                    },
+                    "uuid": "aa036c3b-5aeb-404c-b8a6-a0fc2d61f81a"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad7)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 7 [<no net>]",
+                    "pos": {
+                        "x": 54.1,
+                        "y": 53.5
+                    },
+                    "uuid": "58c66bb0-ae1d-474d-900b-87a2684b3631"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad9)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 9 [<no net>]",
+                    "pos": {
+                        "x": 54.1,
+                        "y": 51.9
+                    },
+                    "uuid": "72800b2a-e123-4f0b-8d08-0b3bd360d942"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad10)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 10 [<no net>]",
+                    "pos": {
+                        "x": 54.1,
+                        "y": 51.1
+                    },
+                    "uuid": "607b5145-2f21-47a9-9b12-6dfd37a0f789"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad15)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 15 [<no net>]",
+                    "pos": {
+                        "x": 57.6,
+                        "y": 49.4
+                    },
+                    "uuid": "19fb53a6-5f97-4ed0-b5b1-1774b0bd1389"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad17)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 17 [<no net>]",
+                    "pos": {
+                        "x": 59.2,
+                        "y": 49.4
+                    },
+                    "uuid": "6f797f62-45f8-4b51-989b-dc134ea627c8"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad24)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 24 [<no net>]",
+                    "pos": {
+                        "x": 64.8,
+                        "y": 49.4
+                    },
+                    "uuid": "e9aa8789-4b91-490e-911e-1c1092747d8b"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad25)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 25 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 50.3
+                    },
+                    "uuid": "b7e3de8f-0e63-4720-9a53-cd419010eb24"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad28)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 28 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 52.7
+                    },
+                    "uuid": "99311d29-e5e7-4573-9da7-934ac7134fd0"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad29)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 29 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 53.5
+                    },
+                    "uuid": "c1c6bee3-77ce-4d58-a67a-3481808851f2"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad32)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 32 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 55.9
+                    },
+                    "uuid": "6abdd242-2716-481f-bfbf-4786951d7eb9"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad33)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 33 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 56.7
+                    },
+                    "uuid": "9bd0b6a6-b9de-4a33-a1b7-1d8dedb6ca72"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad34)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 34 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 57.5
+                    },
+                    "uuid": "2d69c73e-0b54-4d67-8380-4846e4b1a470"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "原理图 (unconnected-(U1-NC-Pad35)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U1 的焊盘 35 [<no net>]",
+                    "pos": {
+                        "x": 65.9,
+                        "y": 58.3
+                    },
+                    "uuid": "69e58ca9-028f-4150-a517-3b6e0664dade"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "SOIC-8_3.9x4.9mm_P1.27mm 与对应符号 (Package_SO:SOIC-8_3.9x4.9mm_P1.27mm) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 U2",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 51.5
+                    },
+                    "uuid": "3f91299a-bb41-4f9e-9546-da0aff8dca16"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "在原理图中未找到引脚 9 的焊盘。",
+            "items": [
+                {
+                    "description": "封装 U2",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 51.5
+                    },
+                    "uuid": "3f91299a-bb41-4f9e-9546-da0aff8dca16"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        },
+        {
+            "description": "SOT-23-5 与对应符号 (Package_TO_SOT_SMD:SOT-23-5) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 U3",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 70.0
+                    },
+                    "uuid": "204f2a99-067b-463d-a7df-e95ada6c7c80"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "SOT-23-5 与对应符号 (Package_TO_SOT_SMD:SOT-23-5) 所指定的封装不匹配。",
+            "items": [
+                {
+                    "description": "封装 U4",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 66.5
+                    },
+                    "uuid": "f9c119de-a984-45ad-9d9a-121a7cd00018"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "原理图 (unconnected-(U4-NC-Pad4)) 给出的焊盘缺失网络。",
+            "items": [
+                {
+                    "description": "B.Cu 上 U4 的焊盘 4 [<no net>]",
+                    "pos": {
+                        "x": 72.8625,
+                        "y": 67.45
+                    },
+                    "uuid": "7697a4ea-401c-4f12-8510-00a229d8177f"
+                }
+            ],
+            "severity": "warning",
+            "type": "net_conflict"
+        }
+    ],
+    "source": "badge.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.7000 mm)",
+            "items": [
+                {
+                    "description": "B.Silkscreen 上的 PCB 文本 'ESP32-C3 antenna keepout'",
+                    "pos": {
+                        "x": 60.0,
+                        "y": 73.5
+                    },
+                    "uuid": "138e9739-47f2-45f0-887c-7acd38b3269f"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.7000 mm)",
+            "items": [
+                {
+                    "description": "B.Silkscreen 上的 PCB 文本 'STAT'",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 83.2
+                    },
+                    "uuid": "5c756a57-9a83-471c-82a1-cab83cadb5b8"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.7000 mm)",
+            "items": [
+                {
+                    "description": "B.Silkscreen 上的 PCB 文本 'CHG'",
+                    "pos": {
+                        "x": 86.5,
+                        "y": 83.2
+                    },
+                    "uuid": "c0189727-520d-470e-aceb-4c753a2959ff"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C2 的参考字段",
+                    "pos": {
+                        "x": 83.5,
+                        "y": 72.07
+                    },
+                    "uuid": "66fee02b-3108-45f6-b316-19145c0af1db"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C10 的参考字段",
+                    "pos": {
+                        "x": 67.34,
+                        "y": 51.4
+                    },
+                    "uuid": "f1bec9d8-5a74-425e-b8b9-c2073b413424"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C4 的参考字段",
+                    "pos": {
+                        "x": 77.5,
+                        "y": 62.07
+                    },
+                    "uuid": "bf42e1bd-c25e-49e6-b872-22d4a3fc4e78"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R4 的参考字段",
+                    "pos": {
+                        "x": 85.33,
+                        "y": 77.5
+                    },
+                    "uuid": "3f7d8a66-fce0-416a-98fe-f02d91ce6864"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "TP4 的参考字段",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 60.552
+                    },
+                    "uuid": "1db8c326-5751-458d-90b1-7628587ce52e"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "U3 的参考字段",
+                    "pos": {
+                        "x": 80.0,
+                        "y": 67.6
+                    },
+                    "uuid": "c5e2b71f-917e-46f8-9b90-d61c99e64ede"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C12 的参考字段",
+                    "pos": {
+                        "x": 42.5,
+                        "y": 56.07
+                    },
+                    "uuid": "417ce526-7df4-4fe1-8b13-1c8a0d3d04c1"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C17 的参考字段",
+                    "pos": {
+                        "x": 46.8,
+                        "y": 59.32
+                    },
+                    "uuid": "286aa6d9-ace5-4e23-b6c1-95c60bf5bbe1"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R7 的参考字段",
+                    "pos": {
+                        "x": 50.33,
+                        "y": 51.4
+                    },
+                    "uuid": "fdd34dbe-22e5-468a-b72d-25630364a3b4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "Q1 的参考字段",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 55.1
+                    },
+                    "uuid": "ef60054d-0aeb-44fc-ad08-cfc01c166903"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "U2 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 48.1
+                    },
+                    "uuid": "2322caac-8e31-4824-988c-3e0d5e3de555"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C16 的参考字段",
+                    "pos": {
+                        "x": 43.0,
+                        "y": 59.32
+                    },
+                    "uuid": "d87b0d0e-e22e-48bb-a2d8-fc6d4e863d87"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "J2 的参考字段",
+                    "pos": {
+                        "x": 10.0,
+                        "y": 54.5
+                    },
+                    "uuid": "5c3de488-d2fc-4799-9f9f-31733f239e1f"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "L1 的参考字段",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 55.05
+                    },
+                    "uuid": "bc1adcd5-6505-42bc-859f-db5c1987d6fe"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R11 的参考字段",
+                    "pos": {
+                        "x": 78.83,
+                        "y": 51.5
+                    },
+                    "uuid": "f736b302-a960-4205-9e15-03819fb3b21d"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R14 的参考字段",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 59.83
+                    },
+                    "uuid": "e6362f06-fcb9-4bd1-9c78-7e6933b530cb"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C7 的参考字段",
+                    "pos": {
+                        "x": 50.34,
+                        "y": 54.0
+                    },
+                    "uuid": "7df5c554-560a-4d49-b435-74dcae2194ae"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "TP2 的参考字段",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 63.552
+                    },
+                    "uuid": "1bfef950-35ed-4312-9f1d-cf93cd52e8ad"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C3 的参考字段",
+                    "pos": {
+                        "x": 69.34,
+                        "y": 66.5
+                    },
+                    "uuid": "b0ac0fb3-db18-4131-9102-c5aa02af70bb"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C20 的参考字段",
+                    "pos": {
+                        "x": 31.5,
+                        "y": 63.07
+                    },
+                    "uuid": "2c96ac05-75b3-48b6-8e93-41e05618cecd"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R3 的参考字段",
+                    "pos": {
+                        "x": 76.5,
+                        "y": 71.33
+                    },
+                    "uuid": "ee463978-52c0-4d10-9d6b-5c1bb11f9e22"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C19 的参考字段",
+                    "pos": {
+                        "x": 28.0,
+                        "y": 63.07
+                    },
+                    "uuid": "51acec33-c206-4042-8db0-8a1765711717"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "D2 的参考字段",
+                    "pos": {
+                        "x": 33.5,
+                        "y": 59.0
+                    },
+                    "uuid": "56d2081b-e60e-4d3e-9cd6-f47e44f8f784"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C1 的参考字段",
+                    "pos": {
+                        "x": 86.07,
+                        "y": 72.0
+                    },
+                    "uuid": "069e70af-c546-4113-a6f2-890e85bc284b"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R13 的参考字段",
+                    "pos": {
+                        "x": 82.83,
+                        "y": 51.5
+                    },
+                    "uuid": "92f7a5b9-f66b-471b-a535-1fd6e119dc92"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C13 的参考字段",
+                    "pos": {
+                        "x": 45.5,
+                        "y": 56.34
+                    },
+                    "uuid": "cb239acb-bc26-4610-8d96-20dcf73a9d78"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R10 的参考字段",
+                    "pos": {
+                        "x": 67.83,
+                        "y": 56.8
+                    },
+                    "uuid": "ad1007c0-dfa9-450c-a05f-bbc33d4fa5ca"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C21 的参考字段",
+                    "pos": {
+                        "x": 35.0,
+                        "y": 63.07
+                    },
+                    "uuid": "1277babb-2459-476f-b74c-93fc89a5ad97"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "TP1 的参考字段",
+                    "pos": {
+                        "x": 87.5,
+                        "y": 48.152
+                    },
+                    "uuid": "d2b45031-f080-4cf5-a3d2-ada7fa3ba6e4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C11 的参考字段",
+                    "pos": {
+                        "x": 82.5,
+                        "y": 47.74
+                    },
+                    "uuid": "7de687be-d6c6-4c82-8f55-2974c85a4080"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C8 的参考字段",
+                    "pos": {
+                        "x": 50.34,
+                        "y": 48.8
+                    },
+                    "uuid": "84189551-47b6-46b6-9590-d3fb42491508"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R12 的参考字段",
+                    "pos": {
+                        "x": 80.83,
+                        "y": 51.5
+                    },
+                    "uuid": "219b9924-660c-4364-821d-3e6ef23db6b5"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R9 的参考字段",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 76.83
+                    },
+                    "uuid": "fae2f10e-519e-4a5c-9eb5-47f26723146a"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "D4 的参考字段",
+                    "pos": {
+                        "x": 86.5,
+                        "y": 79.57
+                    },
+                    "uuid": "38032098-a67a-4e82-ad34-10f9a7f9d3df"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R6 的参考字段",
+                    "pos": {
+                        "x": 73.0,
+                        "y": 59.33
+                    },
+                    "uuid": "b0d1e74c-c722-4581-8c74-108e2c6ca159"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C14 的参考字段",
+                    "pos": {
+                        "x": 42.0,
+                        "y": 63.34
+                    },
+                    "uuid": "e8edc111-14ac-4345-a942-717dc55061e4"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "U1 的参考字段",
+                    "pos": {
+                        "x": 60.0,
+                        "y": 66.5
+                    },
+                    "uuid": "e71f4905-b10f-4ca0-86bd-59c39b055484"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "J1 的参考字段",
+                    "pos": {
+                        "x": 40.0,
+                        "y": 69.3
+                    },
+                    "uuid": "53dbb319-5cac-4c77-82ba-a7a0768e7121"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C6 的参考字段",
+                    "pos": {
+                        "x": 50.07,
+                        "y": 56.6
+                    },
+                    "uuid": "93b37e31-0113-48b6-9437-1db1596763b7"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R2 的参考字段",
+                    "pos": {
+                        "x": 81.83,
+                        "y": 78.5
+                    },
+                    "uuid": "d6ccb9f6-e479-441b-8090-ccec97ca9f48"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "D1 的参考字段",
+                    "pos": {
+                        "x": 33.5,
+                        "y": 55.5
+                    },
+                    "uuid": "886d2af6-0c66-47e9-b3bd-375b68267ba8"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "TP3 的参考字段",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 66.552
+                    },
+                    "uuid": "d806f90a-f4ae-4462-a0eb-d0362e7ed72c"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C9 的参考字段",
+                    "pos": {
+                        "x": 67.34,
+                        "y": 49.0
+                    },
+                    "uuid": "8c608515-41b3-40a2-860b-469ec78197c7"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "Q2 的参考字段",
+                    "pos": {
+                        "x": 38.5,
+                        "y": 55.1
+                    },
+                    "uuid": "642e0c29-3a58-47e5-a311-0ad40b1f489d"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "ANT1 的参考字段",
+                    "pos": {
+                        "x": 70.5,
+                        "y": 48.2
+                    },
+                    "uuid": "ed229f2a-383b-48f5-82db-ed129197f60b"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R1 的参考字段",
+                    "pos": {
+                        "x": 66.33,
+                        "y": 78.5
+                    },
+                    "uuid": "22450187-d26d-4528-aec3-fb480708b842"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R5 的参考字段",
+                    "pos": {
+                        "x": 70.0,
+                        "y": 59.33
+                    },
+                    "uuid": "384c7f9d-acfd-4632-9893-82609588aaa5"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "D3 的参考字段",
+                    "pos": {
+                        "x": 38.7,
+                        "y": 59.0
+                    },
+                    "uuid": "e6ad9f9d-fed3-4120-8bc2-777be5043f9b"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "D5 的参考字段",
+                    "pos": {
+                        "x": 65.0,
+                        "y": 79.57
+                    },
+                    "uuid": "147ffc54-8c4f-476b-8664-3ac406af7270"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C15 的参考字段",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 59.32
+                    },
+                    "uuid": "9dc2b14d-85fc-4502-a942-b3b8003fbf35"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C5 的参考字段",
+                    "pos": {
+                        "x": 76.0,
+                        "y": 59.34
+                    },
+                    "uuid": "5f0e0ab6-5481-4334-9010-790ed968afc5"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "R8 的参考字段",
+                    "pos": {
+                        "x": 67.83,
+                        "y": 54.0
+                    },
+                    "uuid": "98454977-f127-4914-9b79-5634dafed787"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "U4 的参考字段",
+                    "pos": {
+                        "x": 74.0,
+                        "y": 64.1
+                    },
+                    "uuid": "ce97fff2-0ff9-4fc4-996b-0a1bfd65cd68"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "文字高度超出范围 (board setup constraints silk text height 最小高度 0.8000 mm; 实际 0.6000 mm)",
+            "items": [
+                {
+                    "description": "C18 的参考字段",
+                    "pos": {
+                        "x": 24.5,
+                        "y": 63.07
+                    },
+                    "uuid": "0a79e72f-bf85-40e6-92a4-bb393a35866d"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        },
+        {
+            "description": "被阻焊层截断的丝印",
+            "items": [
+                {
+                    "description": "D3 的参考字段",
+                    "pos": {
+                        "x": 38.7,
+                        "y": 59.0
+                    },
+                    "uuid": "e6ad9f9d-fed3-4120-8bc2-777be5043f9b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "Q2 的 线段, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 37.74,
+                        "y": 59.06
+                    },
+                    "uuid": "36330d1b-40b4-4d6e-a18c-864306e8e409"
+                },
+                {
+                    "description": "D3 的参考字段",
+                    "pos": {
+                        "x": 38.7,
+                        "y": 59.0
+                    },
+                    "uuid": "e6ad9f9d-fed3-4120-8bc2-777be5043f9b"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "B.Silkscreen 上的 线段",
+                    "pos": {
+                        "x": 50.0,
+                        "y": 3.0
+                    },
+                    "uuid": "1b382aa7-bd84-4f53-b4f9-6c78b798432d"
+                },
+                {
+                    "description": "R7 的参考字段",
+                    "pos": {
+                        "x": 50.33,
+                        "y": 51.4
+                    },
+                    "uuid": "fdd34dbe-22e5-468a-b72d-25630364a3b4"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "B.Silkscreen 上的 线段",
+                    "pos": {
+                        "x": 50.0,
+                        "y": 3.0
+                    },
+                    "uuid": "1b382aa7-bd84-4f53-b4f9-6c78b798432d"
+                },
+                {
+                    "description": "C8 的参考字段",
+                    "pos": {
+                        "x": 50.34,
+                        "y": 48.8
+                    },
+                    "uuid": "84189551-47b6-46b6-9590-d3fb42491508"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "Q1 的 线段, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 28.24,
+                        "y": 58.06
+                    },
+                    "uuid": "974917ee-6929-4b1a-a0c2-6978c3ee8251"
+                },
+                {
+                    "description": "C15 的参考字段",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 59.32
+                    },
+                    "uuid": "9dc2b14d-85fc-4502-a942-b3b8003fbf35"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "Q1 的 线段, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 29.76,
+                        "y": 59.06
+                    },
+                    "uuid": "36590182-f26a-4327-9c19-263418c2fe8b"
+                },
+                {
+                    "description": "C15 的参考字段",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 59.32
+                    },
+                    "uuid": "9dc2b14d-85fc-4502-a942-b3b8003fbf35"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "丝印重叠",
+            "items": [
+                {
+                    "description": "Q1 的 线段, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 28.24,
+                        "y": 59.06
+                    },
+                    "uuid": "5dffa6e2-7134-417a-935c-463cc8eb26ca"
+                },
+                {
+                    "description": "C15 的参考字段",
+                    "pos": {
+                        "x": 29.0,
+                        "y": 59.32
+                    },
+                    "uuid": "9dc2b14d-85fc-4502-a942-b3b8003fbf35"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        }
+    ]
+}
