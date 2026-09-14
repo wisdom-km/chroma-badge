@@ -56,6 +56,13 @@ Windows：`%LOCALAPPDATA%\Programs\KiCad\9.0\bin\kicad-cli`。图放 `hardware/p
 - **对准的图**：`hardware/pcb/output/nfc_coil_close.png`（绿线圈 + 一颗金通孔）。
 - **教训**：3D 少了「铜的黄」先对 Mask：有铜无窗 = 应该绿。不要为了渲成黄色去把 Mask 加回去。
 
+### 2026-09-14 FreeCAD 装配全灰、不像板渲染
+
+- **当时**：Wisdom 把 FreeCAD `badge_assembly.FCStd` 和 KiCad `render_back.png` 并排：装配灰、正视、几乎看不出零件；板渲是绿油+元件。
+- **实际**：**不是没开对功能，也不是外壳没做。** 图2 是 `kicad-cli pcb render` 光线追踪（只渲 PCB）。图1 是机械装配：前框/后盖按 3D 打印件做成深灰实体，用来对尺寸和干涉，不是产品效果图。脚本里有颜色（框深灰、屏米色、板绿），但 `freecadcmd` 无 GUI，`ViewObject.ShapeColor` 写不进 `.FCStd`，打开就全是默认灰。选中零件会变成亮绿（FreeCAD 选中色），不是屏本身是绿的。
+- **怎么看**：关掉右侧 Transform；右上导航立方点角变成斜视，或中键拖旋转。左侧树：`FrontFrame` / `BackCover` / `EPaperPanel_4p2` / `PCB_from_KiCad` / `LiPo_2mm`，取消勾选就能透过看。板外观仍以 `hardware/pcb/output/render_back.png` 为准。
+- **教训**：FreeCAD 装配素 ≠ 外壳没设计。要看绿油/丝印/线圈用 KiCad 渲染；要看开窗/USB/按键孔用 FreeCAD 转角度、开关零件。
+
 ### 2026-09-14 B.Silk 叠字（BOOT / 芯片说明）
 
 - **当时**：Wisdom 在 `render_back.png` 上标了红箭头。
