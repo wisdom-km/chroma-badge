@@ -5,7 +5,7 @@
   (attr smd)
   (net_tie_pad_groups "1,2,11,14,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53")
   (fp_text reference "REF**" (at 0 -9.5) (layer "F.SilkS")
-      (effects (font (size 1 1) (thickness 0.15)))
+      (effects (font (size 0.8 0.8) (thickness 0.12)))
     (tstamp 4c5af0f2-7fc3-4677-bcf0-475348ea289e)
   )
   (fp_text value "ESP32-C3-MINI-1" (at 0 9.85) (layer "F.Fab")

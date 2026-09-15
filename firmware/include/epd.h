@@ -19,8 +19,9 @@ enum class Color : uint8_t {
 };
 
 void begin();
-void power_on();
-void power_off();
+bool power_on();   // false if BUSY never cycles; still call power_off()
+bool power_off();  // always cuts EPD_PWR_EN; false if BUSY timed out
 bool refresh_solid(Color color);  // OTP full update, then panel deep-sleep + rail off
+extern const char *last_fail;    // last wait stage name, or empty
 
 }  // namespace epd

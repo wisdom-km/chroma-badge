@@ -1,5 +1,5 @@
-// Compiles the unchanged production epd.cpp against controlled I/O substitutes.
-// These characterize current defects, not simulated proof of screen operation.
+// Compiles production epd.cpp against controlled I/O substitutes.
+// BUSY stuck-high / power-off timeout must report failure. Not a real panel.
 #include "epd.h"
 #include "pins.h"
 #include <Arduino.h>

@@ -1,6 +1,8 @@
-# 项目交接文档（进度快照：2026-09-14）
+# 项目交接文档（进度快照：2026-09-14；**H2 当前状态见文首 2026-09-15 段**）
 
-> **同日本机复审补充：** 接手同时阅读 [06-current-status.md](06-current-status.md)、[独立复审](reviews/2026-09-14/local-review.md)、[合并整改计划](reviews/2026-09-14/integrated-plan.md) 和 [测试手册](../tools/review/README.md)。本页保留原交接历史；error级DRC0不代表全量warning0、固件可构建不代表实机通过。本轮发现的冲突与待决项没有被自动批准或改板。
+> **2026-09-15 H2：** Wisdom 授权矫枉过正并动线。当前板 **58 封装、680 段 / 115 过孔**，J1.7 NC。**KiCad 10.0.6 全量 ERC/DRC 0。** 不要把下面 2026-09-14 的 57 件 / 564 段 / 脚 7 GND 表格当成当前板。固件 **v0.2 F1 源码已改**（勿覆盖 v0.1 bin）；下一步有板实测或 F2（须选定 NDEF/FTM）。
+
+> **同日本机复审补充：** 接手同时阅读 [06-current-status.md](06-current-status.md)、[独立复审](reviews/2026-09-14/local-review.md)、[合并整改计划](reviews/2026-09-14/integrated-plan.md) 和 [测试手册](../tools/review/README.md)。本页保留原交接历史；error级DRC0不代表全量warning0、固件可构建不代表实机通过。
 
 给接手的下一位（人或 AI 模型）：读完这一份 + `docs/01-architecture-decisions.md` 就能继续。
 **不要推翻 ADR。** 硬件改动一律先改 `hardware/pcb/scripts/design.py`，再跑生成脚本。不要手改 `.kicad_sch`。
@@ -43,10 +45,11 @@ hardware/pcb/                    KiCad 9 工程（由脚本生成）
   scripts/gen_schematic.py       -> badge.kicad_sch
   scripts/gen_nfc_footprint.py   -> lib/badge.pretty/NFC_Loop.kicad_mod
   scripts/gen_pcb.py             -> badge.kicad_pcb（放置/板框/禁布区/铺铜；不布线）
+  scripts/apply_hygiene.py       活板：丝印坐标 / FPID / NC 网 / U1 net-tie（不动走线）
   scripts/route_pcb.py           Freerouting 导入 + 缺口修补 + GND 缝合 + DRC
   scripts/check_netlist.py
   scripts/export.sh
-  lib/                           Espressif 符号、ESP32-C3-MINI-1、TYPE-C-31-M-14、NFC_Loop
+  lib/                           Espressif 符号、badge.kicad_sym（ST25DV SO8N）、ESP32-C3-MINI-1、TYPE-C-31-M-14、NFC_Loop
 hardware/enclosure/              FreeCAD 前框 + 后盖
 firmware/                       PlatformIO：ESP32-C3 上电自检 + GDEM042F86 OTP 刷白
 ```
@@ -80,6 +83,14 @@ cd ../enclosure && D:/FreeCAD/bin/freecadcmd.exe badge_enclosure.py   # Linux: f
 ```bash
 cd hardware/pcb
 python3 scripts/route_pcb.py --skip-route
+```
+
+只动丝印/封装前缀/NC 网（不清布线）：
+
+```bash
+cd hardware/pcb
+python3 scripts/apply_hygiene.py
+python3 scripts/gen_schematic.py
 ```
 
 **已知坑**

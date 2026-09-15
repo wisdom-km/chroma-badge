@@ -79,6 +79,13 @@ Windows：`%LOCALAPPDATA%\Programs\KiCad\9.0\bin\kicad-cli`。图放 `hardware/p
 - 新STEP下交叠体积0也无法检查不存在的实体。先补模型来源与覆盖检查，再谈实装结论。证据见 `docs/reviews/2026-09-14/evidence/`，本轮没有修改封装或板。
 - 同轮尺寸检查：`GetBoardEdgesBoundingBox()`包含Edge.Cuts线宽得到91.1×84.1mm；板框中心线实际91×84mm。核对几何后再判断尺寸，不为包围盒笔画修改板框。
 
+### 2026-09-15 底边绿色方块 = J3 USB-C 包络，不是多出来的元件
+
+- **当时**：3D 里 USB 槽口伸出一块亮绿长方体，看起来不像座子。
+- **实际**：**拍到了目标，板上也没有多焊一颗方块料。** 那是 `J3`（HRO TYPE-C-31-M-14 沉板 USB-C）的 **包络 STEP**：`lib/3d/TYPE-C-31-M-14.step`，`make_envelope_3d.py` 按 8.94×7.3×3.25 mm 做的盒子。H2 补模型门禁用，**不是韩荣官方外形**。焊盘和开槽仍在 `badge:TYPE-C-31-M-14` 封装上。
+- **源文件**：`J3 at=(75.0, BOARD_H-2.7, 0)`，即约 `(75.0, 81.3)`，底边 USB 槽。旁边 `CHG`/`STAT` 是 D4/D5，不是这块绿方。
+- **教训**：缺官方 CAD 时 3D 会显示占位盒子。要看真 USB-C 外形，换官方 STEP 或看实物/datasheet；不要按绿方去改封装或铜皮。
+
 ## 不要做的事
 
 - 近景没对准就说「3D 看不清」。

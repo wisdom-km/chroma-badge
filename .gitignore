@@ -6,6 +6,10 @@ fp-info-cache
 hardware/pcb/output/*.dsn
 hardware/pcb/output/*.ses
 hardware/pcb/output/*.rules
+# Timestamped candidate exports (F18). Never treat these as production packages.
+hardware/pcb/output/exports/
+hardware/pcb/output/drc_run_*.json
+hardware/pcb/output/3d_models.json
 # FreeCAD
 *.FCBak
 *.FCStd1

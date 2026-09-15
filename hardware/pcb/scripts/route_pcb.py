@@ -128,12 +128,64 @@ def fill(board):
     board.BuildConnectivity()
 
 
+def enforce_netclass_widths(board, skip_nets=None):
+    """F05: Freerouting/SES often necks Power/NFC below design.py minima. Widen in place.
+
+    GND is skipped: the pour is the current path (>> 0.3 mm). Widening Freerouting
+    GND stubs into via clearance is not a real Power-width fix.
+    """
+    skip = set(skip_nets or ("GND",))
+    want = {}
+    for spec in D.NET_CLASSES.values():
+        for netname in spec["nets"]:
+            if netname in skip:
+                continue
+            want[netname] = FromMM(spec["track"])
+    n = 0
+    for t in board.GetTracks():
+        if t.Type() == pcbnew.PCB_VIA_T:
+            continue
+        w = want.get(t.GetNetname())
+        if w is None or t.GetWidth() >= w:
+            continue
+        t.SetWidth(w)
+        n += 1
+    return n
+
+
 def drc_json(path):
-    rpt = os.path.join(OUT_DIR, "drc_tmp.json")
-    subprocess.run(["kicad-cli", "pcb", "drc", "--severity-error", "--format", "json", "-o", rpt, path],
-                   capture_output=True, text=True)
-    with open(rpt) as f:
-        return json.load(f)
+    """Run error-level DRC and return the JSON for this invocation only.
+
+    kicad-cli may return 0 (report written) or 5 (violations / injected failure).
+    A non-zero code without a *new* report used to fall through to a leftover
+    empty file and look like a clean board. Never open a pre-existing report.
+    """
+    os.makedirs(OUT_DIR, exist_ok=True)
+    rpt = os.path.join(OUT_DIR, "drc_run_%s_%s.json" % (os.getpid(), time.time_ns()))
+    r = subprocess.run(
+        ["kicad-cli", "pcb", "drc", "--severity-error", "--format", "json", "-o", rpt, path],
+        capture_output=True, text=True,
+    )
+    # 0 = CLI wrote a report. 5 is used by --exit-code-violations and by the
+    # F19 fault probe; it is only usable if this run created `rpt`.
+    if r.returncode not in (0, 5):
+        raise RuntimeError(
+            "kicad-cli pcb drc failed rc=%s stderr=%s"
+            % (r.returncode, (r.stderr or "").strip())
+        )
+    if not os.path.isfile(rpt) or os.path.getsize(rpt) == 0:
+        raise RuntimeError(
+            "kicad-cli pcb drc rc=%s produced no new report; refusing to read any older DRC file"
+            % r.returncode
+        )
+    try:
+        with open(rpt, encoding="utf-8") as f:
+            return json.load(f)
+    finally:
+        try:
+            os.remove(rpt)
+        except OSError:
+            pass
 
 
 def isolated_gnd_pads(report):
@@ -291,23 +343,29 @@ class Stitcher:
             return 0
         key = "1,2,11,14,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53"
         try:
-            groups = list(fp.GetNetTiePadGroups() or [])
+            groups = [str(g) for g in (fp.GetNetTiePadGroups() or [])]
         except TypeError:
             groups = []
-        if any("36" in str(g) and "1" in str(g) for g in groups):
+        if groups == [key]:
+            return 0
+        if hasattr(fp, "ClearNetTiePadGroups"):
+            fp.ClearNetTiePadGroups()
+            fp.AddNetTiePadGroup(key)
+            return 1
+        if any("36" in g and "1" in g for g in groups):
             return 0
         fp.AddNetTiePadGroup(key)
         return 1
 
     def apply_extra_gnd_pads(self):
-        """J1 pin 7 is NC on the panel; tying it to GND enlarges the pin-8 pour so a via fits."""
-        n = 0
+        """J1 pin 7 is NC Keep Open (GDEM042F86 p.7). Must not stitch it to GND."""
         fp = self.board.FindFootprintByReference("J1")
         if fp is None:
             return 0
+        n = 0
         for pad in fp.Pads():
-            if pad.GetNumber() == "7" and pad.GetNetCode() != self.gnd.GetNetCode():
-                pad.SetNet(self.gnd)
+            if pad.GetNumber() == "7" and pad.GetNetCode() == self.gnd.GetNetCode():
+                pad.SetNetCode(0)
                 n += 1
         return n
 
@@ -923,6 +981,9 @@ def main():
         else:
             run_freerouting(board)
         fill(board)
+        n_w = enforce_netclass_widths(board)
+        print(f"   enforced netclass widths on {n_w} tracks", flush=True)
+        fill(board)
         pcbnew.SaveBoard(BOARD, board)
         rep = drc_json(BOARD)
         n = fx.repair(rep)
@@ -942,7 +1003,7 @@ def main():
         pcbnew.SaveBoard(BOARD, board)
 
     print("ESP GND net-tie:", st.apply_esp_gnd_nettie(), flush=True)
-    print("tied J1 pin 7 to GND:", st.apply_extra_gnd_pads(), flush=True)
+    print("J1 pin 7 NC Keep Open (cleared GND if present):", st.apply_extra_gnd_pads(), flush=True)
     fill(board)
     n_grid = st.stitch_grid()
     print(f"battery-pocket GND via grid: {n_grid}", flush=True)
@@ -1005,6 +1066,10 @@ def main():
         fill(board)
         pcbnew.SaveBoard(BOARD, board)
 
+    n_w = enforce_netclass_widths(board)
+    print(f"final netclass width enforce: {n_w} tracks", flush=True)
+    fill(board)
+    pcbnew.SaveBoard(BOARD, board)
     rep = drc_json(BOARD)
     counts = summarize(rep)
     n_tracks = sum(1 for t in board.GetTracks() if t.GetClass() == "PCB_TRACK")

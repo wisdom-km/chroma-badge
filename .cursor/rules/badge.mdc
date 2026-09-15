@@ -16,5 +16,5 @@ alwaysApply: true
 Freerouting 必须交互 shell + 相对路径（见 docs/03-handoff.md 第 3 节）。
 发现文档写错或和板上事实冲突：先问用户，讨论后再动手。
 
-当前板 564 段/128 过孔、DRC 0。GND 缝合可复现；NFC 线圈已盖绿油；ACTIVE_TOP=6.7；USB 按 0.8 mm 打样（嘉立创无 0.75）。下一步：固件 NDEF/FTM；脚 7 Keep Open vs GND 仍待拍板。
-提交前跑 check_netlist.py 和 export.sh。
+当前板 **680 段/115 过孔**、58 封装、J1.7 NC。KiCad 10.0.6 全量 ERC/DRC 0。H2 规格已落地。固件 F1 源码已改（v0.2）。不要把候选 Gerber 当生产包。
+提交前跑 check_netlist.py 和 export.sh --check-only。

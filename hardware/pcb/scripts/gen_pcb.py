@@ -44,6 +44,60 @@ class Gen:
         ds.m_MinThroughDrill = FromMM(0.2)  # 0.4/0.2 stitching vias; 4:1 aspect on 0.8 mm board
         ds.m_HoleClearance = FromMM(0.25)
 
+    def apply_net_classes(self):
+        """Write design.py NET_CLASSES into the board and badge.kicad_pro (F05)."""
+        ns = self.board.GetDesignSettings().m_NetSettings
+        for name, spec in D.NET_CLASSES.items():
+            if name == "Default":
+                nc = ns.GetDefaultNetclass()
+            elif ns.HasNetclass(name):
+                nc = ns.GetNetClassByName(name)
+            else:
+                nc = pcbnew.NETCLASS(name)
+            nc.SetTrackWidth(FromMM(spec["track"]))
+            nc.SetClearance(FromMM(spec["clearance"]))
+            nc.SetViaDiameter(FromMM(spec["via"]))
+            nc.SetViaDrill(FromMM(spec["via_drill"]))
+            if name != "Default":
+                ns.SetNetclass(name, nc)
+            for netname in spec["nets"]:
+                ns.SetNetclassPatternAssignment(netname, name)
+        self.write_project_netclasses()
+
+    def write_project_netclasses(self):
+        import json
+        pro = os.path.join(PCB_DIR, "badge.kicad_pro")
+        data = json.loads(open(pro, encoding="utf-8").read())
+        classes = []
+        for name, spec in D.NET_CLASSES.items():
+            classes.append({
+                "bus_width": 12,
+                "clearance": spec["clearance"],
+                "diff_pair_gap": 0.25,
+                "diff_pair_via_gap": 0.25,
+                "diff_pair_width": 0.2,
+                "line_style": 0,
+                "microvia_diameter": 0.3,
+                "microvia_drill": 0.1,
+                "name": name,
+                "pcb_color": "rgba(0, 0, 0, 0.000)",
+                "priority": 2147483647 if name == "Default" else 0,
+                "schematic_color": "rgba(0, 0, 0, 0.000)",
+                "track_width": spec["track"],
+                "via_diameter": spec["via"],
+                "via_drill": spec["via_drill"],
+                "wire_width": 6,
+            })
+        patterns = []
+        for name, spec in D.NET_CLASSES.items():
+            for netname in spec["nets"]:
+                patterns.append({"netclass": name, "pattern": netname})
+        data["net_settings"]["classes"] = classes
+        data["net_settings"]["netclass_patterns"] = patterns
+        with open(pro, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(data, f, indent=2)
+            f.write("\n")
+
     # ------------------------------------------------------------------ nets
     def net(self, name):
         if name not in self.nets:
@@ -63,6 +117,7 @@ class Gen:
             fp.SetReference(part.ref)
             fp.SetValue(part.value)
             self.board.Add(fp)
+            fp.SetFPIDAsString(D.board_footprint_id(part))
             if part.at is None:
                 x, y, rot = overflow_x, -8.0, 0
                 overflow_x += 6
@@ -75,20 +130,47 @@ class Gen:
             # top/bottom mirror).
             fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
             fp.SetOrientationDegrees(fp.GetOrientationDegrees() + rot)
+            if D.exclude_from_bom(part):
+                fp.SetAttributes(fp.GetAttributes() | pcbnew.FP_EXCLUDE_FROM_BOM)
             if part.dnp:
                 fp.SetAttributes(fp.GetAttributes() | pcbnew.FP_DNP | pcbnew.FP_EXCLUDE_FROM_BOM)
             for pad in fp.Pads():
                 net = part.pins.get(pad.GetNumber())
                 if net:
                     pad.SetNet(self.net(net))
-            # keep reference text small and on B.SilkS
+                elif pad.GetNumber() in part.nc:
+                    pad.SetNet(self.net(D.nc_unconnected_net(part.ref, pad.GetNumber())))
+            # keep reference text at DRC silk min 0.8 mm
             ref = fp.Reference()
-            ref.SetTextSize(VECTOR2I(FromMM(0.6), FromMM(0.6)))
-            ref.SetTextThickness(FromMM(0.1))
+            ref.SetTextSize(VECTOR2I(FromMM(0.8), FromMM(0.8)))
+            ref.SetTextThickness(FromMM(0.12))
+            xy = D.SILK_REF_XY.get(part.ref)
+            if xy:
+                ref.SetPosition(P(*xy))
+            else:
+                dxdy = D.SILK_REF_OFFSET.get(part.ref)
+                if dxdy:
+                    p = ref.GetPosition()
+                    ref.SetPosition(VECTOR2I(p.x + FromMM(dxdy[0]), p.y + FromMM(dxdy[1])))
             # SW1/SW2 refs land on the BOOT/RST labels; hide them.
-            if part.ref in ("SW1", "SW2"):
+            # ANT1 coil is obvious; its 0.8 mm ref sits on C9's pocket.
+            if part.ref in ("SW1", "SW2", "ANT1"):
                 ref.SetVisible(False)
             fp.Value().SetVisible(False)
+            try:
+                fp.SetField("Description", part.desc or "")
+                fp.SetField("Datasheet", "")
+                fp.SetField("LCSC", part.lcsc or "")
+                for name in ("Description", "Datasheet", "LCSC"):
+                    f = fp.GetFieldByName(name)
+                    if f:
+                        f.SetVisible(False)
+                        try:
+                            f.SetLayer(pcbnew.B_Fab)
+                        except Exception:
+                            pass
+            except Exception:
+                pass
             self.fps[part.ref] = fp
 
     # --------------------------------------------------------------- outline
@@ -302,6 +384,7 @@ def main():
     for n in D.all_nets():
         g.net(n)
     g.place_parts()
+    g.apply_net_classes()
     g.outline()
     g.silkscreen()
     g.nfc_note()

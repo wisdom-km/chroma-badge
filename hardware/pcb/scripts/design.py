@@ -13,8 +13,8 @@ from dataclasses import dataclass, field
 def _kicad_share_dir():
     """Locate KiCad's share/kicad directory on Windows, macOS, or Linux."""
     env_keys = (
-        "KICAD9_SYMBOL_DIR",
         "KICAD10_SYMBOL_DIR",
+        "KICAD9_SYMBOL_DIR",
         "KICAD8_SYMBOL_DIR",
         "KICAD_SYMBOL_DIR",
     )
@@ -33,9 +33,12 @@ def _kicad_share_dir():
             if os.path.isdir(kicad_root):
                 for name in sorted(os.listdir(kicad_root), reverse=True):
                     candidates.append(os.path.join(kicad_root, name, "share", "kicad"))
-        # Prefer 9.x (this project is KiCad 9) over 10/8 if several are installed.
+        # Prefer 10.x (this machine's KiCad for ERC/DRC) then 9.x.
+        ten = [c for c in candidates if os.path.sep + "10." in c or c.endswith(os.path.join("10.0", "share", "kicad"))]
         nine = [c for c in candidates if os.path.sep + "9." in c or c.endswith(os.path.join("9.0", "share", "kicad"))]
-        if nine:
+        if ten:
+            candidates = ten + [c for c in candidates if c not in ten]
+        elif nine:
             candidates = nine + [c for c in candidates if c not in nine]
     elif sys.platform == "darwin":
         candidates = [
@@ -86,16 +89,57 @@ NFC_TRACE_GAP = 0.5
 
 # B.SilkS labels (text, x, y, size, thick). Keep clear of J1 (40,73) and SW1/SW2.
 # BOOT/RST sit on the buttons; title/chipset sit above them, left of J1.
+# Board silk min height is 0.8 mm (DRC text_height); do not go below.
 SILK_BACK = [
     ("EPD 24P FPC  (panel on front side)", 43.0, 66.6, 0.8, 0.12),
-    ("ESP32-C3 antenna keepout", 60.0, 73.5, 0.7, 0.1),
+    ("ESP32-C3 antenna keepout", 60.0, 73.5, 0.8, 0.12),
     ("BADGE-42C v0.1", 15.5, 67.5, 1.2, 0.2),
     ("ESP32-C3 + ST25DV64KC + 4.2\" BWRY", 15.5, 69.6, 0.8, 0.12),
     ("RST", 14.0, 77.6, 0.8, 0.12),
     ("BOOT", 22.5, 77.6, 0.8, 0.12),
-    ("CHG", 86.5, 83.2, 0.7, 0.1),
-    ("STAT", 65.0, 83.2, 0.7, 0.1),
+    ("CHG", 86.5, 83.2, 0.8, 0.12),
+    ("STAT", 65.0, 83.2, 0.8, 0.12),
+    ("J2-1 VBAT", 4.5, 54.6, 0.8, 0.12),
 ]
+# Extra B.Silk reference offsets after flip, mm (used when SILK_REF_XY has no entry).
+SILK_REF_OFFSET = {
+    "Q2": (0.0, -1.2),
+    "Q1": (0.0, -1.1),
+}
+# Absolute B.Silk reference positions, mm. Prefer this over OFFSET so live-board
+# updates and gen_pcb land on the same readable spot (H2 silk warnings).
+SILK_REF_XY = {
+    # NFC 0402 位号放到焊盘南侧并错开，避免互叠和压焊盘。
+    "R11": (78.40, 53.85),
+    "R12": (82.00, 54.55),
+    "R13": (85.80, 53.85),
+    # C8/R7 挪进电池仓空地，躲开 U1 左边框丝印和自身焊盘。
+    "C8": (47.80, 47.20),
+    "R7": (47.80, 50.40),
+    # C9 放到线圈下沿与零件之间，躲开 ANT1 位号。
+    "C9": (68.50, 46.10),
+    # R14 夹在 0603 与 C18 之间；R15 进仓内，躲开 D1。
+    "R14": (24.50, 62.85),
+    "R15": (29.80, 51.10),
+    "C18": (24.50, 66.40),
+    "D2": (33.50, 62.70),
+    "D3": (38.70, 62.80),
+}
+
+# Locked first-article battery (F17, 2026-09-15 Wisdom: no dual P/N, no missing cell).
+# 202545: 20 x 25 x 45 mm class, thickness 2.0 mm, ~250 mAh, must include PCM.
+# J2 pin 1 = VBAT (red), pin 2 = GND (black). USB without battery: charging LED/USB
+# enumerate may fail; that is allowed and must be logged, not treated as a pass.
+BATTERY = {
+    "form": "202545",
+    "chemistry": "LiPo",
+    "nominal_v": 3.7,
+    "capacity_mah": 250,
+    "thickness_mm": 2.0,
+    "pcm": True,
+    "j2_pin1": "VBAT",
+    "j2_pin2": "GND",
+}
 
 # ----------------------------------------------------------------------------
 # Component model
@@ -115,6 +159,29 @@ class Part:
     # PCB placement (x, y, rotation_deg). None -> placed in an overflow row
     at: tuple = None
     dnp: bool = False
+    omit_pins: list = field(default_factory=list)  # symbol pins with no footprint pad
+
+
+def exclude_from_bom(part):
+    return bool(part.dnp or part.ref == "ANT1" or part.ref.startswith("TP"))
+
+
+def board_footprint_id(part):
+    """FPID written on the live board / schematic Footprint field."""
+    return part.footprint
+
+
+def nc_unconnected_net(ref, pad_number):
+    """KiCad schematic-parity net name for an intentional no-connect pad."""
+    if ref == "J1":
+        pin = f"Pin_{pad_number}"
+    elif ref == "J3":
+        pin = {"A8": "SBU1", "B8": "SBU2", "SH": "SH", "S1": "SH"}.get(pad_number, pad_number)
+    elif ref in ("U1", "U4"):
+        pin = "NC"
+    else:
+        pin = pad_number
+    return f"unconnected-({ref}-{pin}-Pad{pad_number})"
 
 
 def R(ref, value, n1, n2, at=None, fp="Resistor_SMD:R_0402_1005Metric", section="", desc="", dnp=False):
@@ -132,7 +199,7 @@ PARTS = [
     # ------------------------------------------------------------------ USB-C
     Part("J3", "Connector", "USB_C_Receptacle_USB2.0_16P", "badge:TYPE-C-31-M-14",
          "USB-C 16P 沉板 (TYPE-C-31-M-14)",
-         {"A1": "GND", "B1": "GND", "A12": "GND", "B12": "GND", "S1": "GND",
+         {"A1": "GND", "B1": "GND", "A12": "GND", "B12": "GND", "SH": "GND",
           "A4": "VBUS", "A9": "VBUS", "B4": "VBUS", "B9": "VBUS",
           "A5": "CC1", "B5": "CC2",
           "A6": "USB_DP", "B6": "USB_DP", "A7": "USB_DN", "B7": "USB_DN"},
@@ -144,28 +211,30 @@ PARTS = [
 
     # ------------------------------------------------------- Charger + battery
     Part("U3", "Battery_Management", "MCP73831-2-OT", "Package_TO_SOT_SMD:SOT-23-5",
-         "TP4054 / MCP73831T-2ACI/OT",
+         "TP4054",
          {"1": "CHRG_STAT", "2": "GND", "3": "VBAT", "4": "VBUS", "5": "PROG"},
-         section="POWER", desc="Li-ion linear charger 4.2V, SOT-23-5 (TP4054 pin-compatible)", lcsc="C32574",
-         at=(80.0, 70.0, 0)),
+         section="POWER", desc="TP4054 Li-ion linear charger 4.2V SOT-23-5; R3=5.1k -> ~200mA. Not MCP73831.",
+         lcsc="C32574", at=(80.0, 70.0, 0)),
     R("R3", "5.1k", "PROG", "GND", at=(76.5, 72.5, 0), section="POWER", desc="5.1k -> ~200mA charge current"),
     R("R4", "1k", "VBUS", "LED_CHRG_A", at=(86.5, 77.5, 90), section="POWER"),
     Part("D4", "Device", "LED", "LED_SMD:LED_0603_1608Metric", "RED",
          {"1": "CHRG_STAT", "2": "LED_CHRG_A"}, section="POWER", desc="LED 0603 red, charging indicator",
          at=(86.5, 81.0, 0)),
     C("C2", "4.7u", "VBAT", "GND", at=(83.5, 73.5, 0), fp=C0603, section="POWER", desc="4.7uF 10V X5R 0603"),
-    Part("J2", "Connector_Generic", "Conn_01x02", "Connector_JST:JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal",
-         "BATT JST-SH 1.0mm", {"1": "VBAT", "2": "GND"}, section="POWER",
-         desc="JST SM02B-SHLS-TF 1.0mm 2P horizontal; LiPo <=2.0mm thick, 150-300mAh with PCM", lcsc="C145956",
-         at=(10.0, 58.0, 0)),
+    Part("J2", "Connector_Generic", "Conn_01x02", "badge:JST_SHL_SM02B-SHLS-TF_1x02-1MP_P1.00mm_Horizontal",
+         "BATT JST-SHL 1.0mm", {"1": "VBAT", "2": "GND"}, section="POWER",
+         desc="JST SM02B-SHLS-TF 1.0mm 2P; pin1=VBAT red, pin2=GND; cell 202545 250mAh 2.0mm with PCM",
+         lcsc="C145956", at=(10.0, 58.0, 0)),
 
     # ----------------------------------------------------------------- LDO 3V3
     Part("U4", "Regulator_Linear", "AP2112K-3.3", "Package_TO_SOT_SMD:SOT-23-5", "XC6220B331MR-G",
          {"1": "VBAT", "2": "GND", "3": "VBAT", "5": "+3V3"}, nc=["4"], section="POWER",
-         desc="LDO 3.3V, Iq 8uA, 1A, SOT-25 (pinout VIN/GND/CE/NC/VOUT). Alt: TLV75533PDBV, AP2112K-3.3", lcsc="C86534",
-         at=(74.0, 66.5, 0)),
-    C("C3", "1u", "VBAT", "GND", at=(70.5, 66.5, 90), section="POWER"),
-    C("C4", "2.2u", "+3V3", "GND", at=(77.5, 63.5, 0), fp=C0603, section="POWER", desc="2.2uF 10V 0603"),
+         desc="LDO 3.3V Iq 8uA 1A SOT-25 VIN/GND/CE/NC/VOUT. Torex 3.0-3.5V pair: CIN=10uF CL=4.7uF near U4.",
+         lcsc="C86534", at=(74.0, 66.5, 0)),
+    C("C3", "10u", "VBAT", "GND", at=(70.5, 66.5, 90), fp=C0603, section="POWER",
+      desc="10uF 6.3V X5R 0603 LDO CIN (Torex table, 3.3V with CL=4.7uF)"),
+    C("C4", "4.7u", "+3V3", "GND", at=(77.5, 63.5, 0), fp=C0603, section="POWER",
+      desc="4.7uF 10V X5R 0603 LDO CL near VOUT (Torex 3.00-3.50V + CIN=10uF)"),
     # battery voltage sense divider (2uA standby)
     R("R5", "1M", "VBAT", "BAT_SENSE", at=(70.0, 60.5, 0), section="POWER"),
     R("R6", "1M", "BAT_SENSE", "GND", at=(73.0, 60.5, 0), section="POWER"),
@@ -216,7 +285,7 @@ PARTS = [
          at=(22.5, BOARD_H - 3.5, 0)),
 
     # --------------------------------------------------------------------- NFC
-    Part("U2", "RF_NFC", "ST25DV64K-IER8C3", "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm", "ST25DV64KC-IER6S3",
+    Part("U2", "Badge", "ST25DV64KC-SO8N", "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm", "ST25DV64KC-IER6S3",
          {"1": "NFC_VEH", "2": "NFC_AC0", "3": "NFC_AC1", "4": "GND", "5": "I2C_SDA", "6": "I2C_SCL",
           "7": "NFC_GPO", "8": "+3V3"}, section="NFC",
          desc="ST25DV64KC dynamic NFC tag, 64Kbit, FTM mailbox, energy harvesting, SO8N", lcsc="C2830253",
@@ -238,12 +307,12 @@ PARTS = [
     # ------------------------------------------------------------------ E-PAPER
     Part("J1", "Connector_Generic", "Conn_01x24", "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal",
          "EPD FPC 24P 0.5mm",
-         {"2": "EPD_GDR", "3": "EPD_RESE", "5": "EPD_VSH2", "7": "GND", "8": "GND",
+         {"2": "EPD_GDR", "3": "EPD_RESE", "5": "EPD_VSH2", "8": "GND",
           "9": "EPD_BUSY", "10": "EPD_RST", "11": "EPD_DC", "12": "EPD_CS", "13": "EPD_SCK", "14": "EPD_MOSI",
           "15": "EPD_VCI", "16": "EPD_VCI", "17": "GND", "18": "EPD_VDD",
           "20": "EPD_VSH1", "21": "EPD_VGH", "22": "EPD_VSL", "23": "EPD_VGL", "24": "EPD_VCOM"},
-         nc=["1", "4", "6", "19"], section="EPD",
-         desc="24P 0.5mm FPC connector, bottom contact, flip lock (Hirose FH12-24S-0.5SH or JUSHUO AFC07-S24FCA-00)",
+         nc=["1", "4", "6", "7", "19"], section="EPD",
+         desc="24P 0.5mm FPC connector, bottom contact, flip lock (Hirose FH12-24S-0.5SH or JUSHUO AFC07-S24FCA-00). Pin 7 NC Keep Open (GDEM042F86 p.7).",
          lcsc="C262657", at=(40.0, 73.0, 0)),
     Part("Q2", "Transistor_FET", "AO3401A", "Package_TO_SOT_SMD:SOT-23", "AO3401A",
          {"1": "EPD_PWR_EN", "2": "+3V3", "3": "EPD_VCI"}, section="EPD",
@@ -251,18 +320,22 @@ PARTS = [
     C("C12", "10u", "EPD_VCI", "GND", at=(42.5, 57.5, 0), fp=C0603, section="EPD", desc="10uF 6.3V X5R 0603"),
     C("C13", "1u", "EPD_VCI", "GND", at=(45.5, 57.5, 0), section="EPD"),
     C("C14", "1u", "EPD_VDD", "GND", at=(42.0, 64.5, 0), section="EPD"),
-    Part("L1", "Device", "L", "Inductor_SMD:L_Changjiang_FNR3015S", "68uH",
+    Part("L1", "Device", "L", "Inductor_SMD:L_Changjiang_FNR4018S", "47uH",
          {"1": "EPD_VCI", "2": "EPD_SW"}, section="EPD",
-         desc="68uH shielded power inductor, Isat>=0.2A, h<=1.5mm (Sunlord SWPA3015S680MT / FNR3015S680MT)", lcsc="C2827366",
-         at=(24.5, 57.5, 0)),
-    Part("Q1", "Transistor_FET", "AO3400A", "Package_TO_SOT_SMD:SOT-23", "AO3400A",
+         desc="47uH shielded, Isat 700mA Irms 650mA, 4.0x4.0x1.8mm FNR4018S470MT (GDEM042F86 p.29 47uH/500mA)",
+         lcsc="C167813", at=(24.5, 57.5, 0)),
+    Part("Q1", "Transistor_FET", "AO3400A", "badge:SOT-323_SC-70", "Si1308EDL",
          {"1": "EPD_GDR", "2": "EPD_RESE", "3": "EPD_SW"}, section="EPD",
-         desc="N-MOSFET for EPD boost (alt. Si1304BDL SOT-323)", lcsc="C20917", at=(29.0, 57.5, 0)),
-    R("R14", "2.2R", "EPD_RESE", "GND", at=(24.5, 61.0, 0), section="EPD",
-      desc="RESE current-sense resistor: confirm value from GDEM042F86 spec (0.47R / 2.2R / 3R variants)"),
+         desc="Vishay Si1308EDL-T1-GE3 N-MOS 30V SOT-323 GSD (GDEM042F86 p.29). Symbol AO3400A is pin-compatible GSD.",
+         lcsc="C469327", at=(29.0, 57.5, 0)),
+    R("R14", "2.2R", "EPD_RESE", "GND", at=(24.5, 61.0, 0), fp="Resistor_SMD:R_0603_1608Metric", section="EPD",
+      desc="RESE 2.2 ohm 0603 >=0.1W (GDEM042F86 p.29; 0402 pulse rating not locked)"),
+    R("R15", "1M", "EPD_GDR", "GND", at=(32.5, 54.5, 0), section="EPD",
+      desc="GDR 1M pulldown to GND (GDEM042F86 p.29 R1)"),
     Part("D1", "Diode", "MBR0530", "Diode_SMD:D_SOD-123", "MBR0530",
          {"1": "EPD_VGH", "2": "EPD_SW"}, section="EPD", desc="Schottky 30V 0.5A SOD-123", lcsc="C77896", at=(33.5, 57.5, 0)),
-    C("C15", "1u/50V", "EPD_SW", "EPD_PUMP", at=(29.0, 61.0, 0), fp=C0805, section="EPD", desc="1uF 50V X7R 0805 charge pump"),
+    C("C15", "4.7u/25V", "EPD_SW", "EPD_PUMP", at=(29.0, 61.0, 0), fp=C0805, section="EPD",
+      desc="4.7uF 25V X5R 0805 flying cap (GDEM042F86 p.29 C3)"),
     Part("D2", "Diode", "MBR0530", "Diode_SMD:D_SOD-123", "MBR0530",
          {"1": "GND", "2": "EPD_PUMP"}, section="EPD", desc="Schottky 30V 0.5A SOD-123", lcsc="C77896", at=(33.5, 61.0, 0)),
     Part("D3", "Diode", "MBR0530", "Diode_SMD:D_SOD-123", "MBR0530",
@@ -278,7 +351,9 @@ PARTS = [
 # Nets that need a PWR_FLAG for ERC (no power-output pin drives them)
 PWR_FLAG_NETS = ["GND", "VBUS"]
 
-# Net classes for the PCB (clearance / width in mm)
+# Net classes: track/clearance are DRC-mandatory minima (F05, 2026-09-15).
+# Preferred width equals the minimum. Existing 0.15/0.2 mm Power/NFC segments are non-compliant
+# and must be re-routed; do not claim the board meets these classes until DRC says so.
 NET_CLASSES = {
     "Default": {"clearance": 0.15, "track": 0.2, "via": 0.6, "via_drill": 0.3, "nets": []},
     "Power": {"clearance": 0.2, "track": 0.3, "via": 0.6, "via_drill": 0.3,
@@ -288,10 +363,10 @@ NET_CLASSES = {
 
 SECTION_NOTES = {
     "USB": "USB-C 2.0, mid-mount receptacle in the 7mm strip below the panel. CC pulled down 5.1k = UFP. D+/D- go straight to the ESP32-C3 native USB.",
-    "POWER": "LiPo (<=2.0mm, 150-300mAh, with PCM) -> 200mA linear charger -> low-Iq LDO 3.3V. VBAT sensed through 1M/1M (ADC1_CH0). Standby budget ~13uA.",
+    "POWER": "LiPo 202545 250mAh 2.0mm with PCM, J2-1=VBAT. TP4054 ~200mA. XC6220 near-end CIN=10uF CL=4.7uF. Standby current is unmeasured; do not quote 13uA or two years.",
     "MCU": "ESP32-C3-MINI-1. Strapping pins: GPIO2 pulled high (P-MOS off at boot), GPIO8 LED sink (idles high), GPIO9 boot/user button. No UART bridge: program/log over native USB.",
     "NFC": "ST25DV64KC: NDEF URL + fast-transfer mailbox (256B) + RF field wake on GPO -> GPIO1. Loop antenna is drawn on B.Cu in gen_pcb.py; internal tuning cap 28.5pF, target L ~4.8uH; C11 is a DNP trim cap.",
-    "EPD": "4.2\" BWRY panel, 24P 0.5mm FPC (GDEM042F86 / Waveshare 4.2 G / GDEY042F51). Standard Good Display boost: 68uH, N-MOS, 3x MBR0530, RESE. BS1=GND -> 4-wire SPI. VDDIO tied to VCI. Panel power gated by Q2.",
+    "EPD": "4.2\" BWRY GDEM042F86. Boost per p.29: 47uH/500mA-class (FNR4018S470MT 700mA Isat), Si1308EDL, 4.7uF flying cap, GDR 1M to GND, RESE 2.2R 0603. Pin 7 NC Keep Open (p.7). BS1=GND -> 4-wire SPI. Panel power gated by Q2.",
 }
 
 

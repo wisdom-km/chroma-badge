@@ -1,0 +1,6 @@
+C11: DNP on first article. Do not SMT. Fit only after measuring antenna resonance;
+ST25DV has 28.5 pF internal. Record populated value in the tune log (F14).
+ANT1: PCB copper loop, not a pick-and-place part. Keep on engineering BOM.
+TP1-TP4: test pads, not SMT. Keep on engineering BOM, drop from assembly POS.
+U3 charger is TP4054 (C32574). Battery 202545 250mAh 2.0mm with PCM; J2-1=VBAT.
+KiCad grouped BOM (badge_bom.csv) may omit DNP; engineering CSV is the complete set from design.py.

@@ -8,7 +8,7 @@
 仍要你拍板的：
 
 1. ~~**USB 0.8 vs 0.75**~~：**按 0.8 mm 打样**（2026-09-14 Wisdom）。嘉立创/JLCPCB 标准档无 0.75；M-14 产品页 0.75，0.8 公差 ±0.1 mm 含 0.75。不改座、不改板厚。
-2. **脚 7 接 GND**：官方第 7 页写 NC Keep Open。接到 GND 做缝合一般没事（不是信号脚），第 29 页参考电路把 6/7 画成 TSCL/TSDA 是套图，以脚表为准。要严格 Keep Open 再说，会动网络。
+2. **脚 7 NC Keep Open**：官方第 7 页。H2 已改 `design.py` 进 `nc`，后处理禁止再缝 GND。不要接回 GND。
 
 已用官方 PDF 勾掉：脚序（6/7=NC，8=BS1）、RESE=2.2 Ω、ACTIVE_TOP=6.7 mm（第 6 页机械图）。
 
@@ -20,7 +20,7 @@
 |---|---|---|---|
 | 外形 / 有效区 | 91×77×1.0，有效 84.8×63.6 | 与佳显产品页、Waveshare G 一致 | 通过（尺寸） |
 | 驱动 IC | SSD2683ZA | 佳显产品页 | 通过 |
-| 24P 脚序 | J1：2 GDR, 3 RESE, 5 VSH2, 7 GND, 8 GND, 9 BUSY, 10 RST, 11 DC, 12 CS, 13 SCK, 14 MOSI, 15–16 VCI, 17 GND, 18 VDD, 20 VSH1, 21 VGH, 22 VSL, 23 VGL, 24 VCOM；NC = 1,4,6,19 | **GDEM042F86 第 7 页**：1 NC Keep Open, 2 GDR, 3 RESE, 4 NC, 5 VSH2, **6 NC Keep Open, 7 NC Keep Open, 8 BS1**, 9 BUSY … 17 VSS, 19 VPP Keep Open。pin 8 接 GND = 4 线 SPI。第 29 页参考电路把 6/7 标成 TSCL/TSDA，与脚表冲突，以第 7 页为准 | **通过（脚功能）**。pin 7 接 GND 是缝合，规格写 Keep Open；不是信号脚。要空着再说 |
+| 24P 脚序 | J1：2 GDR, 3 RESE, 5 VSH2, **7 NC**, 8 GND, 9 BUSY, 10 RST, 11 DC, 12 CS, 13 SCK, 14 MOSI, 15–16 VCI, 17 GND, 18 VDD, 20 VSH1, 21 VGH, 22 VSL, 23 VGL, 24 VCOM；NC = 1,4,6,**7**,19 | **GDEM042F86 第 7 页**：1/4/6/7 NC Keep Open。pin 8 接 GND = 4 线 SPI | **通过（H2 已按脚表：脚 7 空网）** |
 | RESE（R14） | 2.2 Ω | 官方第 29 页参考电路 R2=**2.2 Ω**（RESE 到地） | **通过** |
 | FPC 出线 | `FPC_SLOT=(27,77.6,57,79.6)`，J1 at (40, 73, 0) | 第 6 页：FPC 从短边下沿出，弯折区在屏下方。槽在板底、开口朝槽 | **通过** |
 
@@ -81,5 +81,5 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 ## 7. 建议的「通过才下单」门槛
 
 1. ~~USB-C 沉板与 0.8 mm 板匹配或改料号~~：已拍板 0.8，见第 2 节。
-2. 脚 7：官方 NC Keep Open，现接 GND 缝合。要空着再说。
+2. 脚 7：官方 NC Keep Open，**H2 已空网**。不要再缝 GND。
 3. ~~FH12 开口朝槽 / NFC 盖绿油 / ACTIVE_TOP=6.7 / RESE=2.2 Ω~~ 已用官方 PDF 和第 6 页机械图勾掉。

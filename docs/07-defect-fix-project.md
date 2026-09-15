@@ -4,9 +4,9 @@
 
 **Wisdom 指定执行顺序：先修硬件，再修产品固件。** 审查原文曾建议先做固件错误可见（A1），那是为了实机调试时不被假成功骗过；本文件按你选定的「硬件先行」排期。架构不改：四色屏、ESP32-C3、ST25DV、电池+USB、板厚 0.8 mm。
 
-硬件/固件内容基准仍是 `ee978f0`。审查文档基准见 `908d4f4`。缺陷状态一律 **未修复**；没有「实机通过」。error 级 DRC 0 **不等于** 全量检查通过（全量 148 条 DRC warning + 1 条 ERC warning）。
+硬件/固件内容基准：旧板 `ee978f0`；**H2 当前板** 680 段 / 115 过孔。KiCad 10.0.6 **全量 ERC/DRC 0**。仍不是生产包。
 
-本文件是修复项目说明，**不是** 对任何规格偏离的批准。与规格书冲突的项必须先拿证据和两种方案问 Wisdom，再改 `design.py`。
+本文件记录修复项目。H2 规格项已按 2026-09-15 Wisdom「矫枉必须过正」授权改到 `design.py` 并重布。USB 0.8 mm、NFC 线圈盖绿油仍不重开。
 
 ---
 
@@ -15,25 +15,25 @@
 | 层 | 做到哪 | 没做到哪 |
 |---|---|---|
 | 设计 | 原理图/PCB/外壳/v0.1 自检可构建 | 未下单、无实物 |
-| 检查 | error ERC/DRC 0；`--skip-route` 幂等 | 全量 warning、制造包丝印不同步、导出门禁可被绕过 |
-| 硬件待决 | USB 0.8 mm 已拍板 | J1.7、升压、LDO、电池料号、模型、BOM 分类 |
-| 固件 | v0.1 能编、bin 可复现 | 深睡 GPIO9、BOOT 入口、刷屏假成功、无 NDEF/FTM |
+| 检查 | H1：error 门禁 fail-closed；候选目录导出；**KiCad 10.0.6 全量 ERC/DRC 0** | 无生产 zip |
+| 硬件 H2 | 脚7 NC、升压第29页、LDO 近端电容、TP4054+202545、Power/NFC 宽度、包络 3D、丝印/parity、U1/J3/Q1 对齐 10.0 | 无实机；候选≠生产 |
+| 固件 | v0.2 源码 F1 已改（GPIO1 唤醒 / 串口 W / BUSY 失败可见）；v0.1 bin 保留 | 无实机；无 NDEF/FTM |
 
 ---
 
-## 2. 必须先问 Wisdom 再动铜皮的项
+## 2. H2 规格项（2026-09-15 已按授权落地）
 
-这些不能靠「NC 接地通常没事」自行改板。讨论材料要写清：**保持现状的影响** vs **按规格改的影响**（是否清布线）。
+原「必须先问再动铜皮」表已执行。USB 0.8 mm、NFC 线圈盖绿油：**已决策，不重开。**
 
-| 编号 | 问题 | 现状 | 两种方向 |
-|---|---|---|---|
-| F06 | 屏脚 7 | 官方第 7 页 NC Keep Open；板上 GND 缝合 | **A** 书面接受偏离（精确屏版本+批准人）；**B** 改 `design.py` 恢复 NC，并改 `apply_extra_gnd_pads`，防后处理再接地 |
-| N01 | 升压与第 29 页不一致 | L1 68 µH vs 47 µH/500 mA；C15 1 µF vs 4.7 µF；GDR 无 1 M 下拉；Q1 型号不同；R14 阻值对、封装功率未锁 | **A** 用现料号给出饱和/DCR/波形依据并接受；**B** 换料（可能动布局，讨论后再说是否 Freerouting） |
-| F07 | LDO 电容 | XC6220 近端 C3=1 µF、C4=2.2 µF，未核有效容值 | **A** 锁具体电容料号+DC bias；**B** 改容值/封装 |
-| F17 | 电池/充电器 | TP4054 与 MCP73831 并列；电芯未锁 | 锁一颗充电器、带 PCM 的电芯、极性、J2；无电池 USB 场景允许失败但要写明 |
-| F05 | 网络类未进工程 | `NET_CLASSES` 声明了 Power/NFC，PCB 只有 Default | 先批准强制最小宽度 vs 首选宽度；**不要**只加分类就声称现板已满足（现板 Power/NFC 有 0.15/0.2 mm 段） |
-
-USB 0.8 mm、NFC 线圈盖绿油：**已决策，本项目不重开。**
+| 编号 | 落地 |
+|---|---|
+| F06 | J1.7 NC Keep Open；`apply_extra_gnd_pads` 禁止再接地 |
+| N01 | L1=47µH FNR4018S470MT；C15=4.7µF/25V；R15=1M；Q1=Si1308EDL；R14=2.2Ω 0603 |
+| F07 | C3=10µF CIN、C4=4.7µF CL |
+| F17 | U3=TP4054；电芯 202545 250mAh 2.0mm PCM |
+| F05 | Power 走线 ≥0.3 mm（GND 以铺铜为电流路径）；NFC 0.5 mm。Freerouting 会收细，`enforce_netclass_widths` 后处理 |
+| F03 | ADR 续航改为待测 |
+| F16 | J3/J2 包络 STEP 在仓库；包络 ≠ 官方 CAD |
 
 ---
 
@@ -47,22 +47,22 @@ USB 0.8 mm、NFC 线圈盖绿油：**已决策，本项目不重开。**
 
 | 编号 | 改哪里 | 注意 |
 |---|---|---|
-| F04 | `hardware/pcb/scripts/export.sh` | 去掉 DRC `\|\| true`；ERC/DRC **违规**和**命令失败**都要非零退出；失败不得写看似可下单的包 |
-| F19 | `route_pcb.py::drc_json` | 命令返回 5 时禁止读旧空报告当 PASS |
-| F18 / N02 | 制造包流程 | **新建目录/新 zip**，禁止原地更新旧 zip；门禁过后再导出；必须含 **当前** `badge-B_Silkscreen.gbr`（r2 已证实与旧包坐标不同） |
-| F15 | BOM/位置 | 工程 BOM 可留 ANT1/TP；另出贴装 BOM，C11 DNP 策略写死 |
-| F16（模型） | 补 `lib/3d/TYPE-C-31-M-14.step`；核 J2 官方库路径 | STEP 返回 0 **不能**当模型齐全；缺模型要阻断发布 |
+| F04 | `hardware/pcb/scripts/export.sh` | **已实现门禁**：去掉 DRC `\|\| true`；`--exit-code-violations`；失败非零；失败不写 zip。`--production` 直接拒绝 |
+| F19 | `route_pcb.py::drc_json` | **已实现**：每次新文件；rc 非 0/5 或无新报告则抛错，不读旧 `drc_tmp.json` |
+| F18 / N02 | 制造包流程 | **已实现候选流**：`output/exports/<stamp>-candidate/` 新目录+新 zip；不碰 `output/gerbers` 与旧 zip。**不是生产发布** |
+| F15 | BOM/位置 | **已实现分类**：`badge_bom_engineering.csv` / `badge_bom_assembly.csv`；C11 首件 DNP |
+| F16（模型） | `lib/3d/README.md` + `check_3d_models.py` | **H2 包络 STEP 已就位**（≠ 官方 CAD）。`--fail-missing` 0。STEP rc=0 ≠ 装配覆盖 |
 
-**本机验收（无板）：** `fault_probes` 在修完后必须改断言：DRC 失败不得走到 Gerber；旧报告注入必须失败。再用新隔离目录跑 `tools/review`，全量 warning 列表进豁免表（类型、对象、理由、批准人、失效条件），不能默认吞掉。
+**本机验收（无板）：** `fault_probes` 断言已改为 fail-closed。全量 warning 进 [drc-warning-register.md](hardware/drc-warning-register.md)，**全部未豁免**。H2/H3 提问见 [08-h2-h3-questions.md](08-h2-h3-questions.md)。
 
-### 工作包 H2 — 规格冻结后的原理图/BOM（可能改 `design.py`，尽量不重布）
+H1 关闭范围：检查/导出**流程**。H2 规格已落地。仍不关闭「可下生产 Gerber」。
 
-仅在第 2 节讨论出结论后执行。入口永远是 `design.py`，再 `gen_schematic.py`。不要手改 `.kicad_sch`。
+### 工作包 H2 — 规格冻结后的原理图/BOM（**已执行 2026-09-15**）
 
-- 只改阻焊/丝印/文档：**不要** `gen_pcb.py`。
-- 改网络/焊盘/板框：先备份当前 `badge.kicad_pcb` 与布线指纹 `2d96f275…`，再决定是否 Freerouting。
-- 后处理之后核对：设计网络、原理图网络、PCB 焊盘，不能只看 error DRC。
-- 全量 148 条 warning 里，真实丝印：D3 参考被阻焊截、Q2 轮廓叠 D3 字、过小文字。若本包顺手修丝印，只动丝印坐标，仍禁止 Freerouting。
+入口 `design.py` → `gen_schematic.py` → 备份旧板 → `gen_pcb.py` → Freerouting → 缝合 → 宽度后处理。不要手改 `.kicad_sch`。
+
+- 当前板 680/115。KiCad 10.0.6 全量 ERC/DRC 0。旧指纹 `2d96f275…` 的板在 `agent-tools/badge-pre-h2.kicad_pcb`。
+- 丝印与 schematic_parity 已在活板清零。禁止为丝印再 Freerouting。
 
 ### 工作包 H3 — 不改电路、但要登记的硬件债
 
@@ -70,7 +70,7 @@ USB 0.8 mm、NFC 线圈盖绿油：**已决策，本项目不重开。**
 |---|---|---|
 | F13 | 追 USB D+/D− 端到端和回流，写审查笔记 | 不要用网络总长当差分失配；未批准不要重布 USB |
 | F14 | C11 DNP/实装调谐表 | 不要为了 3D 好看重开线圈阻焊 |
-| F03 硬件侧 | ADR/BOM 里「13 µA / 两年」改为待测 | 未测电流不要改成新的虚假续航数字 |
+| F03 硬件侧 | ADR 已改为待测 | 未测电流不要编新的虚假续航数字 |
 
 外壳 FPC/胶/真电池包络：有板再测，H 阶段只补模型与文档，不宣称装配通过。
 
@@ -84,10 +84,10 @@ USB 0.8 mm、NFC 线圈盖绿油：**已决策，本项目不重开。**
 
 | 编号 | 文件 | 怎么修 | 注意 |
 |---|---|---|---|
-| F01 | `firmware/src/main.cpp::go_sleep` | 深睡 mask **不要 GPIO9**（本机构建 IDF 4.4.7 只允许 GPIO0–5）；检查 `esp_deep_sleep_enable_gpio_wakeup` 返回值，失败不准打印「可用 BOOT 唤醒」 | GPIO9 是 strap；按住 BOOT+复位是 ROM 下载，不能当应用自检 |
-| F02 | `setup` + `firmware/README.md` | 正常启动后用串口命令或明确时间窗做刷白；与烧录入口分开 | 冷启动 / RESET / 烧录后三种都要可重复 |
-| F09 | `firmware/src/epd.cpp` | 上电/刷新/关电等待都要进返回值；日志带阶段名 | 第 31 页 OTP 命令本身与规格一致，不要整段推翻；假成功已在 r2 的 20 用例里复现 |
-| F12 | `main.cpp` 状态 | 任何失败路径关掉屏电源（`EPD_PWR_EN`） | 无板只能查代码路径；反灌/hold 要实机 |
+| F01 | `firmware/src/main.cpp::go_sleep` | **已改**：mask 仅 GPIO1；检查返回值 | 无实机 100 次 GPO 唤醒 |
+| F02 | `setup` + `firmware/README.md` | **已改**：USB 就绪后 5 s 内发 `W`；BOOT+RESET = ROM 下载 | 冷启动/RESET/烧录后未实机复测 |
+| F09 | `firmware/src/epd.cpp` | **已改**：BUSY 须 LOW→HIGH；上电/刷新/关电进返回值；`last_fail` 阶段名 | 第 31 页 OTP 未推翻；实屏时序未测 |
+| F12 | `main.cpp` 状态 | 失败路径仍 `power_off()` 拉高 `EPD_PWR_EN` | 反灌/hold 要实机 |
 
 本包 **不要** 同时做 NDEF、FTM、BLE、工牌 UI。
 
@@ -159,7 +159,7 @@ docs/reviews/2026-09-14/local-review.md 第 4 节、docs/reviews/2026-09-14-r2/r
 
 ## 7. 建议的检查点
 
-1. H1 合入后：导出门禁故障路径变绿（按新断言），仍无生产 zip。
+1. H1 本机：`fault_probes` 按新断言绿（旧 DRC 注入失败；ERC/DRC 失败不到 Gerber）。`export.sh --check-only` error ERC/DRC 0、网表匹配。候选目录已能出当前 B.Silk，**仍无生产 zip**。
 2. Wisdom 书面回复 F06/N01/F07/F17。
 3. 若有铜皮变更：单独提交，带旧板指纹与是否 Freerouting 的说明。
 4. 再开 F1 固件会话。

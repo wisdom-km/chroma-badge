@@ -2,12 +2,18 @@
 import os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import design as D
-HERE = os.path.dirname(os.path.abspath(__file__))
+HERE = os.path.dirname(__file__)
 t = open(os.path.join(HERE, "..", "output", "badge.net")).read()
 sch = {}
-for m in re.finditer(r'\(net \(code "\d+"\) \(name "([^"]+)"\)[^\n]*\n((?:\s*\(node[^\n]*\n?)+)', t):
-    name, nodes = m.group(1), m.group(2)
-    sch[name.lstrip('/')] = set(re.findall(r'\(ref "([^"]+)"\) \(pin "([^"]+)"\)', nodes))
+# KiCad 9: (net (code "1") (name "GND") ... on one line
+# KiCad 10: (net\n  (code "1")\n  (name "+3V3")\n  (node\n    (ref "C4") ...
+net_re = re.compile(
+    r'\(\s*net\s*\(\s*code\s+"\d+"\s*\)\s*\(\s*name\s+"([^"]+)"\s*\)(.*?)(?=\(\s*net\s*\(\s*code|\Z)',
+    re.S,
+)
+for m in net_re.finditer(t):
+    name, body = m.group(1), m.group(2)
+    sch[name.lstrip('/')] = set(re.findall(r'\(\s*ref\s+"([^"]+)"\s*\)\s*\(\s*pin\s+"([^"]+)"\s*\)', body))
 des = {n: set(p) for n, p in D.all_nets().items()}
 bad = 0
 for n, p in des.items():

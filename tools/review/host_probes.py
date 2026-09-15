@@ -1,4 +1,4 @@
-"""Compile and characterize unchanged epd.cpp on a native C++ compiler."""
+"""Compile firmware epd.cpp against host I/O stubs. Success only on a normal BUSY cycle."""
 import argparse
 import json
 import os
@@ -25,9 +25,9 @@ for scenario in ['normal','always-high','always-low','poweroff-timeout','refresh
         row=json.loads(subprocess.check_output([str(exe),scenario,str(color)],env=env))
         rows.append(row)
         assert row['rail_off'], row
-        if scenario!='always-low':
+        if scenario in ('normal', 'refresh-timeout', 'poweroff-timeout'):
             assert row['frame_bytes']==30000 and row['pixels_match'], row
-        expected=scenario in ['normal','always-high','poweroff-timeout']
+        expected = scenario == 'normal'
         assert row['reported_success']==expected, row
 (out/'epd-probes.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
-print('20 characterization cases passed; known false-success defects remain reproduced.')
+print('20 host cases passed; BUSY stuck-high / power-off timeout no longer report success.')

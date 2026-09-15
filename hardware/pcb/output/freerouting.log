@@ -1,62 +1,53 @@
-2026-09-13 17:25:26.191 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
-2026-09-13 17:25:26.225 WARN   [startup] freerouting.json contains a stale 'logging.file.location' value: '/workspace/hardware/pcb/output/en/freerouting.log'. The actual log file is being written to '/home/ubuntu/.local/state/freerouting/logs/freerouting.log' (as resolved at startup). The stale value will be corrected in freerouting.json on next save. If you see this in Docker, the old JSON was written by an earlier version that stored the host path; the fix is to delete freerouting.json so it is regenerated with the correct path.
-2026-09-13 17:25:26.226 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.
-2026-09-13 17:25:27.664 INFO   [20C897\E49FF7] Loading board file 'badge.dsn'...
-2026-09-13 17:25:27.759 INFO   [20C897\E49FF7] Job '20C897\E49FF7' started at 2026-09-13T17:25:27.759662133Z.
-2026-09-13 17:25:28.308 INFO   [20C897\E49FF7] Fanout stage started on board 'd73310413579c2885ce8f7b7429c6121' with 131 of 227 SMD pins needing fanout (70 already connected, 26 netless).
-2026-09-13 17:25:31.252 INFO   [20C897\E49FF7] Fanout pass #1 on board 'd5de9d48f9622b0d169b055f94e6c881' completed in 2.57 seconds with 126 SMD pins fanouted, 0 not routed, 0 insert errors, +77 extra vias (0 SMD pins still to check in pass, ripup costs=100).
-2026-09-13 17:25:32.717 INFO   [20C897\E49FF7] Fanout pass #2 on board 'ae93cb28a611e9928103af1ebb6a19d3' completed in 1.45 seconds with 9 SMD pins fanouted, 0 not routed, 0 insert errors, +5 extra vias (0 SMD pins still to check in pass, ripup costs=200).
-2026-09-13 17:25:34.086 INFO   [20C897\E49FF7] Fanout pass #3 on board 'a7db942b1087546b0c76f6b55314c183' completed in 1.36 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=300).
-2026-09-13 17:25:35.437 INFO   [20C897\E49FF7] Fanout pass #4 on board '1e5e520deec5eed0b8cd574fbc9409ca' completed in 1.34 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
-2026-09-13 17:25:36.816 INFO   [20C897\E49FF7] Fanout pass #5 on board '74c580b80cbe95f03ffcc49f3f39a120' completed in 1.37 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
-2026-09-13 17:25:38.180 INFO   [20C897\E49FF7] Fanout pass #6 on board '0efc5cbac655e01d8d742e9201f81942' completed in 1.35 seconds with 2 SMD pins fanouted, 0 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=600).
-2026-09-13 17:25:38.181 INFO   Fanout stopped after 6 passes: no progress for 3 consecutive passes.
-2026-09-13 17:25:38.521 INFO   [20C897\E49FF7] Fanout stage completed: started with 201 total SMD pins, completed in 9.86 seconds, escaped pins: 199/201 (99.0%), using 10.42 total CPU seconds, 58.70 GB total allocated, and 688.4 MB peak heap usage.
-2026-09-13 17:25:38.536 INFO   [20C897\E49FF7] Auto-routing stage started on board '0efc5cbac655e01d8d742e9201f81942' for 49 unrouted items.
-2026-09-13 17:25:48.535 INFO   [20C897\E49FF7] Auto-routing pass #1 on board '0efc5cbac655e01d8d742e9201f81942' was completed in 9.26 seconds with score 855.94 (21 unrouted and 16 violations), using 19.56 CPU seconds and the job allocated 107.94 GB of memory so far.
-2026-09-13 17:25:55.532 INFO   [20C897\E49FF7] Auto-routing pass #2 on board 'c9dca1205da4eed2c23754f990434f23' was completed in 6.26 seconds with score 885.71 (16 unrouted and 16 violations), using 26.44 CPU seconds and the job allocated 143.92 GB of memory so far.
-2026-09-13 17:26:02.180 INFO   [20C897\E49FF7] Auto-routing pass #3 on board '36c2c7abd48276a04b5a7c65c8516cc5' was completed in 5.89 seconds with score 927.37 (9 unrouted and 16 violations), using 33.33 CPU seconds and the job allocated 178.99 GB of memory so far.
-2026-09-13 17:26:06.682 INFO   [20C897\E49FF7] Auto-routing pass #4 on board '0a1c261ef2ca49ac364f11ce55e69885' was completed in 3.73 seconds with score 945.23 (6 unrouted and 16 violations), using 37.27 CPU seconds and the job allocated 199.03 GB of memory so far.
-2026-09-13 17:26:11.508 INFO   [20C897\E49FF7] Auto-routing pass #5 on board 'fe256e37728fbb94b376e2d16d0fb455' was completed in 4.05 seconds with score 945.23 (6 unrouted and 16 violations), using 42.18 CPU seconds and the job allocated 224.70 GB of memory so far.
-2026-09-13 17:26:16.136 INFO   [20C897\E49FF7] Auto-routing pass #6 on board '7e0357c5615c3f9b99424212594670ca' was completed in 3.82 seconds with score 951.18 (5 unrouted and 16 violations), using 47.09 CPU seconds and the job allocated 250.19 GB of memory so far.
-2026-09-13 17:26:20.730 INFO   [20C897\E49FF7] Auto-routing pass #7 on board '229ba8846aced9350b153e9084f452a6' was completed in 3.80 seconds with score 951.18 (5 unrouted and 16 violations), using 51.02 CPU seconds and the job allocated 269.82 GB of memory so far.
-2026-09-13 17:26:25.388 INFO   [20C897\E49FF7] Auto-routing pass #8 on board 'ff98dfde6275825ac08d62153f510a8c' was completed in 3.88 seconds with score 963.08 (3 unrouted and 16 violations), using 55.93 CPU seconds and the job allocated 295.22 GB of memory so far.
-2026-09-13 17:26:29.127 INFO   [20C897\E49FF7] Auto-routing pass #9 on board 'e3b62895f46ac58e1151d267d97f61c4' was completed in 2.94 seconds with score 963.08 (3 unrouted and 16 violations), using 59.86 CPU seconds and the job allocated 315.27 GB of memory so far.
-2026-09-13 17:26:32.784 INFO   [20C897\E49FF7] Auto-routing pass #10 on board '245c084e20ad4134be1303d670732bc4' was completed in 2.86 seconds with score 963.08 (3 unrouted and 16 violations), using 62.81 CPU seconds and the job allocated 330.07 GB of memory so far.
-2026-09-13 17:26:36.460 INFO   [20C897\E49FF7] Auto-routing pass #11 on board 'd530c5e6dc14dd0232662ba1065b0b86' was completed in 2.83 seconds with score 969.04 (2 unrouted and 16 violations), using 66.73 CPU seconds and the job allocated 350.18 GB of memory so far.
-2026-09-13 17:26:39.979 INFO   [20C897\E49FF7] Auto-routing pass #12 on board '69bc660d508e5bb29c7abca62d3c88c7' was completed in 2.72 seconds with score 969.04 (2 unrouted and 16 violations), using 70.66 CPU seconds and the job allocated 370.73 GB of memory so far.
-2026-09-13 17:26:43.519 INFO   [20C897\E49FF7] Auto-routing pass #13 on board '37b0a6c3dd33a7c71f51d0a6b90f0843' was completed in 2.74 seconds with score 969.04 (2 unrouted and 16 violations), using 73.61 CPU seconds and the job allocated 385.33 GB of memory so far.
-2026-09-13 17:26:47.071 INFO   [20C897\E49FF7] Auto-routing pass #14 on board '1ba075a13f3b201beef75640056c2507' was completed in 2.71 seconds with score 969.04 (2 unrouted and 16 violations), using 77.53 CPU seconds and the job allocated 405.73 GB of memory so far.
-2026-09-13 17:26:50.762 INFO   [20C897\E49FF7] Auto-routing pass #15 on board 'b94809a96d413ab9244c49abd510f686' was completed in 2.48 seconds with score 969.04 (2 unrouted and 16 violations), using 80.48 CPU seconds and the job allocated 421.09 GB of memory so far.
-2026-09-13 17:26:53.930 INFO   [20C897\E49FF7] Auto-routing pass #16 on board 'c6d820f2348cf942afaf746f25ccc229' was completed in 2.39 seconds with score 974.99 (1 unrouted and 16 violations), using 84.40 CPU seconds and the job allocated 442.46 GB of memory so far.
-2026-09-13 17:26:56.848 INFO   [20C897\E49FF7] Auto-routing pass #17 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.13 seconds with score 974.99 (1 unrouted and 16 violations), using 87.35 CPU seconds and the job allocated 458.21 GB of memory so far.
-2026-09-13 17:26:59.386 INFO   [20C897\E49FF7] Auto-routing pass #18 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.13 seconds with score 974.99 (1 unrouted and 16 violations), using 89.32 CPU seconds and the job allocated 468.10 GB of memory so far.
-2026-09-13 17:27:01.929 INFO   [20C897\E49FF7] Auto-routing pass #19 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.14 seconds with score 974.99 (1 unrouted and 16 violations), using 92.27 CPU seconds and the job allocated 483.77 GB of memory so far.
-2026-09-13 17:27:04.456 INFO   [20C897\E49FF7] Auto-routing pass #20 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.12 seconds with score 974.99 (1 unrouted and 16 violations), using 94.24 CPU seconds and the job allocated 493.73 GB of memory so far.
-2026-09-13 17:27:06.987 INFO   [20C897\E49FF7] Auto-routing pass #21 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.13 seconds with score 974.99 (1 unrouted and 16 violations), using 97.19 CPU seconds and the job allocated 509.44 GB of memory so far.
-2026-09-13 17:27:09.497 INFO   [20C897\E49FF7] Auto-routing pass #22 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.11 seconds with score 974.99 (1 unrouted and 16 violations), using 99.15 CPU seconds and the job allocated 519.48 GB of memory so far.
-2026-09-13 17:27:12.032 INFO   [20C897\E49FF7] Auto-routing pass #23 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.13 seconds with score 974.99 (1 unrouted and 16 violations), using 102.10 CPU seconds and the job allocated 535.16 GB of memory so far.
-2026-09-13 17:27:14.537 INFO   [20C897\E49FF7] Auto-routing pass #24 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.10 seconds with score 974.99 (1 unrouted and 16 violations), using 104.07 CPU seconds and the job allocated 545.22 GB of memory so far.
-2026-09-13 17:27:17.045 INFO   [20C897\E49FF7] Auto-routing pass #25 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.11 seconds with score 974.99 (1 unrouted and 16 violations), using 107.02 CPU seconds and the job allocated 561.03 GB of memory so far.
-2026-09-13 17:27:19.570 INFO   [20C897\E49FF7] Auto-routing pass #26 on board 'c8e0b3e5d65904097397606826d63b12' was completed in 2.11 seconds with score 974.99 (1 unrouted and 16 violations), using 108.99 CPU seconds and the job allocated 570.99 GB of memory so far.
-2026-09-13 17:27:19.600 INFO   [20C897\E49FF7] The router's score (974.99) has not improved by more than 0.5 points in the last 10 passes (1 item still unconnected). Stopping the auto-router.
+2026-09-15 00:54:52.119 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-09-15 00:54:53.597 INFO   Opening 'badge.dsn'...
+2026-09-15 00:54:54.081 INFO   [76EA1A\55F789] Loading board file 'badge.dsn'...
+2026-09-15 00:54:59.398 INFO   [76EA1A\55F789] Starting routing of 'badge' on 1 thread...
+2026-09-15 00:54:59.472 INFO   [76EA1A\55F789] Fanout stage started on board 'ffc5e1f3da6c5c6d7279f2f0ba204a1f' with 203 of 229 SMD pins needing fanout (0 already connected, 26 netless).
+2026-09-15 00:55:04.874 INFO   [76EA1A\55F789] Fanout pass #1 on board '5fcf182ba4e79d2df3df69a343f74df2' completed in 5.37 seconds with 189 SMD pins fanouted, 5 not routed, 0 insert errors, +77 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-09-15 00:55:06.630 INFO   [76EA1A\55F789] Fanout pass #2 on board '12fa860f42be891466664127d619554f' completed in 1.74 seconds with 29 SMD pins fanouted, 8 not routed, 0 insert errors, +14 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-09-15 00:55:07.214 INFO   [76EA1A\55F789] Fanout pass #3 on board '106843370cc9fcac0f4d49988f4e3b4f' completed in 0.57 seconds with 7 SMD pins fanouted, 6 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-09-15 00:55:07.613 INFO   [76EA1A\55F789] Fanout pass #4 on board '38206bc74909982f6de9130a588e6678' completed in 0.39 seconds with 2 SMD pins fanouted, 7 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-09-15 00:55:08.028 INFO   [76EA1A\55F789] Fanout pass #5 on board 'bcfca135d61ad98a605c63b2292731f1' completed in 0.40 seconds with 1 SMD pin fanouted, 7 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=500).
+2026-09-15 00:55:08.372 INFO   [76EA1A\55F789] Fanout pass #6 on board 'bcfca135d61ad98a605c63b2292731f1' completed in 0.34 seconds with 0 SMD pins fanouted, 7 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=600).
+2026-09-15 00:55:08.449 INFO   [76EA1A\55F789] Fanout stage completed: started with 203 total SMD pins, completed in 8.96 seconds, escaped pins: 199/203 (98.0%), using 8.63 total CPU seconds, 38.17 GB total allocated, and 480.9 MB peak heap usage.
+2026-09-15 00:55:08.466 INFO   [76EA1A\55F789] Auto-routing stage started on board 'bcfca135d61ad98a605c63b2292731f1' for 69 unrouted items.
+2026-09-15 00:55:20.089 INFO   [76EA1A\55F789] Auto-routing pass #1 on board 'bcfca135d61ad98a605c63b2292731f1' was completed in 11.41 seconds with score 814.28 (28 unrouted and 16 violations), using 19.19 CPU seconds and the job allocated 93.25 GB of memory so far.
+2026-09-15 00:55:27.555 INFO   [76EA1A\55F789] Auto-routing pass #2 on board '24483bfc95267a243ad60e9ee9a5a335' was completed in 7.16 seconds with score 873.80 (18 unrouted and 16 violations), using 26.89 CPU seconds and the job allocated 133.49 GB of memory so far.
+2026-09-15 00:55:32.553 INFO   [76EA1A\55F789] Auto-routing pass #3 on board '1167358ef2037f202b9081ebb34bb7d5' was completed in 4.71 seconds with score 885.70 (16 unrouted and 16 violations), using 31.80 CPU seconds and the job allocated 158.64 GB of memory so far.
+2026-09-15 00:55:37.429 INFO   [76EA1A\55F789] Auto-routing pass #4 on board '6e18698b6fd531ad326bbb7d67a74433' was completed in 4.51 seconds with score 909.51 (12 unrouted and 16 violations), using 35.69 CPU seconds and the job allocated 177.37 GB of memory so far.
+2026-09-15 00:55:42.919 INFO   [76EA1A\55F789] Auto-routing pass #5 on board 'f1d7c7ecb0ed861e6200d8596d5b9125' was completed in 5.03 seconds with score 915.47 (11 unrouted and 16 violations), using 41.50 CPU seconds and the job allocated 199.74 GB of memory so far.
+2026-09-15 00:55:46.729 INFO   [76EA1A\55F789] Auto-routing pass #6 on board '67dc9c197c5f140c1d6b62df21fc6600' was completed in 3.39 seconds with score 921.42 (10 unrouted and 16 violations), using 45.39 CPU seconds and the job allocated 217.05 GB of memory so far.
+2026-09-15 00:55:50.167 INFO   [76EA1A\55F789] Auto-routing pass #7 on board '53fe4a562153174567af401994b7ea6e' was completed in 3.00 seconds with score 927.37 (9 unrouted and 16 violations), using 48.31 CPU seconds and the job allocated 230.13 GB of memory so far.
+2026-09-15 00:55:53.244 INFO   [76EA1A\55F789] Auto-routing pass #8 on board '6943f316def0915c6e38b3bb78d8ee13' was completed in 2.63 seconds with score 927.37 (9 unrouted and 16 violations), using 51.20 CPU seconds and the job allocated 243.98 GB of memory so far.
+2026-09-15 00:55:56.253 INFO   [76EA1A\55F789] Auto-routing pass #9 on board '67c242475b8e551ed92c1bb93c9053b8' was completed in 2.57 seconds with score 927.37 (9 unrouted and 16 violations), using 54.09 CPU seconds and the job allocated 259.05 GB of memory so far.
+2026-09-15 00:55:59.259 INFO   [76EA1A\55F789] Auto-routing pass #10 on board '2c820562ee6ffcd9f7d76949f9b05bce' was completed in 2.62 seconds with score 927.37 (9 unrouted and 16 violations), using 57.06 CPU seconds and the job allocated 273.99 GB of memory so far.
+2026-09-15 00:56:02.423 INFO   [76EA1A\55F789] Auto-routing pass #11 on board 'be5969d77a45bdb3db79b0abc2b1102f' was completed in 2.76 seconds with score 927.37 (9 unrouted and 16 violations), using 59.98 CPU seconds and the job allocated 288.13 GB of memory so far.
+2026-09-15 00:56:05.562 INFO   [76EA1A\55F789] Auto-routing pass #12 on board '8986eb6c299769719bfabf53bb86ddbc' was completed in 2.47 seconds with score 927.37 (9 unrouted and 16 violations), using 63.97 CPU seconds and the job allocated 308.69 GB of memory so far.
+2026-09-15 00:56:08.417 INFO   [76EA1A\55F789] Auto-routing pass #13 on board '3e754084dc9a01d43a8c0f5887627091' was completed in 2.50 seconds with score 927.37 (9 unrouted and 16 violations), using 65.94 CPU seconds and the job allocated 318.46 GB of memory so far.
+2026-09-15 00:56:11.256 INFO   [76EA1A\55F789] Auto-routing pass #14 on board '3699d5075eef06b54740258bc91cd83b' was completed in 2.45 seconds with score 927.37 (9 unrouted and 16 violations), using 68.92 CPU seconds and the job allocated 333.12 GB of memory so far.
+2026-09-15 00:56:14.263 INFO   [76EA1A\55F789] Auto-routing pass #15 on board '414239fd377bd34aad2359756d1dfbf0' was completed in 2.57 seconds with score 927.37 (9 unrouted and 16 violations), using 71.86 CPU seconds and the job allocated 347.57 GB of memory so far.
+2026-09-15 00:56:17.311 INFO   [76EA1A\55F789] Auto-routing pass #16 on board '61dfcf72cdb7560297d581b8f48b1dae' was completed in 2.66 seconds with score 927.37 (9 unrouted and 16 violations), using 74.73 CPU seconds and the job allocated 362.19 GB of memory so far.
+2026-09-15 00:56:20.128 INFO   [76EA1A\55F789] Auto-routing pass #17 on board 'c0f8d371e9bdb21ba091ae4398c89bc3' was completed in 2.44 seconds with score 927.37 (9 unrouted and 16 violations), using 77.67 CPU seconds and the job allocated 377.05 GB of memory so far.
+2026-09-15 00:56:23.009 INFO   [76EA1A\55F789] Auto-routing pass #18 on board '27af0758dcc28b4fcbb84771e4e59b62' was completed in 2.52 seconds with score 927.37 (9 unrouted and 16 violations), using 80.58 CPU seconds and the job allocated 392.07 GB of memory so far.
+2026-09-15 00:56:23.048 INFO   [76EA1A\55F789] The router's best score (927.37) has not improved by more than 0.5 points since pass #8. Stopping the auto-router after 18 passes (9 items still unconnected).
 The following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):
+  Net 'GND' (8 unrouted connections):
+    - R1-2  ->  J3-S1@3
+    - J3-S1@3  ->  J3-A12
+    - J3-S1@1  ->  J3-A1
+    - J3-S1@1  ->  R2-2
+    - R2-2  ->  J3-S1
+    - J3-B12  ->  R3-2
+    - J1-17  ->  J1-8
+    - J3-S1@2  ->  J3-S1
   Net 'NFC_AC1' (1 unrouted connection):
-    - ANT1-2@1  ->  ANT1-2@2
-2026-09-13 17:27:20.394 INFO   [20C897\E49FF7] Auto-routing stage completed: started with 92 unrouted nets, completed in 112.19 seconds, final score: 974.99 (1 unrouted and 16 violations), using 109.98 total CPU seconds, 576.78 GB total allocated, and 721.0 MB peak heap usage.
-2026-09-13 17:27:20.788 INFO   [20C897\E49FF7] Optimization stage started on board 'c8e0b3e5d65904097397606826d63b12' with score 974.99 (1 unrouted and 16 violations).
-2026-09-13 17:28:00.346 INFO   [20C897\E49FF7] Stopping optimization pass #1 early after 50 consecutive items could not be improved.
-2026-09-13 17:28:00.736 INFO   [20C897\E49FF7] Optimizer pass #1 on board 'ab799e310ac778f5371e76aaa661290a' was completed in 38.76 seconds with the score of 974.99 (1 unrouted and 16 violations).
-2026-09-13 17:28:01.116 INFO   [20C897\E49FF7] Stopping optimizer because the improvement in this pass (0.0000%) is below the threshold (1.00%).
-2026-09-13 17:28:01.516 INFO   [20C897\E49FF7] Optimization stage completed: started with score 974.99 (1 unrouted and 16 violations), completed in 40.33 seconds, final score: 974.99 (1 unrouted and 16 violations), using 39.81 total CPU seconds, 236.02 GB total allocated, and 545.4 MB peak heap usage.
-2026-09-13 17:28:01.525 INFO   [20C897\E49FF7] Job '20C897\E49FF7' finished with state: COMPLETED (elapsed: 2 minutes 33.76 seconds, finished at UTC: 2026-09-13T17:28:01.524254586Z).
-2026-09-13 17:28:01.526 INFO   Saving output file '/workspace/hardware/pcb/output/badge.ses' (SES)...
-2026-09-13 17:28:01.528 INFO   Successfully saved output file '/workspace/hardware/pcb/output/badge.ses' (44823 bytes).
-
-╔══════════════════════════════════════════════════════════════════╗
-║           Thank you for using Freerouting!                       ║
-║                                                                  ║
-║  If you would like to support the project, please visit          ║
-║  https://www.freerouting.app/donate.html                         ║
-║  Every contribution helps keep this project open and active!     ║
-╚══════════════════════════════════════════════════════════════════╝
+    - ANT1-2  ->  ANT1-2@2
+2026-09-15 00:56:23.430 INFO   [76EA1A\55F789] Auto-routing stage completed: started with 163 unrouted nets, completed in 84.03 seconds, final score: 927.37 (9 unrouted and 16 violations), using 80.58 total CPU seconds, 392.07 GB total allocated, and 614.5 MB peak heap usage.
+2026-09-15 00:56:23.533 INFO   [76EA1A\55F789] Starting optimization on 1 thread...
+2026-09-15 00:56:23.718 INFO   [76EA1A\55F789] Optimization stage started on board '0aefbb4979d598ad3bc683422f1ea1a8' with score 927.37 (9 unrouted and 16 violations).
+2026-09-15 00:56:42.679 INFO   [76EA1A\55F789] Stopping optimization pass #1 early after 50 consecutive items could not be improved.
+2026-09-15 00:56:42.872 INFO   [76EA1A\55F789] Optimizer pass #1 on board '1f84e68392b277324516c98cb293d188' was completed in 18.60 seconds with the score of 927.37 (9 unrouted and 16 violations).
+2026-09-15 00:56:43.044 INFO   [76EA1A\55F789] Stopping optimizer because the improvement in this pass (0.0000%) is below the threshold (1.00%).
+2026-09-15 00:56:43.221 INFO   [76EA1A\55F789] Optimization stage completed: started with score 927.37 (9 unrouted and 16 violations), completed in 19.33 seconds, final score: 927.37 (9 unrouted and 16 violations), using 18.73 total CPU seconds, 118.97 GB total allocated, and 453.8 MB peak heap usage.
+2026-09-15 00:56:43.402 INFO   [76EA1A\55F789] Optimization was completed in 19.87 seconds with the score of 927.37 (9 unrouted and 16 violations).
+2026-09-15 00:56:43.816 INFO   Saving 'badge.ses'...

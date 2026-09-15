@@ -30,7 +30,7 @@ def _props(sym):
     return {it[1]: it for it in sym if isinstance(it, list) and it and it[0] == Sym("property")}
 
 
-def resolve_symbol(tree, name, new_name):
+def resolve_symbol(tree, name, new_name, strip_v10=True):
     """Return a deep-copied symbol definition renamed to new_name with `extends` flattened."""
     import copy
     sym = copy.deepcopy(find_symbol(tree, name))
@@ -53,7 +53,7 @@ def resolve_symbol(tree, name, new_name):
     # In .kicad_sch lib_symbols the top-level name carries the "Lib:" prefix but
     # the nested unit symbols keep their bare "Name_0_1" names.
     sym[1] = new_name
-    return strip_v10_tokens(sym)
+    return strip_v10_tokens(sym) if strip_v10 else sym
 
 
 # Tokens introduced by the KiCad 10 library format that KiCad 9 refuses to parse.

@@ -31,9 +31,11 @@ SYM_LIBS = {
     "RF_NFC": f"{D.KICAD_SYM}/RF_NFC.kicad_sym",
     "power": f"{D.KICAD_SYM}/power.kicad_sym",
     "Espressif": os.path.join(PCB_DIR, D.ESPRESSIF_SYM),
+    "Badge": os.path.join(PCB_DIR, "lib", "badge.kicad_sym"),
 }
 
 GRID = 1.27
+STRIP_V10 = "10.0" not in D.KICAD_SYM.replace("\\", "/")
 
 
 def snap(v):
@@ -57,7 +59,7 @@ class Sheet:
         key = f"{lib}:{name}"
         if key not in self.lib_symbols:
             tree = K.lib_tree(SYM_LIBS[lib])
-            self.lib_symbols[key] = K.resolve_symbol(tree, name, key)
+            self.lib_symbols[key] = K.resolve_symbol(tree, name, key, strip_v10=STRIP_V10)
         return self.lib_symbols[key]
 
     def place_symbol(self, part, x, y, sym_def):
@@ -68,16 +70,17 @@ class Sheet:
         bottom = y - min(pys) + 2.54
         s = []
         s.append(f'  (symbol (lib_id {q(f"{part.lib}:{part.symbol}")}) (at {x} {y} 0) (unit 1)')
-        s.append(f'    (exclude_from_sim no) (in_bom {"no" if part.dnp else "yes"}) (on_board yes) (dnp {"yes" if part.dnp else "no"})')
+        s.append(f'    (exclude_from_sim no) (in_bom {"no" if D.exclude_from_bom(part) else "yes"}) (on_board yes) (dnp {"yes" if part.dnp else "no"})')
         s.append(f'    (uuid {q(uuid.uuid4())})')
         s.append(f'    (property "Reference" {q(part.ref)} (at {x} {snap(top)} 0) (effects (font (size 1.27 1.27))))')
         s.append(f'    (property "Value" {q(part.value)} (at {x} {snap(bottom)} 0) (effects (font (size 1.27 1.27))))')
-        s.append(f'    (property "Footprint" {q(part.footprint)} (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
-        s.append(f'    (property "Datasheet" "~" (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
+        s.append(f'    (property "Footprint" {q(D.board_footprint_id(part))} (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
+        s.append(f'    (property "Datasheet" "" (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
         s.append(f'    (property "Description" {q(part.desc)} (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
-        if part.lcsc:
-            s.append(f'    (property "LCSC" {q(part.lcsc)} (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
+        s.append(f'    (property "LCSC" {q(part.lcsc)} (at {x} {y} 0) (effects (font (size 1.27 1.27)) (hide yes)))')
         for p in pins:
+            if p["number"] in part.omit_pins:
+                continue
             s.append(f'    (pin {q(p["number"])} (uuid {q(uuid.uuid4())}))')
         s.append(f'    (instances (project {q(PROJECT)} (path {q("/" + ROOT_UUID)} (reference {q(part.ref)}) (unit 1))))')
         s.append('  )')
@@ -86,6 +89,8 @@ class Sheet:
         # labels / no-connects at pin ends
         seen_pos = set()
         for p in pins:
+            if p["number"] in part.omit_pins:
+                continue
             px, py = snap(x + p["x"]), snap(y - p["y"])
             net = part.pins.get(p["number"])
             if net:
@@ -173,7 +178,7 @@ def main():
 
     paper = "A1"
     out = []
-    out.append('(kicad_sch (version 20250114) (generator "badge_gen") (generator_version "9.0")')
+    out.append(f'(kicad_sch (version 20250114) (generator "badge_gen") (generator_version {"10.0" if not STRIP_V10 else "9.0"})')
     out.append(f'  (uuid {q(ROOT_UUID)})')
     out.append(f'  (paper {q(paper)})')
     out.append('  (title_block')

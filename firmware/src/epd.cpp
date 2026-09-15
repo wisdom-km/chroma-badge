@@ -40,10 +40,32 @@ void cmd_data(uint8_t c, const uint8_t *d, size_t n) {
     cs(HIGH);
 }
 
-bool wait_idle(uint32_t timeout_ms) {
+}  // namespace
+
+const char *last_fail = "";
+
+namespace {
+
+bool wait_busy_cycle(uint32_t timeout_ms, const char *stage) {
+    // After a command the panel must go BUSY (LOW) then idle (HIGH).
+    // Stuck HIGH (no panel / floating) used to return true immediately.
     uint32_t t0 = millis();
+    if (digitalRead(pins::EPD_BUSY) == HIGH) {
+        while (digitalRead(pins::EPD_BUSY) == HIGH) {
+            if (millis() - t0 > timeout_ms) {
+                if (!last_fail[0]) {
+                    last_fail = stage;
+                }
+                return false;
+            }
+            delay(2);
+        }
+    }
     while (digitalRead(pins::EPD_BUSY) == LOW) {
         if (millis() - t0 > timeout_ms) {
+            if (!last_fail[0]) {
+                last_fail = stage;
+            }
             return false;
         }
         delay(2);
@@ -103,7 +125,8 @@ void begin() {
     spi->begin(pins::EPD_SCK, -1, pins::EPD_MOSI, -1);
 }
 
-void power_on() {
+bool power_on() {
+    last_fail = "";
     digitalWrite(pins::EPD_PWR_EN, LOW);
     delay(20);
     spi->begin(pins::EPD_SCK, -1, pins::EPD_MOSI, -1);
@@ -111,13 +134,13 @@ void power_on() {
     hw_reset();
     init_otp();
     cmd(0x04);  // power on
-    wait_idle(5000);
+    return wait_busy_cycle(5000, "power_on");
 }
 
-void power_off() {
+bool power_off() {
     cmd(0x02);  // power off
     data(0x00);
-    wait_idle(5000);
+    bool ok = wait_busy_cycle(5000, "power_off");
     cmd(0x07);  // deep sleep
     data(0xA5);
     delay(10);
@@ -125,11 +148,12 @@ void power_off() {
     digitalWrite(pins::EPD_PWR_EN, HIGH);
     delay(5);
     spi_idle_low();
+    return ok;
 }
 
 bool refresh_solid(Color color) {
-    power_on();
-    if (!wait_idle(5000)) {
+    last_fail = "";
+    if (!power_on()) {
         power_off();
         return false;
     }
@@ -147,9 +171,9 @@ bool refresh_solid(Color color) {
 
     const uint8_t drf[] = {0x00};
     cmd_data(0x12, drf, sizeof(drf));
-    bool ok = wait_idle(30000);
-    power_off();
-    return ok;
+    bool ok = wait_busy_cycle(30000, "refresh");
+    bool off_ok = power_off();
+    return ok && off_ok;
 }
 
 }  // namespace epd

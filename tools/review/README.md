@@ -128,15 +128,15 @@ python tools/review/fault_probes.py --bash $gitBash --out "$auditRoot/faults"
 if ($LASTEXITCODE -ne 0) { throw 'failure-path characterization changed' }
 ```
 
-这些probe是**现有缺陷特征测试**：当前BUSY恒高/关电超时报告成功被作为预期旧行为记录；测试通过意味着缺陷复现成功，不意味着产品正确。修复后应改为拒绝假成功的回归断言。所有模拟输出中的毫秒都是替身时钟，不是屏幕测量。
+这些probe里，**固件** host_probes 在 F1 之后：仅 `normal` 报成功；BUSY 恒高、卡低、关电超时、刷新超时必须失败。测试通过意味着假成功已堵住，不是实屏通过。H1 之后 `fault_probes.py` 已改为 **F04/F19 回归**：旧 DRC 报告注入必须失败；ERC/DRC 失败不得走到 Gerber。所有模拟输出中的毫秒都是替身时钟，不是屏幕测量。
 
 静态审查比较模组符号脚名、design和pins.h，避免只照抄GPIO注释；检查9份原脚本AST、BOM/位置、旧ZIP目录一致性和三份bin哈希。它只记录ZIP/BOM问题，不把发现自动删除或重写。
 
-## 7. 原export.sh的本机失败与修复任务
+## 7. export.sh（H1 之后）
 
-本轮在副本执行原脚本，ERC/DRC阶段完成，网表导出完成，调用`python3 scripts/check_netlist.py`时返回49。`type -a python3`解析到WindowsApps别名，`command -v zip`无结果。KiCad自带的是`python.exe`，直接运行网表检查已成功；仅手工运行一次Python检查不会让脚本里的`python3`名称消失。
+H1 已改 `hardware/pcb/scripts/export.sh`：error 级 ERC/DRC 加 `--exit-code-violations`，去掉 DRC `|| true`；解释器为 `python3` / `python` / `py -3`；zip 用 `zip_dir.py`，不依赖 `zip` 命令。默认写入 `output/exports/<stamp>-candidate/`，**禁止**覆盖 `output/gerbers` 与 `output/badge_gerbers.zip`。`--production` 拒绝。全量 warning 见 `docs/hardware/drc-warning-register.md`，全部未豁免。
 
-后续修复需讨论后明确支持的shell/解释器配置和ZIP依赖，再修违规退出、DRC吞错、旧报告、新包临时目录、装配清单和模型完整性门禁。不要仅放一个假的python3返回0来让真实生产脚本过关。`fault_probes.py`中的假命令仅用于隔离流程测试。
+`fault_probes.py` 中的假 `kicad-cli` 仅用于隔离流程测试。不要仅放一个假的 python3 返回 0 来让真实脚本过关。候选目录不是生产包。
 
 ## 8. 证据与提交
 

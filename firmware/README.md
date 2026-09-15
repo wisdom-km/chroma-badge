@@ -1,6 +1,6 @@
 # 固件
 
-硬件引脚以 `hardware/pcb/scripts/design.py` 为准。本目录是 **v0.1 上电自检**：USB 日志、电池 ADC、ST25DV I²C 探测、按住 BOOT 则按官方 OTP 流程刷一屏白，然后深睡（`NFC_GPO` / `BOOT` 低电平唤醒）。
+硬件引脚以 `hardware/pcb/scripts/design.py` 为准。本目录是 **v0.2 上电自检**：USB 日志、电池 ADC、ST25DV I²C 探测；正常启动后串口 5 s 内发 `W` 则按官方 OTP 刷一屏白（不要按住 BOOT 复位，那是 ROM 下载）。然后深睡，只由 `NFC_GPO`（GPIO1）低电平唤醒。GPIO9 不是深睡唤醒源。
 
 屏：GDEM042F86 / SSD2683ZA，400×300，2 bit/像素（00 黑 01 白 10 黄 11 红）。初始化抄规格书 2026-06-17 **第 31 页** LUT from OTP，不写波形 RAM。
 
@@ -8,11 +8,13 @@
 
 ESP32-C3-MINI-1，原生 USB-Serial-JTAG（没有外置 UART）。
 
-预编译（2026-09-14，PlatformIO 6.2.0，espressif32 7.1.3）：
+预编译基线（2026-09-14，不要覆盖）：
 
 - `output/badge-42c-v0.1.bin`（应用，296 512 B）
 - `output/badge-42c-v0.1-bootloader.bin`
 - `output/badge-42c-v0.1-partitions.bin`
+
+v0.2 用 `pio run` 生成到 `.pio/build/`，有板后再拷新版本号，不要覆盖上面三份。
 
 ```bash
 cd firmware
@@ -27,8 +29,8 @@ pio device monitor
 
 1. GPIO2（`EPD_PWR_EN`）保持高：P-MOS 关，屏断电。
 2. USB CDC 打 `BADGE-42C firmware v0.1`、电池电压、ST25DV 是否 ACK。
-3. **按住 BOOT（SW2）复位**：刷全白（约 20 s），然后屏 deep sleep + 断电。
-4. 否则闪三下状态灯，深睡。
+3. USB CDC 就绪后 **5 s 内发字符 `W`**：刷全白（约 20 s），BUSY 未完成周期则报 `TIMEOUT` 并断电。
+4. 否则闪三下状态灯，深睡。只唤醒 `NFC_GPO`。**按住 BOOT + RESET = ROM 下载，不是刷白。**
 
 还没做：NDEF URL、FTM 邮箱收图、完整工牌画面。
 
