@@ -3,12 +3,11 @@
 对照规格书逐项打勾。结论先写「通过 / 有风险 / 必须改」，再写页码或 URL。
 `design.py` 是唯一事实来源；改脚序或电阻必须先改它再 `gen_schematic.py`。
 
-**「还开着」= 还没拍板，不是脚本没跑完。** 官方 GDEM042F86 规格书（2026-06-17，40 页）已对照本地 PDF。
+**「还开着」= 还没拍板或还没实机，不是脚本没跑完。** 官方 GDEM042F86 规格书（2026-06-17，40 页）已对照。H2 规格项已落地，见 [08-h2-h3-questions.md](08-h2-h3-questions.md)。
 
-仍要你拍板的：
+已勾：USB 0.8 mm、脚 7 NC、RESE=2.2 Ω、ACTIVE_TOP=6.7、NFC 绿油。贴胶规格见 [09-process.md](09-process.md)（3M 467MP）。
 
-1. ~~**USB 0.8 vs 0.75**~~：**按 0.8 mm 打样**（2026-09-14 Wisdom）。嘉立创/JLCPCB 标准档无 0.75；M-14 产品页 0.75，0.8 公差 ±0.1 mm 含 0.75。不改座、不改板厚。
-2. **脚 7 NC Keep Open**：官方第 7 页。H2 已改 `design.py` 进 `nc`，后处理禁止再缝 GND。不要接回 GND。
+仍要实机/生产授权的：电流、充电、USB 枚举、NFC 谐振、**生产 Gerber**（候选包不算）。
 
 已用官方 PDF 勾掉：脚序（6/7=NC，8=BS1）、RESE=2.2 Ω、ACTIVE_TOP=6.7 mm（第 6 页机械图）。
 
@@ -76,10 +75,11 @@ Hirose FH12：https://www.hirose.com/product/series/FH12
 - 电池仓无零件（B.Cu rule area）。
 - NFC 线圈盖绿油（ANT1 SMD 无 Mask；通孔 pad 2 仍开窗）。光线追踪里线圈是**绿的**（油盖铜），不是黄的；黄 = 露铜。圈内小黄点是通孔。铜皮 11 圈仍在，见 `output/nfc_coil_close.png`。
 - 外壳脚本从 `design.py` 读 SW1/SW2、FPC 槽、电池仓、LED（2026-09-14 已按 PCB 对齐：BOOT `(22.5, 80.5)`，槽 `(27,77.6,57,79.6)`）。
-- 0.4/0.2 mm 过孔：0.8 mm 板厚 4:1，多数板厂能做，下单时写明。
+- 屏贴胶：首件 **3M 467MP**（0.06 mm），只贴非 AA 边框。PETG 粘框用 300LSE。见 `docs/09-process.md`。
 
 ## 7. 建议的「通过才下单」门槛
 
 1. ~~USB-C 沉板与 0.8 mm 板匹配或改料号~~：已拍板 0.8，见第 2 节。
 2. 脚 7：官方 NC Keep Open，**H2 已空网**。不要再缝 GND。
-3. ~~FH12 开口朝槽 / NFC 盖绿油 / ACTIVE_TOP=6.7 / RESE=2.2 Ω~~ 已用官方 PDF 和第 6 页机械图勾掉。
+3. ~~FH12 开口朝槽 / NFC 盖绿油 / ACTIVE_TOP=6.7 / RESE=2.2 Ω / 贴胶 467MP~~ 已写进 BOM 与 `docs/09-process.md`。
+4. 生产包仍须 Wisdom 授权；CI 绿和全量 DRC 0 都不是下单文件。

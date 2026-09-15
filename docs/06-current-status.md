@@ -14,7 +14,7 @@
 6. [证据索引](reviews/2026-09-14/evidence/README.md)：原始JSON、日志、预览及SHA256清单。
 7. [r2 复跑](reviews/2026-09-14-r2/rerun.md)：新隔离目录复跑；结论与首轮一致，缺陷仍未修。
 8. [缺陷修复项目（先硬件后固件）](07-defect-fix-project.md)：未修项、注意点、H1/F1 提示词。
-9. [H2/H3 拍板提问](08-h2-h3-questions.md)、[全量 warning 登记（未豁免）](hardware/drc-warning-register.md)。
+9. [H2/H3 拍板记录（已关闭）](08-h2-h3-questions.md)、[流程（许可证/CI/贴胶/生产包）](09-process.md)、[全量 warning 登记](hardware/drc-warning-register.md)。
 
 ## 已完成与验证到什么程度
 
@@ -30,7 +30,7 @@
 | 固件构建 | v0.2 源码 | F01/F02/F09 已改；`host_probes` 新期望（仅 normal 成功）；勿覆盖 v0.1 bin | 无烧录、USB 或实屏；pio 构建见本机日志 |
 | 自检/显示/深睡 | 源码已修，待实机 | 深睡仅 GPIO1；刷白用串口 W；BUSY 恒高/关电超时报失败 | 实屏 BUSY、深睡电流、NFC 真场未测 |
 | NFC | 最小探测已实现 | 仅I²C ACK探测 | 身份/事件配置、NDEF、FTM、手机传图均未完成 |
-| 续航/充电/RF | 待验证 | ADR 已改为待测；电芯/充电器已锁料号 | 无电流/电荷/温升/射频/目标机型实测 |
+| 流程/文档 | 已对齐现板 | 许可证、CI、贴胶、交接不再写 564/脚7GND 当现状 | CI 不是 DRC；无生产 zip |
 
 状态词严格区分：**已决策**是用户选择；**已实现**是有代码/设计；**已构建**是编译成功；**本机验证**是明确的软件/几何检查；**实机通过**需要真实设备及条件。本轮没有任何新增“实机通过”项，不使用虚构完成百分比。
 
@@ -49,9 +49,9 @@
 继续 BADGE-42C。先读 AGENTS.md、docs/06-current-status.md、docs/03-handoff.md。
 始终中文。H2 铜皮已落地（680/115，J1.7 NC），不要再问 F06/N01 拍板。
 不要因为 DRC error 0 声称可以下生产包。不要把候选 Gerber 当生产包。
-不要覆盖用户已有 .kicad_pro 或 tools/freerouting。不要改产品固件除非本任务是 F1。
-下一步默认：有板实测；F2 须 Wisdom 选定 NDEF/FTM 路线。F1 源码已改。
+不要覆盖用户已有 tools/freerouting。F1 源码已改，不要再当未修缺陷去改 GPIO9。
+下一步默认：有板实测；F2 须 Wisdom 选定 NDEF/FTM 路线。
 提交前 check_netlist.py 和 export.sh --check-only。未经明确要求不要建 PR。
 ```
 
-历史交接、ADR和BOM文档中的冲突详见复审报告，保留以便讨论后统一修订。本文是审查状态入口，不修改已接受的架构决定。
+历史交接里的 564 段表已收进 [03-handoff.md](03-handoff.md) 第 7 节，不要当现板。本文是审查状态入口，不修改已接受的架构决定。

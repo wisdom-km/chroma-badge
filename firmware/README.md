@@ -28,7 +28,7 @@ pio device monitor
 ## 上电行为
 
 1. GPIO2（`EPD_PWR_EN`）保持高：P-MOS 关，屏断电。
-2. USB CDC 打 `BADGE-42C firmware v0.1`、电池电压、ST25DV 是否 ACK。
+2. USB CDC 打 `BADGE-42C firmware v0.2`、电池电压、ST25DV 是否 ACK。
 3. USB CDC 就绪后 **5 s 内发字符 `W`**：刷全白（约 20 s），BUSY 未完成周期则报 `TIMEOUT` 并断电。
 4. 否则闪三下状态灯，深睡。只唤醒 `NFC_GPO`。**按住 BOOT + RESET = ROM 下载，不是刷白。**
 

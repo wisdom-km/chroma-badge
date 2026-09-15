@@ -1,0 +1,53 @@
+# 文档/流程债 F20：锁版本后的可重复检查。
+# 这不是 KiCad 全量 DRC，也不是生产包门禁。全量 ERC/DRC 仍须本机 KiCad 10.0.6。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  scripts-and-host:
+    name: scripts + host_probes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile Python
+        run: python -m compileall -q hardware/pcb/scripts tools/review
+      - name: Netlist vs design.py
+        working-directory: hardware/pcb
+        run: python scripts/check_netlist.py
+      - name: EPD host probes
+        run: python tools/review/host_probes.py --compiler g++ --out "$RUNNER_TEMP/epd-host"
+
+  firmware:
+    name: PlatformIO v0.2
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: firmware
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio
+          key: ${{ runner.os }}-pio-${{ hashFiles('firmware/platformio.ini') }}
+          restore-keys: ${{ runner.os }}-pio-
+      - name: Install PlatformIO Core 6.2.0
+        # 与本机 v0.2 构建一致。espressif32 7.1.x 需要 Core >= 6.1.19，不要钉 6.1.18。
+        run: pip install "platformio==6.2.0"
+      - name: Build
+        run: pio run
+      - name: Keep v0.1 baseline intact
+        run: |
+          test -f output/badge-42c-v0.1.bin
+          python -c "from pathlib import Path; p=Path('output/badge-42c-v0.1.bin'); assert p.stat().st_size==296512"

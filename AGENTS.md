@@ -1,8 +1,8 @@
 # chroma-badge / BADGE-42C
 
-**2026-09-14 本机复审补充入口：** [docs/06-current-status.md](docs/06-current-status.md)、[合并整改计划](docs/reviews/2026-09-14/integrated-plan.md)、[可执行测试手册](tools/review/README.md)。下文是原进度快照；本轮复审的完整警告、未修缺陷、制造包同步问题和实物未测范围以补充报告逐项查证。架构决定和以下硬性约定保持。
+**2026-09-15 当前入口：** [docs/06-current-status.md](docs/06-current-status.md)、[交接](docs/03-handoff.md)、[流程](docs/09-process.md)。2026-09-14 复审是旧 564 段板的档案，不要当现板。架构决定和以下硬性约定保持。
 
-给 **本地 Cursor** 和任何切换过来的模型。先读这一份，再读 `docs/03-handoff.md`。
+给 **本地 Cursor** 和任何切换过来的模型。先读这一份，再读 `docs/03-handoff.md` 和 `docs/09-process.md`。
 3D、渲染、截图看不清或像有缺陷时，先读并遵守 `docs/05-visual-check.md`（先查源文件、对准重拍，分清拍错还是板上真问题）。
 用户 Wisdom，**始终用中文回复**。
 
@@ -19,7 +19,7 @@
 - 提交前：`hardware/pcb` 下 `python scripts/check_netlist.py` 和 `./scripts/export.sh --check-only`（error ERC/DRC）。全量 warning 见 `docs/hardware/drc-warning-register.md`，不能因为 error 0 声称全量通过。候选包 `export.sh` 默认写入新目录，**不是**生产发布。
 - 不要新建 PR，除非用户明确要求。
 - 发现文档写错或和板上事实冲突：**先问用户，讨论后再动手**，不要自行换流程。
-- 3D/截图不确定时走 `docs/05-visual-check.md`：先审查源文件和对准的图。**拍错了自己重拍**；**板上真有问题才问 Wisdom**。同类坑追加到该文档并推 GitHub。
+- 许可证：硬件 CERN-OHL-P-2.0，固件/脚本 MIT，见 `LICENSE.md`。不要自行改成 OHL-W/S。
 
 ## 当前进度（2026-09-15 H2）
 
@@ -29,7 +29,8 @@
 | PCB | 91×84 mm，2 层 0.8 mm，元件全在 B.Cu。**680 段 / 115 过孔，全量 DRC 0（含丝印与 schematic_parity）**。Power≥0.3 mm（GND 靠铺铜）、NFC 0.5 mm。旧 564/128 板备份在 `agent-tools/badge-pre-h2.kicad_pcb` |
 | 检查门禁 | H1 仍有效。全量 warning **0**（KiCad 10.0.6）。error 级 0 仍不等于生产包。 |
 | 外壳 | FreeCAD 前框+后盖，约 6.3 mm。ACTIVE_TOP=6.7 |
-| 固件 | **v0.2 源码已改 F1**（深睡仅 GPIO1；串口 `W` 刷白；BUSY 假成功已堵）。v0.1 bin 未覆盖。无实机 |
+| 固件 | **v0.2 F1**（深睡 GPIO1；串口 `W`；BUSY 失败可见）。平台钉 `espressif32@7.1.3`。v0.1 bin 未覆盖。无实机 |
+| 流程 | [LICENSE.md](LICENSE.md)；CI 跑网表/host_probes/pio，**不是** DRC；贴胶 3M 467MP |
 
 ## 下一步（按顺序）
 

@@ -14,10 +14,11 @@
 
 | 层 | 做到哪 | 没做到哪 |
 |---|---|---|
-| 设计 | 原理图/PCB/外壳/v0.1 自检可构建 | 未下单、无实物 |
-| 检查 | H1：error 门禁 fail-closed；候选目录导出；**KiCad 10.0.6 全量 ERC/DRC 0** | 无生产 zip |
-| 硬件 H2 | 脚7 NC、升压第29页、LDO 近端电容、TP4054+202545、Power/NFC 宽度、包络 3D、丝印/parity、U1/J3/Q1 对齐 10.0 | 无实机；候选≠生产 |
-| 固件 | v0.2 源码 F1 已改（GPIO1 唤醒 / 串口 W / BUSY 失败可见）；v0.1 bin 保留 | 无实机；无 NDEF/FTM |
+| 设计 | 原理图/PCB/外壳/v0.2 自检可构建 | 未下单、无实物 |
+| 检查 | H1 门禁；KiCad 10 全量 0；GitHub CI（网表/探针/pio） | 无生产 zip；CI ≠ DRC |
+| 固件 | v0.2 F1；平台钉 7.1.3；v0.1 bin 保留 | 无实机；无 NDEF/FTM |
+| 流程 | LICENSE.md、贴胶 467MP、08 已关闭拍板 | F08 路线未选 |
+| 硬件 H2 | 脚7 NC、升压第29页、LDO 近端电容、TP4054+202545、Power/NFC 宽度、包络 3D | 无实机；候选≠生产 |
 
 ---
 
@@ -98,7 +99,7 @@ H1 关闭范围：检查/导出**流程**。H2 规格已落地。仍不关闭「
 | F10 | UID/型号/配置可读回；ACK ≠ FTM ready |
 | F08 | Wisdom 选定 **一条** 路线：原生 FTM **或** NDEF 打开页再 BLE/SoftAP。Chrome Web NFC **不能**当 FTM 邮箱 |
 | F11 | 30 KB 图 > 8 KB EEPROM；256 B 邮箱分片；校验完再刷屏；半图不显示 |
-| F20 | 锁定已验证的 PlatformIO 平台版本；不替你选许可证 |
+| F20 | 锁定已验证的 PlatformIO 平台版本；许可证见 `LICENSE.md`（硬件 CERN-OHL-P-2.0，固件 MIT）；CI 见 `.github/workflows/ci.yml` |
 
 ---
 
@@ -116,51 +117,16 @@ H1 关闭范围：检查/导出**流程**。H2 规格已落地。仍不关闭「
 
 ---
 
-## 6. 下一会话：先贴硬件提示词；做完再贴固件
+## 6. 下一会话（H1/F1 已完成后）
 
-### 6.1 硬件修复提示词（先用这一段）
+硬件门禁与 F1 源码已落地。新会话用 [03-handoff.md](03-handoff.md) 文首粘贴块。
 
-```text
-继续 BADGE-42C 硬件缺陷修复（产品固件先不要改）。
-先读 AGENTS.md、docs/03-handoff.md、docs/01-architecture-decisions.md、
-docs/06-current-status.md、docs/07-defect-fix-project.md、
-docs/reviews/2026-09-14/integrated-plan.md 与 local-review.md。
-始终中文。先 git status；不要提交或重置 hardware/pcb/badge.kicad_pro、不要动 tools/freerouting/。
-
-本包只做 docs/07 的工作包 H1，以及把 H2/H3 里需要 Wisdom 拍板的项写成「证据 + 两种方案」提问，未经确认不要改网络/铜皮。
-优先：F04 export.sh 门禁、F19 drc_json 旧报告、F18/N02 新目录导出流程（还不要当生产发布）、F16 登记/补 USB 3D 模型路径、F15 BOM 分类说明。
-不要运行 gen_pcb.py；不要 Freerouting；不要为丝印或截图清布线。
-不要因为 DRC error 0 声称全量通过；全量 warning 必须列表或进豁免表，不能默认忽略。
-硬件改动若获批准，只从 hardware/pcb/scripts/design.py 起手，再 gen_schematic.py。
-提交前：故障路径（DRC 命令失败、旧报告注入）按修后的新期望验证；正常路径（error ERC/DRC、网表）再跑一遍。
-写明未覆盖的实物场景。不要建 PR。不要把诊断 Gerber 当生产包。历史推送授权不是生产发布授权。
-```
-
-### 6.2 固件修复提示词（硬件 H1 完成、规格讨论有结论后再用）
-
-```text
-继续 BADGE-42C 产品固件修复（v0.2 自检可靠性；不要做 NDEF/FTM/工牌画面）。
-先读 AGENTS.md、docs/07-defect-fix-project.md 第 4 节、firmware/README.md、
-docs/reviews/2026-09-14/local-review.md 第 4 节、docs/reviews/2026-09-14-r2/rerun.md。
-始终中文。先 git status；不要改 PCB/design.py/制造包，除非只改固件文档里过时的操作说明。
-不要覆盖 firmware/output/badge-42c-v0.1*.bin；新构建用新版本号。
-
-本包只做 F01、F02、F09，必要时 F12 的关电路径。
-- go_sleep：去掉 GPIO9 深睡，检查 API 返回值。
-- 自检入口与 ROM 下载（按住 BOOT+复位）分开，更新 firmware/README.md。
-- epd.cpp：上电/刷新/关电失败必须失败；修改 tools/review/host_probes.py 期望，使恒高/关电超时不再被当成成功。
-用 D:\PlatformIO\penv\Scripts\pio.exe 在隔离或干净目录编译。不要装 VS Code 的 PIO vsix。
-
-提交前跑 host_probes 与 pio run；正常四色仍 30000 字节；故障路径按新断言。
-未覆盖：实屏 BUSY、USB 烧录、深睡电流、NFC 真场。不要建 PR。不要宣称实机通过。
-```
+仍未覆盖：实机、生产包、F2 传图。F08 须 Wisdom 选定路线。
 
 ---
 
 ## 7. 建议的检查点
 
-1. H1 本机：`fault_probes` 按新断言绿（旧 DRC 注入失败；ERC/DRC 失败不到 Gerber）。`export.sh --check-only` error ERC/DRC 0、网表匹配。候选目录已能出当前 B.Silk，**仍无生产 zip**。
-2. Wisdom 书面回复 F06/N01/F07/F17。
-3. 若有铜皮变更：单独提交，带旧板指纹与是否 Freerouting 的说明。
-4. 再开 F1 固件会话。
-5. 有板之后才做合并计划第 4 节实物单；未测项保持待验证。
+1. CI 绿（网表 / host_probes / pio）≠ 全量 DRC ≠ 生产包。
+2. H2 规格已落地，不要再问 F06/N01/F07/F17。
+3. 有板之后才做合并计划第 4 节实物单；未测项保持待验证。
